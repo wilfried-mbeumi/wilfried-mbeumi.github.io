@@ -53,7 +53,7 @@ Bienvenue sur mon portfolio professionnel en ligne.
 ## 📬 Me contacter
 
 - 📧 Email : mbeumigautier@gmail.com  
-- 🔗 LinkedIn : [linkedin.com/in/wilfried-galtier-mbeumi-tchouffouo](https://www.linkedin.com/in/wilfried-galtier-mbeumi-tchouffouo)
+- 🔗 LinkedIn : [linkedin.com/in/wilfried-galtier-mbeumi-tchouffouo](https://www.linkedin.com/in/wilfried-galtier-mbeumi-tchouffouo-358bab351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 
 ---
 
