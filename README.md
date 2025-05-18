@@ -38,8 +38,8 @@ Bienvenue sur mon portfolio professionnel en ligne.
 ## 🧾 Certifications
 
 - ✅ Google Data Analytics (en cours)
-- ✅ IBM Data Science
-- ✅ Microsoft Power BI Fundamentals
+- ✅ IBM Data Science (en cours)
+- ✅ Microsoft Power BI Fundamentals (en cours)
 
 ---
 
