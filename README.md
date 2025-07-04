@@ -26,6 +26,8 @@ Bienvenue sur mon portfolio professionnel en ligne.
 ## 📁 Projets
 
 | Projet                           | Description                                                              | Lien                  |
+| `Détection de failles sur avions` | Modèle CNN pour repérage visuel automatisé – interface Streamlit | *à venir*              |
+| `Classification de déchets IA` | Tri intelligent d’images de déchets par vision par ordinateur | *à venir*              |
 |----------------------------------|---------------------------------------------------------------------------|------------------------|
 | `Time Series Forecasting`       | ARIMA / prévision de données en Python + visualisation Power BI         | *à venir*              |
 | `APP Santé IA (Chatbot médical)`| Application Streamlit / NLP / API pour Medease Healthcare                | *à venir*              |
