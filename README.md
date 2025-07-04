@@ -8,11 +8,9 @@ Bienvenue sur mon portfolio professionnel en ligne.
 
 ## 🚀 À propos de moi
 
-🎓 Étudiant en Mastère « Chef de Projet Data & IA » à **IA School – Paris**  
-🔍 Spécialisé en **analyse de données**, **modélisation prédictive**, **dashboarding** et **développement fullstack**  
-💼 Expérience en entreprise (MV2 Group, SECEL) + projets freelance (APP Santé, sites e-commerce, back-office)
-
----
+🎓 Étudiant en Mastère 2 « Chef de Projet Data & IA » à NEXA Digital School – Paris
+🔍 Spécialisé en stratégie data, modélisation prédictive, automatisation et IA.
+💼 Expériences professionnelles concrètes + projets impactants en entreprise et freelance.
 
 ## 🛠️ Compétences techniques
 
