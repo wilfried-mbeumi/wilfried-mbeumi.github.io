@@ -843,6 +843,95 @@ section{scroll-margin-top:72px}
   .pc-soon{border-radius:14px}
 }
 
+/* =========================================================
+   PREMIUM DESIGN SYSTEM v2
+   Couche additive : design tokens, theming qualitatif,
+   ambiance, micro-interactions, menu mobile. Ne modifie pas
+   le fond metier ni les cartes projets (polish seulement).
+   ========================================================= */
+
+/* ---- Tokens etendus (independants du theme) ---- */
+:root{
+  --s1:.25rem;--s2:.5rem;--s3:.75rem;--s4:1rem;--s5:1.25rem;--s6:1.5rem;--s8:2rem;--s10:2.5rem;--s12:3rem;--s16:4rem;--s20:5rem;--s24:6rem;
+  --r-xs:3px;--r-sm:6px;--r:10px;--r-md:14px;--r-lg:18px;--r-xl:24px;--r-pill:999px;
+  --t-fast:.15s;--t:.25s;--t-slow:.45s;
+  --grad-a:linear-gradient(135deg,#00B4D8,#0096B7);
+  --grad-a-soft:linear-gradient(135deg,rgba(0,180,216,.18),rgba(0,180,216,.03));
+}
+/* ---- Tokens theme-aware (miroir de la structure 4 voies) ---- */
+@media(prefers-color-scheme:dark){:root{--sh1:0 1px 2px rgba(0,0,0,.5);--sh3:0 28px 80px rgba(0,0,0,.78);--ring:rgba(0,180,216,.6);--spot:rgba(0,180,216,.10);--mono-bg:linear-gradient(150deg,#0e2e38,#06151b);--mono-bd:rgba(0,180,216,.45);--ovl:rgba(8,8,8,.72);}}
+@media(prefers-color-scheme:light){:root{--sh1:0 1px 2px rgba(0,0,0,.06);--sh3:0 28px 80px rgba(0,0,0,.16);--ring:rgba(0,150,183,.65);--spot:rgba(0,180,216,.14);--mono-bg:linear-gradient(150deg,#e6f7fc,#ffffff);--mono-bd:rgba(0,150,183,.4);--ovl:rgba(245,244,240,.82);}}
+[data-theme="dark"]{--sh1:0 1px 2px rgba(0,0,0,.5)!important;--sh3:0 28px 80px rgba(0,0,0,.78)!important;--ring:rgba(0,180,216,.6)!important;--spot:rgba(0,180,216,.10)!important;--mono-bg:linear-gradient(150deg,#0e2e38,#06151b)!important;--mono-bd:rgba(0,180,216,.45)!important;--ovl:rgba(8,8,8,.72)!important;}
+[data-theme="light"]{--sh1:0 1px 2px rgba(0,0,0,.06)!important;--sh3:0 28px 80px rgba(0,0,0,.16)!important;--ring:rgba(0,150,183,.65)!important;--spot:rgba(0,180,216,.14)!important;--mono-bg:linear-gradient(150deg,#e6f7fc,#ffffff)!important;--mono-bd:rgba(0,150,183,.4)!important;--ovl:rgba(245,244,240,.82)!important;}
+
+/* ---- Transition de theme douce (surfaces racine) ---- */
+body{transition:background-color var(--t-slow) var(--e),color var(--t-slow) var(--e)}
+
+/* ---- Spotlight curseur (ambiance hero, tres subtil) ---- */
+.hero .bg-fx{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(480px circle at var(--mx,72%) var(--my,28%),var(--spot),transparent 60%)}
+@media(prefers-reduced-motion:reduce){.hero .bg-fx{background:radial-gradient(560px circle at 72% 28%,var(--spot),transparent 60%)}}
+
+/* ---- Monogramme premium (badge theme-aware) ---- */
+.nl{gap:.6rem}
+.nl-icon{width:30px;height:30px;border-radius:9px;background:var(--mono-bg);border:1px solid var(--mono-bd);display:inline-flex;align-items:center;justify-content:center;box-shadow:var(--sh1);transition:transform var(--t) var(--e),box-shadow var(--t) var(--e),border-color var(--t) var(--e)}
+.nl:hover .nl-icon{transform:translateY(-1px) rotate(-4deg);box-shadow:0 6px 18px rgba(0,180,216,.32);border-color:var(--a)}
+.nl-icon svg{width:15px;height:13px;fill:var(--a)}
+.nl-text{font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:1.3rem}
+
+/* ---- Toggle theme : morph lune / soleil ---- */
+#TB{overflow:hidden}
+#TB .ic-sun{display:none}
+#TB svg{transition:transform var(--t-slow) var(--e)}
+#TB:hover svg{transform:rotate(20deg)}
+[data-theme="light"] #TB .ic-moon{display:none}
+[data-theme="light"] #TB .ic-sun{display:block}
+
+/* ---- Navbar premium : transitions + indicateur actif ---- */
+nav{transition:background var(--t-slow) var(--e),backdrop-filter var(--t-slow) var(--e),box-shadow var(--t-slow) var(--e),border-color var(--t-slow) var(--e)}
+.nlinks a{padding:.45rem 0}
+.nlinks a.active{color:var(--ink)}
+.nlinks a.active::after{transform:scaleX(1);transform-origin:left}
+
+/* ---- Hamburger + menu mobile premium ---- */
+.nav-burger{display:none;width:40px;height:40px;border:none;background:transparent;cursor:pointer;border-radius:var(--r-sm);align-items:center;justify-content:center;flex-direction:column;gap:5px;transition:background var(--t);flex-shrink:0}
+.nav-burger:hover{background:var(--tag)}
+.nav-burger span{display:block;width:20px;height:2px;background:var(--ink);border-radius:2px;transition:transform var(--t) var(--e),opacity var(--t) var(--e)}
+body.menu-open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open .nav-burger span:nth-child(2){opacity:0}
+body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu-scrim{position:fixed;inset:0;z-index:240;background:var(--ovl);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity var(--t-slow) var(--e)}
+body.menu-open .menu-scrim{opacity:1;visibility:visible}
+.mobile-menu{position:fixed;inset:0 0 0 auto;width:min(84vw,330px);z-index:250;background:var(--bg);border-left:1px solid var(--line);box-shadow:var(--sh3);transform:translateX(101%);transition:transform var(--t-slow) var(--e),visibility 0s var(--t-slow);display:flex;flex-direction:column;padding:5.5rem 1.8rem 2rem;gap:.1rem;visibility:hidden}
+body.menu-open .mobile-menu{transform:none;visibility:visible;transition:transform var(--t-slow) var(--e),visibility 0s 0s}
+.mobile-menu a{font-family:'Manrope',sans-serif;font-weight:600;font-size:1.05rem;color:var(--ink2);text-decoration:none;padding:.95rem .2rem;border-bottom:1px solid var(--line);transition:color var(--t) var(--e),padding-left var(--t) var(--e),background var(--t)}
+.mobile-menu a:hover,.mobile-menu a:focus-visible{color:var(--a);padding-left:.6rem}
+.mm-foot{margin-top:auto;display:flex;align-items:center;gap:.55rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--grn);padding-top:1.4rem}
+.mm-dot{width:8px;height:8px;border-radius:50%;background:var(--grn);box-shadow:0 0 0 4px rgba(45,198,83,.16);flex-shrink:0}
+body.menu-open{overflow:hidden}
+
+/* ---- Timeline experience ---- */
+.ex{position:relative}
+.ex::after{content:'';position:absolute;left:-2px;top:1.9rem;width:9px;height:9px;border-radius:50%;background:var(--a);box-shadow:0 0 0 4px var(--ag);transition:box-shadow var(--t) var(--e)}
+.ex:hover::after{box-shadow:0 0 0 6px var(--ag)}
+
+/* ---- Micro-interactions sobres ---- */
+.tag{transition:background var(--t) var(--e),color var(--t) var(--e),border-color var(--t) var(--e),transform var(--t) var(--e)}
+.tag:hover{transform:translateY(-1px)}
+.prov,.ppbi{transition:transform var(--t) var(--e),box-shadow var(--t) var(--e)}
+.pc:hover .prov{transform:translateY(-1px)}
+.cc{transition:border-color var(--t),color var(--t),transform var(--t) var(--e),box-shadow var(--t) var(--e)}
+.cc:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.ppl::after{content:'';position:absolute}
+.hero-stack li{transition:border-color var(--t) var(--e),color var(--t) var(--e),transform var(--t) var(--e)}
+.hero-stack li:hover{transform:translateY(-2px)}
+
+/* ---- Focus visible unifie (a11y AA) ---- */
+a:focus-visible,button:focus-visible,.cc:focus-visible,.cv-btn:focus-visible,.btn:focus-visible{outline:2px solid var(--ring);outline-offset:3px;border-radius:var(--r-xs)}
+
+/* ---- Cartes projets : integration seulement (pas de refonte) ---- */
+@media(hover:hover){.pg .pc{transition:box-shadow var(--t-slow) var(--e),z-index .01s}.pg .pc:hover{box-shadow:var(--sh2)}}
+@media(max-width:780px){.nav-burger{display:flex}.npill{display:none}}
+
 </style>
 </head>
 <body>
@@ -871,9 +960,10 @@ section{scroll-margin-top:72px}
       <span class="lang-text">EN</span>
     </button>
     <button class="nico" id="TB" type="button" aria-label="Basculer le thème clair / sombre">
-      <!-- Moon icon for theme toggle -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
     </button>
+    <button class="nav-burger" id="BG" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="MM"><span></span><span></span><span></span></button>
     <!-- Availability pill: show full pill on load then collapse into a dot -->
     <div class="npill" role="status" aria-label="Disponibilité : ouvert à l'alternance 2026">
       <!-- small green dot used both inside the pill and on its own -->
@@ -885,9 +975,20 @@ section{scroll-margin-top:72px}
     </div>
   </div>
 </nav>
+<div class="menu-scrim" id="MS" aria-hidden="true"></div>
+<nav class="mobile-menu" id="MM" aria-label="Menu mobile">
+  <a href="#about">Profil</a>
+  <a href="#skills">Stack</a>
+  <a href="#projects">Projets</a>
+  <a href="#experience">Expérience</a>
+  <a href="#education">Formation</a>
+  <a href="#cv">Mes CV</a>
+  <a href="#contact">Contact</a>
+  <div class="mm-foot"><span class="mm-dot"></span><span id="mm-status">Disponible · Alternance 2026</span></div>
+</nav>
 
 <section class="hero" id="home">
-  <div class="hero-grid"></div><div class="hero-orb"></div>
+  <div class="bg-fx" aria-hidden="true"></div><div class="hero-grid"></div><div class="hero-orb"></div>
   <div class="hero-left">
     <div class="hero-eyebrow">Data Analyst — BI · ML appliqué · IA industrielle</div>
     <h1 class="hero-title">
@@ -1247,14 +1348,14 @@ section{scroll-margin-top:72px}
   function initNav() {
     var navEl = document.querySelector('nav');
     var secs = document.querySelectorAll('section[id]');
-    var links = document.querySelectorAll('#NL a');
+    var links = document.querySelectorAll('#NL a, #MM a');
     return function () {
       var y = window.scrollY;
       if (navEl) navEl.classList.toggle('scrolled', y > 10);
       var current = '';
       secs.forEach(function (s) { if (y >= s.offsetTop - 70) current = s.id; });
       links.forEach(function (a) {
-        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--a)' : '';
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
       });
     };
   }
@@ -1521,6 +1622,10 @@ section{scroll-margin-top:72px}
     for (var i = 0; i < navLinks.length && i < NAV.length; i++) {
       navLinks[i].textContent = NAV[i];
     }
+    var mmLinks = document.querySelectorAll('#MM a');
+    for (var mli = 0; mli < mmLinks.length && mli < NAV.length; mli++) { mmLinks[mli].textContent = NAV[mli]; }
+    var mmStatus = document.getElementById('mm-status');
+    if (mmStatus) mmStatus.textContent = lang === 'fr' ? 'Disponible · Alternance 2026' : 'Available · Work-study 2026';
 
     // Update education entries
     var eduEls = document.querySelectorAll('#education .edu');
@@ -1715,6 +1820,34 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 4000);
   }
 });
+</script>
+<script>
+(function(){
+  var REDUCE = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  /* ===== MENU MOBILE ===== */
+  var burger=document.getElementById('BG'), menu=document.getElementById('MM'), scrim=document.getElementById('MS');
+  function setMenu(open){
+    document.body.classList.toggle('menu-open', open);
+    if(burger){ burger.setAttribute('aria-expanded', open?'true':'false'); burger.setAttribute('aria-label', open?'Fermer le menu':'Ouvrir le menu'); }
+    if(open && menu){ var f=menu.querySelector('a'); if(f) f.focus(); }
+  }
+  if(burger){ burger.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); }); }
+  if(scrim){ scrim.addEventListener('click', function(){ setMenu(false); }); }
+  if(menu){ menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); }); }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && document.body.classList.contains('menu-open')){ setMenu(false); if(burger) burger.focus(); } });
+  window.addEventListener('resize', function(){ if(window.innerWidth>780 && document.body.classList.contains('menu-open')) setMenu(false); });
+
+  /* ===== SPOTLIGHT HERO (curseur) ===== */
+  var hero=document.getElementById('home');
+  if(hero && !REDUCE && window.matchMedia('(hover:hover)').matches){
+    var raf=false, mx=72, my=28;
+    hero.addEventListener('pointermove', function(e){
+      var r=hero.getBoundingClientRect();
+      mx=((e.clientX-r.left)/r.width)*100; my=((e.clientY-r.top)/r.height)*100;
+      if(!raf){ raf=true; requestAnimationFrame(function(){ hero.style.setProperty('--mx', mx+'%'); hero.style.setProperty('--my', my+'%'); raf=false; }); }
+    });
+  }
+})();
 </script>
 </body>
 </html>
