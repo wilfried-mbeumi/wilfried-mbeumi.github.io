@@ -3,8 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wilfried MBEUMI — Data Analyst & MLOps</title>
+<title>Wilfried MBEUMI — Data Analyst | BI, Machine Learning appliqué & IA industrielle</title>
+
+<!-- ===== SEO ===== -->
+<meta name="description" content="Wilfried MBEUMI — Data Analyst orienté Business Intelligence, Machine Learning appliqué et IA industrielle. Python, Power BI, SQL, Streamlit, FastAPI. Je transforme des données métiers en dashboards, modèles prédictifs et outils décisionnels exploitables.">
+<meta name="author" content="Wilfried Galtier MBEUMI TCHOUFFOUO">
+<meta name="keywords" content="Data Analyst, Business Intelligence, Power BI, Python, SQL, Machine Learning, Streamlit, FastAPI, IA industrielle, Data, portfolio">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F5F4F0" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://wilfried-mbeumi.github.io/">
+
+<!-- ===== Open Graph (LinkedIn / Facebook) ===== -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Wilfried MBEUMI — Portfolio">
+<meta property="og:title" content="Wilfried MBEUMI — Data Analyst | BI, Machine Learning appliqué & IA industrielle">
+<meta property="og:description" content="Je transforme des données métiers en dashboards, modèles prédictifs et outils décisionnels exploitables. Python · Power BI · SQL · Streamlit · FastAPI.">
+<meta property="og:url" content="https://wilfried-mbeumi.github.io/">
+<meta property="og:image" content="https://wilfried-mbeumi.github.io/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wilfried MBEUMI — Data Analyst, BI & Machine Learning appliqué">
+
+<!-- ===== Twitter ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wilfried MBEUMI — Data Analyst | BI, ML appliqué & IA industrielle">
+<meta name="twitter:description" content="Je transforme des données métiers en dashboards, modèles prédictifs et outils décisionnels exploitables.">
+<meta name="twitter:image" content="https://wilfried-mbeumi.github.io/og-cover.png">
+
+<!-- Marqueur JS : tant que la classe n'est pas posée, aucun contenu n'est masqué (fallback sans JavaScript) -->
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <!-- Favicon: analytics bar chart icon matching brand -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='7' width='3' height='7' rx='1' fill='%2300B4D8'/%3E%3Crect x='7' y='4' width='3' height='10' rx='1' fill='%2300B4D8'/%3E%3Crect x='12' y='1' width='3' height='13' rx='1' fill='%2300B4D8'/%3E%3C/svg%3E"/>
@@ -19,7 +50,6 @@ body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(-
 body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
 
 /* NAV */
-nav{position:fixed;inset:0 0 auto;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;background:var(--nav);backdrop-filter:blur(24px) saturate(160%);border-bottom:1px solid var(--line)}
 nav{
   position:fixed;
   inset:0 0 auto;
@@ -331,6 +361,8 @@ section:nth-child(even){background:var(--bg-s)}
 .ex-ul li{font-size:.88rem;color:var(--ink2);line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:.3rem}
 .ex-ul li::before{content:'→';position:absolute;left:0;color:var(--a);font-size:.73rem;top:.13rem}
 .ex-ul strong{color:var(--grn);font-weight:700}
+.ex-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.95rem}
+.ex-tags .tag{font-size:.62rem}
 
 /* EDUCATION */
 .edug{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:1.1rem}
@@ -698,14 +730,124 @@ img, svg, video, iframe {
   }
 }
 
+/* =========================================================
+   CINÉMATIQUE AU SCROLL + DIRECTION ARTISTIQUE PREMIUM
+   Choix technique : IntersectionObserver enrichi + parallax rAF,
+   sans dépendance (pas de GSAP). Effets de scène équivalents
+   (reveal directionnel, blur-in, profondeur, parallax, barre de
+   progression) pour un site plus léger, plus rapide et autonome.
+   ========================================================= */
+
+/* --- Garde-fou : sans JavaScript, rien n'est masqué --- */
+html:not(.js) .reveal,
+html:not(.js) .sr,
+html:not(.js) .sg>*{opacity:1!important;transform:none!important;filter:none!important}
+
+/* --- Reveal générique orchestré (titres de section = scène) --- */
+.reveal{opacity:0;transform:translateY(32px);filter:blur(6px);transition:opacity .85s var(--e) var(--d,0s),transform .85s var(--e) var(--d,0s),filter .85s var(--e) var(--d,0s);will-change:opacity,transform,filter}
+.reveal.r-l{transform:translateX(-42px)}
+.reveal.r-r{transform:translateX(42px)}
+.reveal.r-scale{transform:scale(.94);filter:blur(8px)}
+.reveal.in{opacity:1;transform:none;filter:none}
+
+/* --- Reveal de contenu enrichi : profondeur + flou cinématographique --- */
+.sr,.sg>*{transform:translateY(26px) scale(.99);filter:blur(5px);transition:opacity .8s var(--e),transform .8s var(--e),filter .8s var(--e)}
+.sr.on,.sg.on>*{filter:none}
+
+/* --- Désactivation totale pour prefers-reduced-motion --- */
+@media(prefers-reduced-motion:reduce){
+  .reveal,.sr,.sg>*{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .hero-grid,.hero-orb{animation:none!important}
+}
+
+/* --- Barre de progression de lecture (storytelling) --- */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:300;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--a),var(--grn));box-shadow:0 0 12px rgba(0,180,216,.5);pointer-events:none}
+
+/* --- Polish : sélection & barre de défilement --- */
+::selection{background:rgba(0,180,216,.28);color:var(--ink)}
+html{scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--line2);border-radius:8px;border:3px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:var(--a)}
+
+/* --- Polish : kicker de section avec repère lumineux --- */
+.slbl{display:inline-flex;align-items:center;gap:.55rem}
+.slbl::before{content:'';width:22px;height:1px;background:linear-gradient(90deg,transparent,var(--a));flex-shrink:0}
+
+/* --- Polish : boutons premium (léger reflet au survol) --- */
+.btn{position:relative;overflow:hidden;letter-spacing:.01em}
+.btn-a{background:linear-gradient(135deg,var(--a),var(--a2));color:#001318}
+.btn-a:hover{box-shadow:0 10px 32px rgba(0,180,216,.35),0 2px 8px rgba(0,180,216,.25)}
+.btn::after{content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .6s var(--e);pointer-events:none}
+.btn:hover::after{left:140%}
+
+/* --- Polish : profondeur de carte affinée au survol --- */
+.sk,.edu,.cert,.ex,.cv-card{transition:border-color .35s var(--e),transform .35s var(--e),box-shadow .45s var(--e)}
+.sk:hover,.edu:hover,.cert:hover,.ex:hover{box-shadow:0 18px 48px var(--line2),0 2px 10px rgba(0,0,0,.08)}
+
+/* --- Polish : titres de section plus respirants --- */
+.sh{margin-bottom:1rem}
+section{scroll-margin-top:72px}
+
+/* =========================================================
+   AJOUTS UX/CREDIBILITE (refonte recruteur)
+   - bande de stack hero, chips de provenance, badges de preuve
+   - fix MOBILE des cartes projets (panneau accessible sans survol)
+   - accessibilite clavier sur desktop (:focus-within)
+   ========================================================= */
+
+/* Bande de competences cles sous le hero */
+.hero-stack{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin:.2rem 0 2.4rem;padding:0;opacity:0;animation:su .6s 1s var(--e) forwards}
+.hero-stack li{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);background:var(--tag);border:1px solid var(--line);padding:.4rem .75rem;border-radius:999px;transition:border-color .25s,color .25s}
+.hero-stack li:hover{border-color:var(--a);color:var(--ink)}
+
+/* Chip de provenance sur la base de chaque carte (toujours visible) */
+.pcprov{margin-bottom:.55rem}
+.prov{font-family:'JetBrains Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:.22rem .55rem;border-radius:999px;display:inline-block;backdrop-filter:blur(4px)}
+.prov-sim{background:rgba(244,162,97,.2);color:#F8C28A;border:1px solid rgba(244,162,97,.5)}
+.prov-pub{background:rgba(0,180,216,.2);color:#8FE3F6;border:1px solid rgba(0,180,216,.5)}
+.prov-aca{background:rgba(167,139,250,.22);color:#CFC2FD;border:1px solid rgba(167,139,250,.55)}
+.prov-perso{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}
+.prov-ent{background:rgba(45,198,83,.2);color:#86E6A0;border:1px solid rgba(45,198,83,.5)}
+
+/* Badges de preuve dans le panneau (s'adaptent a la couleur du panneau) */
+.ppb{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.55rem}
+.ppbi{font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:.2rem .45rem;border-radius:3px;border:1px solid currentColor;opacity:.82}
+
+/* Clause de limites - honnetete des resultats */
+.ppd-lim{display:block;margin-top:.45rem;font-size:.92em;font-style:italic;opacity:.82}
+
+/* Accessibilite clavier (desktop) : ouvrir le panneau au focus d'un lien interne */
+.pc:focus-within .pcbase{opacity:0;transform:translateY(6px)}
+.pc:focus-within .pcstat{opacity:0;transform:translateY(-6px)}
+.pc:focus-within .pcp{transform:translateY(0)}
+.pc:focus-within .pcp>*{opacity:1;transform:none}
+.ppl:focus-visible,.btn:focus-visible,.cc:focus-visible,.cv-btn:focus-visible,.nico:focus-visible,.nlinks a:focus-visible,.tag:focus-visible{outline:2px solid var(--a);outline-offset:2px;border-radius:3px}
+
+/* FIX MOBILE / TACTILE : sans survol, on empile le contenu projet
+   sous l'image -> description, badges ET liens toujours accessibles. */
+@media (hover:none), (max-width:780px){
+  .pg{gap:1.25rem}
+  .pc{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card);cursor:default;box-shadow:var(--sh)}
+  .pci{height:210px}
+  .pc .pcbase{opacity:1!important;transform:none!important}
+  .pc .pcstat{opacity:1!important;transform:none!important}
+  .pc .pcibg{transform:none!important;filter:none!important}
+  .pcp{position:static;transform:none!important;min-height:auto;padding:1.3rem}
+  .pcp>*{opacity:1!important;transform:none!important}
+  .pc-soon{border-radius:14px}
+}
+
 </style>
 </head>
 <body>
-<nav>
-  <a href="#home" class="nl">
-    <span class="nl-icon">
+<div class="scroll-progress" id="SP" aria-hidden="true"></div>
+<nav aria-label="Navigation principale">
+  <a href="#home" class="nl" aria-label="Wilfried MBEUMI — accueil">
+    <span class="nl-icon" aria-hidden="true">
       <!-- Original analytics bar chart logo for personal brand -->
-      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="2" y="7" width="3" height="7" rx="1" />
         <rect x="7" y="4" width="3" height="10" rx="1" />
         <rect x="12" y="1" width="3" height="13" rx="1" />
@@ -719,19 +861,19 @@ img, svg, video, iframe {
     <li><a href="#education">Formation</a></li><li><a href="#cv">Mes CV</a></li><li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="nico lang" id="LB">
+    <button class="nico lang" id="LB" type="button" aria-label="Changer de langue (français / anglais)">
       <!-- Globe icon for language button -->
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       <span class="lang-text">EN</span>
     </button>
-    <button class="nico" id="TB">
+    <button class="nico" id="TB" type="button" aria-label="Basculer le thème clair / sombre">
       <!-- Moon icon for theme toggle -->
-      <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
     <!-- Availability pill: show full pill on load then collapse into a dot -->
-    <div class="npill">
+    <div class="npill" role="status" aria-label="Disponibilité : ouvert à l'alternance 2026">
       <!-- small green dot used both inside the pill and on its own -->
-      <div class="npill-dot"></div>
+      <div class="npill-dot" aria-hidden="true"></div>
       <!-- text shown only on first load before collapsing -->
       <span class="npill-text">Disponible · Alternance 2026</span>
       <!-- tooltip always visible on hover -->
@@ -743,14 +885,17 @@ img, svg, video, iframe {
 <section class="hero" id="home">
   <div class="hero-grid"></div><div class="hero-orb"></div>
   <div class="hero-left">
-    <div class="hero-eyebrow">Data Analyst · MLOps · IA Industrielle</div>
+    <div class="hero-eyebrow">Data Analyst — BI · ML appliqué · IA industrielle</div>
     <h1 class="hero-title">
       <span class="hw"><span>DATA</span></span>
       <span class="hw"><span>ANALYST</span></span><br>
       <span class="hw"><span>WILFRIED</span></span>
       <span class="hw"><span>MBEUMI</span></span>
     </h1>
-    <p class="hero-sub">Master 2 Chef de Projet Data &amp; IA · <strong>Rondol Industrie</strong> (Nancy) · Pipelines ML end-to-end, Computer Vision, données industrielles R&amp;D.<br>De la donnée brute au modèle en production.</p>
+    <p class="hero-sub">Je transforme des <strong>données métiers</strong> en dashboards, modèles prédictifs et outils décisionnels exploitables.<br>Master&nbsp;2 Data &amp; IA · en mission Data Analyst chez <strong>Rondol Industrie</strong> (Nancy).</p>
+    <ul class="hero-stack" aria-label="Compétences clés">
+      <li>Power BI</li><li>Python</li><li>SQL</li><li>Streamlit</li><li>FastAPI</li><li>ML appliqué</li>
+    </ul>
     <div class="hero-metrics">
       <div class="hm"><div class="hm-val cyan">95%</div><div class="hm-lbl">ROC-AUC · Fraud</div></div>
       <div class="hm"><div class="hm-val grn">87%</div><div class="hm-lbl">Recall Fraude</div></div>
@@ -760,8 +905,8 @@ img, svg, video, iframe {
     </div>
     <div class="hero-ctas">
       <a href="#projects" class="btn btn-a">Voir mes projets →</a>
-      <a href="https://github.com/wilfried-mbeumi" target="_blank" rel="noopener" class="btn btn-o">GitHub</a>
-      <a href="#cv" class="btn btn-o" id="CVBtn">Mes CV</a>
+      <a href="#cv" class="btn btn-o" id="CVBtn">Télécharger mon CV</a>
+      <a href="#contact" class="btn btn-o" id="ContactBtn">Me contacter</a>
     </div>
   </div>
   <div class="hero-right">
@@ -787,7 +932,7 @@ img, svg, video, iframe {
     <div class="slbl">01 — Profil</div><h2 class="sh">Data, IA &amp; Industrie</h2>
     <div class="agrid sr">
       <div>
-        <p class="ap">Étudiant en <strong>Master 2 Data &amp; Intelligence Artificielle</strong>, je développe une expertise en analyse de données industrielles, modélisation statistique et optimisation de processus.</p>
+        <p class="ap">Étudiant en <strong>Master 2 Data &amp; Intelligence Artificielle</strong>, je conçois des solutions data de bout en bout : <strong>analyse &amp; Business Intelligence</strong>, modélisation statistique, Machine Learning appliqué et mise à disposition via des applications (Streamlit&nbsp;/&nbsp;FastAPI).</p>
         <p class="ap">En stage chez <strong>Rondol Industrie</strong> (Nancy), j'exploite des données d'extrudeuses bivis pour optimiser les paramètres process et construire des dashboards en temps réel.</p>
         <p class="ap">Mon credo : <strong>métriques honnêtes</strong>, code maintenable, résultats défendables.</p>
       </div>
@@ -795,7 +940,7 @@ img, svg, video, iframe {
         <div class="fact"><span class="fk">Formation</span><span class="fv">Master 2 Chef de Projet Data &amp; IA — NEXA Digital School, Paris</span></div>
         <div class="fact"><span class="fk">Stage</span><span class="fv">Data Analyst — Rondol Industrie, Nancy (janv. 2026 – en cours)</span></div>
         <div class="fact"><span class="fk">Localisation</span><span class="fv">Paris &amp; Nancy — Mobile France entière</span></div>
-        <div class="fact"><span class="fk">Spécialités</span><span class="fv">MLOps · Fraud Detection · Computer Vision · IA Industrielle</span></div>
+        <div class="fact"><span class="fk">Spécialités</span><span class="fv">Business Intelligence · Machine Learning appliqué · Computer Vision · Déploiement d'apps ML (Streamlit/FastAPI)</span></div>
         <div class="fact"><span class="fk">Langues</span><span class="fv">Français (natif) · Anglais (B1)</span></div>
         <div class="fact"><span class="fk">Intérêts</span><span class="fv">Basket · R&amp;B · Bénévolat (Resto du cœur, La Chorba) · Voyage</span></div>
       </div>
@@ -806,9 +951,9 @@ img, svg, video, iframe {
 <section id="skills">
   <div class="w">
     <div class="slbl">02 — Stack</div><h2 class="sh">Outils &amp; Technologies</h2>
-    <p class="ss">Stack orientée production — de l'ingénierie des données au déploiement ML.</p>
+    <p class="ss">Stack orientée production — de la donnée brute au déploiement ML.</p>
     <div class="skg sg">
-      <div class="sk"><div class="sk-i">⚙️</div><div class="sk-n">MLOps &amp; Déploiement</div><div class="tags"><span class="tag hi">FastAPI</span><span class="tag hi">Streamlit</span><span class="tag hi">Pydantic</span><span class="tag">scikit-learn</span><span class="tag">joblib</span><span class="tag">GitHub Actions</span></div></div>
+      <div class="sk"><div class="sk-i">⚙️</div><div class="sk-n">Déploiement &amp; API ML</div><div class="tags"><span class="tag hi">FastAPI</span><span class="tag hi">Streamlit</span><span class="tag hi">Pydantic</span><span class="tag">scikit-learn</span><span class="tag">joblib</span><span class="tag">GitHub Actions</span></div></div>
       <div class="sk"><div class="sk-i">🐍</div><div class="sk-n">Data &amp; Python</div><div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Jupyter</span></div></div>
       <div class="sk"><div class="sk-i">🗄️</div><div class="sk-n">Data Engineering</div><div class="tags"><span class="tag hi">BigQuery</span><span class="tag hi">Azure Data Factory</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">SQL avancé</span></div></div>
       <div class="sk"><div class="sk-i">📊</div><div class="sk-n">BI &amp; Visualisation</div><div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag hi">Looker</span><span class="tag">Plotly</span><span class="tag">Studio 3T</span></div></div>
@@ -819,7 +964,7 @@ img, svg, video, iframe {
 </section>
 
 <section id="projects">
-  <div class="w"><div class="slbl">03 — Projets</div><h2 class="sh">Ce que j'ai construit</h2><p class="ss">8 projets · Survolez pour découvrir</p></div>
+  <div class="w"><div class="slbl">03 — Projets</div><h2 class="sh">Ce que j'ai construit</h2><p class="ss">8 projets — du dashboard BI au modèle ML déployé. Chaque carte précise le contexte, les données et les limites.</p></div>
   <div class="pg sr">
 
     <!-- 1. FRAUD -->
@@ -828,9 +973,9 @@ img, svg, video, iframe {
         <div class="pcibg" style="background:linear-gradient(155deg,#0A0018 0%,#1E0050 30%,#3B0F8C 60%,#6D28D9 85%,#8B5CF6 100%)"></div>
         <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" style="opacity:.5"><defs><radialGradient id="rg1" cx="50%" cy="40%" r="50%"><stop offset="0%" stop-color="#A78BFA" stop-opacity=".6"/><stop offset="100%" stop-color="#6D28D9" stop-opacity="0"/></radialGradient></defs><circle cx="160" cy="130" r="90" fill="url(#rg1)"/><rect x="55" y="75" width="140" height="90" rx="10" fill="none" stroke="#A78BFA" stroke-width="1.8"/><rect x="55" y="95" width="140" height="16" fill="#A78BFA" opacity=".15"/><circle cx="80" cy="86" r="8" fill="none" stroke="#A78BFA" stroke-width="1.2"/><circle cx="92" cy="86" r="8" fill="none" stroke="#EF4444" stroke-width="1.2" opacity=".7"/><rect x="68" y="110" width="28" height="20" rx="3" fill="none" stroke="#DDD6FE" stroke-width="1" opacity=".5"/><line x1="72" y1="115" x2="72" y2="125" stroke="#DDD6FE" stroke-width=".8" opacity=".5"/><line x1="79" y1="115" x2="79" y2="125" stroke="#DDD6FE" stroke-width=".8" opacity=".5"/><line x1="86" y1="115" x2="86" y2="125" stroke="#DDD6FE" stroke-width=".8" opacity=".5"/><path d="M140,220 Q160,190 180,175 Q210,155 240,140" fill="none" stroke="#00B4D8" stroke-width="2.5"/><path d="M140,220 L240,220" fill="none" stroke="#666" stroke-width="1" opacity=".4"/><path d="M140,140 L140,220" fill="none" stroke="#666" stroke-width="1" opacity=".4"/><text x="245" y="138" font-family="monospace" font-size="9" fill="#00B4D8" opacity=".8">AUC</text><text x="30" y="268" font-family="monospace" font-size="7.5" fill="#A78BFA" opacity=".6">fraud: False | prob: 0.03</text><text x="30" y="281" font-family="monospace" font-size="7.5" fill="#EF4444" opacity=".8">fraud: TRUE  | prob: 0.97</text><text x="30" y="294" font-family="monospace" font-size="7.5" fill="#A78BFA" opacity=".6">fraud: False | prob: 0.11</text><rect x="205" y="60" width="80" height="40" rx="6" fill="#00B4D8" opacity=".2" stroke="#00B4D8" stroke-width="1.2"/><text x="245" y="77" text-anchor="middle" font-family="monospace" font-size="8" fill="#00B4D8">ROC-AUC</text><text x="245" y="93" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#00B4D8">95%</text></svg>
         <div class="pcstat" style="background:#00B4D8;color:#000">95%</div>
-        <div class="pcbase"><div class="pctag">MLOps · FastAPI</div><div class="pctitle">Fraud Detector — Fraude bancaire</div></div>
+        <div class="pcbase"><div class="pcprov"><span class="prov prov-sim">Dataset simulé</span></div><div class="pctag">ML appliqué · FastAPI</div><div class="pctitle">Fraud Detector — Détection de fraude</div></div>
       </div>
-      <div class="pcp pp-c"><div><div class="ppt">FastAPI · Streamlit · scikit-learn</div><div class="ppti">Fraud Detector</div><p class="ppd">Détection de fraude bancaire sur 100k transactions. Logistic Regression équilibrée, API FastAPI et interface Streamlit pour un usage démonstratif plus opérationnel.</p></div><div><div class="ppn"><div><div class="ppnv">95%</div><div class="ppnl">ROC-AUC</div></div><div><div class="ppnv">87%</div><div class="ppnl">Recall</div></div><div><div class="ppnv">100k</div><div class="ppnl">Transactions</div></div></div><div class="pps"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">Python</span><span class="tag">MLOps</span></div><a href="https://github.com/wilfried-mbeumi/fraud_project_rouge" target="_blank" rel="noopener" class="ppl">GitHub →</a><a href="https://fraudprojectrouge-dqbeqheicjwyxstdncnnsj.streamlit.app/" target="_blank" rel="noopener" class="ppl" style="margin-left:1rem">App →</a></div></div>
+      <div class="pcp pp-c"><div><div class="ppt">FastAPI · Streamlit · scikit-learn</div><div class="ppti">Fraud Detector</div><p class="ppd">Pipeline ML complet sur un <strong>dataset simulé</strong> (~100k transactions) : Logistic Regression équilibrée (class_weight), servie via API FastAPI + interface Streamlit. <em class="ppd-lim">Métriques obtenues sur données simulées — à revalider sur transactions réelles.</em></p></div><div><div class="ppn"><div><div class="ppnv">95%</div><div class="ppnl">ROC-AUC</div></div><div><div class="ppnv">87%</div><div class="ppnl">Recall</div></div><div><div class="ppnv">100k</div><div class="ppnl">Transactions</div></div></div><div class="ppb"><span class="ppbi">API FastAPI</span><span class="ppbi">App Streamlit</span><span class="ppbi">Code GitHub</span></div><div class="pps"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">scikit-learn</span></div><a href="https://github.com/wilfried-mbeumi/fraud_project_rouge" target="_blank" rel="noopener" class="ppl" aria-label="Fraud Detector — code sur GitHub">GitHub →</a><a href="https://fraudprojectrouge-dqbeqheicjwyxstdncnnsj.streamlit.app/" target="_blank" rel="noopener" class="ppl" style="margin-left:1rem" aria-label="Fraud Detector — démo Streamlit">App →</a></div></div>
     </div>
 
     <!-- 2. SNCF -->
@@ -839,9 +984,9 @@ img, svg, video, iframe {
         <div class="pcibg" style="background:linear-gradient(155deg,#000818 0%,#001535 30%,#002B6E 60%,#1D4ED8 85%,#3B82F6 100%)"></div>
         <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" style="opacity:.52"><defs><radialGradient id="rg2" cx="50%" cy="35%" r="55%"><stop offset="0%" stop-color="#60A5FA" stop-opacity=".5"/><stop offset="100%" stop-color="#1D4ED8" stop-opacity="0"/></radialGradient></defs><circle cx="160" cy="120" r="100" fill="url(#rg2)"/><rect x="40" y="130" width="220" height="55" rx="14" fill="none" stroke="#60A5FA" stroke-width="2"/><path d="M40,143 Q60,130 80,130 L240,130 Q265,130 263,143" fill="none" stroke="#60A5FA" stroke-width="1.5" opacity=".6"/><rect x="58" y="140" width="28" height="20" rx="3" fill="#1D4ED8" opacity=".5" stroke="#60A5FA" stroke-width="1"/><rect x="98" y="140" width="28" height="20" rx="3" fill="#1D4ED8" opacity=".5" stroke="#60A5FA" stroke-width="1"/><rect x="138" y="140" width="28" height="20" rx="3" fill="#1D4ED8" opacity=".5" stroke="#60A5FA" stroke-width="1"/><rect x="178" y="140" width="28" height="20" rx="3" fill="#1D4ED8" opacity=".5" stroke="#60A5FA" stroke-width="1"/><line x1="20" y1="196" x2="300" y2="196" stroke="#3B82F6" stroke-width="3"/><line x1="20" y1="202" x2="300" y2="202" stroke="#1E3A8A" stroke-width="2"/><line x1="50" y1="193" x2="50" y2="205" stroke="#1E40AF" stroke-width="2.5"/><line x1="90" y1="193" x2="90" y2="205" stroke="#1E40AF" stroke-width="2.5"/><line x1="130" y1="193" x2="130" y2="205" stroke="#1E40AF" stroke-width="2.5"/><line x1="170" y1="193" x2="170" y2="205" stroke="#1E40AF" stroke-width="2.5"/><line x1="210" y1="193" x2="210" y2="205" stroke="#1E40AF" stroke-width="2.5"/><line x1="250" y1="193" x2="250" y2="205" stroke="#1E40AF" stroke-width="2.5"/><text x="25" y="228" font-family="monospace" font-size="7" fill="#93C5FD" opacity=".6">2015</text><text x="270" y="228" font-family="monospace" font-size="7" fill="#93C5FD" opacity=".6">2024</text><polyline points="25,295 60,275 95,282 130,255 165,268 200,240 235,252 270,225" fill="none" stroke="#60A5FA" stroke-width="2.5"/><polyline points="25,310 60,302 95,305 130,294 165,298 200,288 235,292 270,282" fill="none" stroke="#93C5FD" stroke-width="1.5" stroke-dasharray="4,3" opacity=".55"/><circle cx="130" cy="255" r="4" fill="#60A5FA"/><circle cx="200" cy="240" r="4" fill="#60A5FA"/><circle cx="270" cy="225" r="5" fill="#3B82F6"/><rect x="220" y="65" width="70" height="48" rx="6" fill="#1D4ED8" opacity=".3" stroke="#60A5FA" stroke-width="1.2"/><text x="255" y="85" text-anchor="middle" font-family="monospace" font-size="8" fill="#93C5FD">Note M1</text><text x="255" y="103" text-anchor="middle" font-family="monospace" font-size="20" font-weight="bold" fill="#60A5FA">A+</text></svg>
         <div class="pcstat" style="background:#3B82F6;color:#fff">A+</div>
-        <div class="pcbase"><div class="pctag">Time Series · Power BI</div><div class="pctitle">Prévision fréquentation SNCF Paris</div></div>
+        <div class="pcbase"><div class="pcprov"><span class="prov prov-aca">Projet académique · A+</span></div><div class="pctag">Time Series · Power BI</div><div class="pctitle">Prévision fréquentation SNCF Paris</div></div>
       </div>
-      <div class="pcp pp-b"><div><div class="ppt">ARIMA · ML · Pandas · Power BI</div><div class="ppti">Prévision SNCF</div><p class="ppd">Séries temporelles 2015–2024. ARIMA + ML pour anticiper les variations saisonnières. Note A+ Master 1.</p></div><div><div class="pps"><span class="tag">Python</span><span class="tag">ARIMA</span><span class="tag">Pandas</span><span class="tag">Power BI</span></div><a href="https://github.com/wilfried-mbeumi" target="_blank" rel="noopener" class="ppl">GitHub →</a></div></div>
+      <div class="pcp pp-b"><div><div class="ppt">ARIMA · ML · Pandas · Power BI</div><div class="ppti">Prévision SNCF</div><p class="ppd">Prévision de fréquentation à partir de <strong>données ouvertes SNCF (2015–2024)</strong> : ARIMA + ML pour modéliser les variations saisonnières, restitution Power BI. <em class="ppd-lim">Projet académique noté A+ en Master&nbsp;1.</em></p></div><div><div class="ppb"><span class="ppbi">Données ouvertes</span><span class="ppbi">Power BI</span></div><div class="pps"><span class="tag">Python</span><span class="tag">ARIMA</span><span class="tag">Pandas</span><span class="tag">Power BI</span></div><a href="https://github.com/wilfried-mbeumi" target="_blank" rel="noopener" class="ppl" aria-label="Prévision SNCF — code sur GitHub">GitHub →</a></div></div>
     </div>
 
     <!-- 3. AIR DETECTION -->
@@ -849,11 +994,11 @@ img, svg, video, iframe {
       <div class="pci">
         <div class="pcibg" style="background:linear-gradient(165deg,#000D1A 0%,#002840 30%,#005C80 60%,#0096B7 85%,#00B4D8 100%)"></div>
         <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" style="opacity:.52"><defs><radialGradient id="rg3" cx="50%" cy="40%" r="50%"><stop offset="0%" stop-color="#38BDF8" stop-opacity=".55"/><stop offset="100%" stop-color="#0077B6" stop-opacity="0"/></radialGradient></defs><circle cx="160" cy="150" r="95" fill="url(#rg3)"/><path d="M160,60 L200,110 L195,115 L170,100 L170,155 L190,168 L160,165 L130,168 L150,155 L150,100 L125,115 L120,110 Z" fill="none" stroke="#38BDF8" stroke-width="2.2"/><ellipse cx="115" cy="125" rx="12" ry="6" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity=".7"/><ellipse cx="205" cy="125" rx="12" ry="6" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity=".7"/><rect x="30" y="200" width="260" height="130" rx="4" fill="none" stroke="#38BDF8" stroke-width=".8" opacity=".4"/><rect x="34" y="204" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="86" y="204" width="48" height="28" fill="#EF4444" opacity=".28" stroke="#EF4444" stroke-width="1"/><rect x="138" y="204" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="190" y="204" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="242" y="204" width="44" height="28" fill="#0EA5E9" opacity=".15"/><rect x="34" y="236" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="86" y="236" width="48" height="28" fill="#F97316" opacity=".22" stroke="#F97316" stroke-width=".8"/><rect x="138" y="236" width="48" height="28" fill="#EF4444" opacity=".28" stroke="#EF4444" stroke-width="1"/><rect x="190" y="236" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="242" y="236" width="44" height="28" fill="#0EA5E9" opacity=".15"/><text x="110" y="216" text-anchor="middle" font-family="monospace" font-size="7" fill="#EF4444" font-weight="bold">ERR</text><text x="162" y="251" text-anchor="middle" font-family="monospace" font-size="7" fill="#EF4444" font-weight="bold">ERR</text><text x="30" y="285" font-family="monospace" font-size="8" fill="#38BDF8" opacity=".7">ResNet50 Surface Analysis</text><text x="30" y="298" font-family="monospace" font-size="8" fill="#22C55E" opacity=".8">6 classes · 99 % acc.</text></svg>
-        <div class="pcbase"><div class="pctag">Computer Vision · ResNet50</div><div class="pctitle">AeroScan AI — Défauts aéronautiques</div></div>
+        <div class="pcbase"><div class="pcprov"><span class="prov prov-pub">Dataset public</span></div><div class="pctag">Computer Vision · ResNet50</div><div class="pctitle">AeroScan AI — Contrôle qualité par vision</div></div>
         <!-- accuracy badge -->
         <div class="pcstat" style="background:#0096B7;color:#fff">99%</div>
       </div>
-      <div class="pcp pp-s"><div><div class="ppt">ResNet50 · PyTorch · Streamlit</div><div class="ppti">AeroScan AI</div><p class="ppd">ResNet50 (PyTorch) pour détecter 6 défauts sur coques d’avions. 1 800 images, précision 99 %. Dashboard Streamlit premium avec radar chart et recommandations.</p></div><div><div class="pps"><span class="tag">ResNet50</span><span class="tag">PyTorch</span><span class="tag">Streamlit</span><span class="tag">Plotly</span></div><a href="https://github.com/wilfried-mbeumi/AeroScan-AI-v2.0" target="_blank" rel="noopener" class="ppl">GitHub →</a><a href="https://aeroscan-ai-v20-muuwkqjpvfyjh39m7hlwv9.streamlit.app/" target="_blank" rel="noopener" class="ppl" style="margin-left:1rem">App →</a></div></div>
+      <div class="pcp pp-s"><div><div class="ppt">ResNet50 · PyTorch · Streamlit</div><div class="ppti">AeroScan AI</div><p class="ppd">Computer vision <strong>inspirée du contrôle qualité industriel</strong>, entraînée sur un <strong>dataset public de défauts métalliques</strong> (6 classes, ~1 800 images, ResNet50/PyTorch). Dashboard Streamlit avec radar et recommandations. <em class="ppd-lim">99% sur dataset public — à revalider sur images réelles de production.</em></p></div><div><div class="ppb"><span class="ppbi">Dataset public</span><span class="ppbi">App Streamlit</span><span class="ppbi">Code GitHub</span></div><div class="pps"><span class="tag">ResNet50</span><span class="tag">PyTorch</span><span class="tag">Streamlit</span><span class="tag">Plotly</span></div><a href="https://github.com/wilfried-mbeumi/AeroScan-AI-v2.0" target="_blank" rel="noopener" class="ppl" aria-label="AeroScan AI — code sur GitHub">GitHub →</a><a href="https://aeroscan-ai-v20-muuwkqjpvfyjh39m7hlwv9.streamlit.app/" target="_blank" rel="noopener" class="ppl" style="margin-left:1rem" aria-label="AeroScan AI — démo Streamlit">App →</a></div></div>
     </div>
 
     <!-- 4. NLP SANTE -->
@@ -861,9 +1006,9 @@ img, svg, video, iframe {
       <div class="pci">
         <div class="pcibg" style="background:linear-gradient(155deg,#001209 0%,#002B15 30%,#005228 60%,#16A34A 85%,#22C55E 100%)"></div>
         <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" style="opacity:.52"><defs><radialGradient id="rg4" cx="50%" cy="35%" r="55%"><stop offset="0%" stop-color="#4ADE80" stop-opacity=".5"/><stop offset="100%" stop-color="#15803D" stop-opacity="0"/></radialGradient></defs><circle cx="160" cy="120" r="95" fill="url(#rg4)"/><rect x="142" y="48" width="36" height="10" rx="4" fill="#22C55E" opacity=".7"/><rect x="155" y="35" width="10" height="36" rx="4" fill="#22C55E" opacity=".7"/><polyline points="20,118 55,118 70,88 85,148 100,98 115,118 140,118" fill="none" stroke="#22C55E" stroke-width="2.5"/><rect x="22" y="145" width="175" height="36" rx="14" fill="none" stroke="#4ADE80" stroke-width="1.5"/><text x="33" y="159" font-family="monospace" font-size="7.5" fill="#86EFAC">Symptômes : douleur</text><text x="33" y="172" font-family="monospace" font-size="7.5" fill="#86EFAC">thoracique, fatigue</text><rect x="105" y="192" width="193" height="36" rx="14" fill="#15803D" opacity=".35" stroke="#22C55E" stroke-width="1.5"/><text x="116" y="206" font-family="monospace" font-size="7.5" fill="#86EFAC">Analyse NLP terminée</text><text x="116" y="219" font-family="monospace" font-size="7.5" fill="#4ADE80">Consultation urgente</text><circle cx="42" cy="310" r="7" fill="none" stroke="#4ADE80" stroke-width="1.3"/><circle cx="42" cy="335" r="7" fill="none" stroke="#4ADE80" stroke-width="1.3"/><circle cx="110" cy="298" r="7" fill="none" stroke="#4ADE80" stroke-width="1.3"/><circle cx="110" cy="322" r="7" fill="none" stroke="#4ADE80" stroke-width="1.3"/><circle cx="110" cy="346" r="7" fill="none" stroke="#4ADE80" stroke-width="1.3"/><circle cx="178" cy="310" r="7" fill="#15803D" opacity=".5" stroke="#4ADE80" stroke-width="1.3"/><circle cx="178" cy="335" r="7" fill="#15803D" opacity=".5" stroke="#4ADE80" stroke-width="1.3"/><line x1="49" y1="310" x2="103" y2="298" stroke="#4ADE80" stroke-width=".7" opacity=".45"/><line x1="49" y1="310" x2="103" y2="322" stroke="#4ADE80" stroke-width=".7" opacity=".45"/><line x1="49" y1="335" x2="103" y2="322" stroke="#4ADE80" stroke-width=".7" opacity=".45"/><line x1="49" y1="335" x2="103" y2="346" stroke="#4ADE80" stroke-width=".7" opacity=".45"/><line x1="117" y1="298" x2="171" y2="310" stroke="#4ADE80" stroke-width=".7" opacity=".45"/><line x1="117" y1="322" x2="171" y2="322" stroke="#4ADE80" stroke-width=".7" opacity=".45"/><line x1="117" y1="346" x2="171" y2="335" stroke="#4ADE80" stroke-width=".7" opacity=".45"/></svg>
-        <div class="pcbase"><div class="pctag">NLP · IA Santé</div><div class="pctitle">App Santé — Chatbot IA Medease</div></div>
+        <div class="pcbase"><div class="pcprov"><span class="prov prov-perso">Projet perso · prototype</span></div><div class="pctag">NLP · IA Santé</div><div class="pctitle">App Santé — Assistant NLP Medease</div></div>
       </div>
-      <div class="pcp pp-g"><div><div class="ppt">NLP · Flask · Streamlit · Python</div><div class="ppti">Chatbot Santé IA</div><p class="ppd">Application médicale avec chatbot NLP pour structuration de données et assistance intelligente des patients.</p></div><div><div class="pps"><span class="tag">NLP</span><span class="tag">Flask</span><span class="tag">Streamlit</span></div></div></div>
+      <div class="pcp pp-g"><div><div class="ppt">NLP · Flask · Streamlit · Python</div><div class="ppti">Assistant Santé NLP</div><p class="ppd">Prototype d'<strong>assistant conversationnel NLP</strong> : structuration des symptômes et orientation de l'utilisateur. <em class="ppd-lim">Projet personnel à visée pédagogique — sans usage clinique ni valeur médicale.</em></p></div><div><div class="ppb"><span class="ppbi">Projet perso</span><span class="ppbi">Prototype NLP</span></div><div class="pps"><span class="tag">NLP</span><span class="tag">Flask</span><span class="tag">Streamlit</span></div></div></div>
     </div>
 
     <!-- 5. DECHETS -->
@@ -871,9 +1016,9 @@ img, svg, video, iframe {
       <div class="pci">
         <div class="pcibg" style="background:linear-gradient(155deg,#160900 0%,#3D1800 30%,#7A3A00 60%,#CA8A04 85%,#EAB308 100%)"></div>
         <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" style="opacity:.52"><defs><radialGradient id="rg5" cx="50%" cy="35%" r="55%"><stop offset="0%" stop-color="#FCD34D" stop-opacity=".5"/><stop offset="100%" stop-color="#92400E" stop-opacity="0"/></radialGradient></defs><circle cx="160" cy="120" r="95" fill="url(#rg5)"/><path d="M160,55 L175,80 L145,80 Z" fill="none" stroke="#FCD34D" stroke-width="2" opacity=".7"/><path d="M127,90 Q118,110 130,128 Q142,146 160,140" fill="none" stroke="#FCD34D" stroke-width="2" opacity=".7"/><path d="M193,90 Q202,110 190,128 Q178,146 160,140" fill="none" stroke="#FCD34D" stroke-width="2" opacity=".7"/><rect x="22" y="155" width="60" height="75" rx="6" fill="none" stroke="#22C55E" stroke-width="1.8"/><rect x="22" y="195" width="60" height="35" rx="2" fill="#22C55E" opacity=".2"/><text x="52" y="172" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#4ADE80">PLASTIC</text><text x="52" y="220" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#22C55E">87%</text><rect x="92" y="155" width="60" height="75" rx="6" fill="none" stroke="#3B82F6" stroke-width="1.8"/><rect x="92" y="200" width="60" height="30" rx="2" fill="#3B82F6" opacity=".2"/><text x="122" y="172" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#93C5FD">GLASS</text><text x="122" y="222" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#3B82F6">91%</text><rect x="162" y="155" width="60" height="75" rx="6" fill="none" stroke="#F59E0B" stroke-width="1.8"/><rect x="162" y="190" width="60" height="40" rx="2" fill="#F59E0B" opacity=".2"/><text x="192" y="172" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#FCD34D">METAL</text><text x="192" y="215" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#F59E0B">84%</text><rect x="232" y="155" width="60" height="75" rx="6" fill="none" stroke="#EF4444" stroke-width="1.8"/><rect x="232" y="205" width="60" height="25" rx="2" fill="#EF4444" opacity=".2"/><text x="262" y="172" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#FCA5A5">OTHER</text><text x="262" y="226" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#EF4444">78%</text><text x="22" y="252" font-family="monospace" font-size="8" fill="#FCD34D" opacity=".7">CNN Accuracy globale</text><rect x="22" y="258" width="270" height="12" rx="6" fill="rgba(255,255,255,.1)"/><rect x="22" y="258" width="234" height="12" rx="6" fill="#EAB308" opacity=".65"/><text x="260" y="268" font-family="monospace" font-size="8" fill="#FCD34D">86%</text><rect x="22" y="285" width="270" height="18" rx="4" fill="none" stroke="#D97706" stroke-width="1.2" opacity=".5"/></svg>
-        <div class="pcbase"><div class="pctag">Deep Learning · CNN</div><div class="pctitle">Classification déchets IA</div></div>
+        <div class="pcbase"><div class="pcprov"><span class="prov prov-pub">Dataset public</span></div><div class="pctag">Deep Learning · CNN</div><div class="pctitle">Classification déchets — Computer Vision</div></div>
       </div>
-      <div class="pcp pp-a"><div><div class="ppt">CNN · Computer Vision · Python</div><div class="ppti">Tri déchets IA</div><p class="ppd">CNN supervisé pour tri automatique : plastique, verre, métal, autres. Accuracy globale 86%. Pipeline complet.</p></div><div><div class="pps"><span class="tag">CNN</span><span class="tag">Python</span><span class="tag">Deep Learning</span></div></div></div>
+      <div class="pcp pp-a"><div><div class="ppt">CNN · Computer Vision · Python</div><div class="ppti">Tri de déchets par image</div><p class="ppd">CNN supervisé pour classer des images de déchets (plastique, verre, métal, autres) sur <strong>dataset public</strong>. Accuracy globale 86%, pipeline data → modèle complet. <em class="ppd-lim">Projet personnel — à valider sur images terrain.</em></p></div><div><div class="ppb"><span class="ppbi">Dataset public</span><span class="ppbi">Projet perso</span></div><div class="pps"><span class="tag">CNN</span><span class="tag">Python</span><span class="tag">Deep Learning</span></div></div></div>
     </div>
 
     <!-- 6. RONDOL -->
@@ -881,9 +1026,9 @@ img, svg, video, iframe {
       <div class="pci">
         <div class="pcibg" style="background:linear-gradient(155deg,#060A14 0%,#0E1A30 30%,#1A304E 60%,#1E4D8C 85%,#2563EB 100%)"></div>
         <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" style="opacity:.52"><defs><radialGradient id="rg6" cx="50%" cy="35%" r="55%"><stop offset="0%" stop-color="#60A5FA" stop-opacity=".45"/><stop offset="100%" stop-color="#1E3A8A" stop-opacity="0"/></radialGradient></defs><circle cx="160" cy="130" r="100" fill="url(#rg6)"/><rect x="30" y="90" width="260" height="55" rx="10" fill="none" stroke="#60A5FA" stroke-width="2"/><circle cx="65" cy="117" r="16" fill="none" stroke="#3B82F6" stroke-width="1.5" opacity=".7"/><line x1="65" y1="101" x2="65" y2="133" stroke="#3B82F6" stroke-width="1" opacity=".5"/><line x1="49" y1="117" x2="81" y2="117" stroke="#3B82F6" stroke-width="1" opacity=".5"/><circle cx="105" cy="117" r="16" fill="none" stroke="#3B82F6" stroke-width="1.5" opacity=".7"/><rect x="135" y="95" width="110" height="44" rx="6" fill="#1E3A8A" opacity=".35" stroke="#60A5FA" stroke-width="1"/><path d="M290,100 L310,110 L310,124 L290,134" fill="none" stroke="#00B4D8" stroke-width="2"/><rect x="22" y="165" width="84" height="52" rx="6" fill="none" stroke="#60A5FA" stroke-width="1.5"/><text x="64" y="181" text-anchor="middle" font-family="monospace" font-size="7" fill="#93C5FD">TEMPÉRATURE</text><text x="64" y="202" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#00B4D8">187°C</text><rect x="117" y="165" width="84" height="52" rx="6" fill="none" stroke="#60A5FA" stroke-width="1.5"/><text x="159" y="181" text-anchor="middle" font-family="monospace" font-size="7" fill="#93C5FD">PRESSION</text><text x="159" y="202" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#60A5FA">4.2 MPa</text><rect x="212" y="165" width="84" height="52" rx="6" fill="none" stroke="#22C55E" stroke-width="1.5"/><text x="254" y="181" text-anchor="middle" font-family="monospace" font-size="7" fill="#86EFAC">QUALITÉ</text><text x="254" y="202" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#22C55E">OK</text><polyline points="22,280 52,262 82,270 112,250 142,258 172,238 202,245 232,228 262,235 292,220" fill="none" stroke="#00B4D8" stroke-width="2.5"/><polyline points="22,300 52,292 82,296 112,285 142,290 172,280 202,283 232,274 262,278 292,268" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="4,2" opacity=".6"/><rect x="22" y="325" width="130" height="24" rx="12" fill="none" stroke="#22C55E" stroke-width="1.2"/><text x="87" y="341" text-anchor="middle" font-family="monospace" font-size="8" fill="#22C55E">Stage 2026 · En cours</text></svg>
-        <div class="pcbase"><div class="pctag">IA Industrielle · R&amp;D</div><div class="pctitle">Rondol Industrie — Optimisation process extrusion</div></div>
+        <div class="pcbase"><div class="pcprov"><span class="prov prov-ent">Projet entreprise</span></div><div class="pctag">IA Industrielle · R&amp;D</div><div class="pctitle">Rondol Industrie — Optimisation process extrusion</div></div>
       </div>
-      <div class="pcp pp-st"><div><div class="ppt">Python · Stats · Power BI · R&amp;D</div><div class="ppti">Rondol Industrie</div><p class="ppd">Données d'extrudeuses bivis en temps réel. Modèles statistiques + dashboards de suivi des paramètres d'extrusion.</p></div><div><div class="pps"><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">Stats</span></div></div></div>
+      <div class="pcp pp-st"><div><div class="ppt">Python · Stats · Power BI · R&amp;D</div><div class="ppti">Rondol Industrie</div><p class="ppd"><strong>Mission en entreprise (stage R&amp;D, en cours)</strong> : exploitation de données d'extrudeuses bivis (température, couple, pression), modèles statistiques et dashboards de suivi process. <em class="ppd-lim">Données internes — détails sous confidentialité.</em></p></div><div><div class="ppb"><span class="ppbi">Projet entreprise</span><span class="ppbi">En cours</span><span class="ppbi">Power BI</span></div><div class="pps"><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">Stats</span></div></div></div>
     </div>
 
     <!-- 7. POWER BI SECEL -->
@@ -891,9 +1036,9 @@ img, svg, video, iframe {
       <div class="pci">
         <div class="pcibg" style="background:linear-gradient(155deg,#080010 0%,#180035 30%,#300060 60%,#5B21B6 85%,#7C3AED 100%)"></div>
         <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" style="opacity:.52"><defs><radialGradient id="rg7" cx="50%" cy="35%" r="55%"><stop offset="0%" stop-color="#A78BFA" stop-opacity=".5"/><stop offset="100%" stop-color="#4C1D95" stop-opacity="0"/></radialGradient></defs><circle cx="160" cy="120" r="95" fill="url(#rg7)"/><rect x="25" y="55" width="270" height="180" rx="8" fill="none" stroke="#A78BFA" stroke-width="1.5"/><rect x="25" y="55" width="270" height="22" rx="8" fill="#4C1D95" opacity=".4"/><text x="38" y="71" font-family="monospace" font-size="8" fill="#DDD6FE">Power BI · Performances Formation</text><rect x="33" y="84" width="72" height="40" rx="5" fill="#4C1D95" opacity=".35" stroke="#A78BFA" stroke-width="1"/><text x="69" y="98" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#C4B5FD">Étudiants</text><text x="69" y="115" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#A78BFA">1,248</text><rect x="113" y="84" width="72" height="40" rx="5" fill="#4C1D95" opacity=".35" stroke="#A78BFA" stroke-width="1"/><text x="149" y="98" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#C4B5FD">Taux réussite</text><text x="149" y="115" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#22C55E">94%</text><rect x="193" y="84" width="95" height="40" rx="5" fill="#14532D" opacity=".35" stroke="#22C55E" stroke-width="1.2"/><text x="240" y="98" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#86EFAC">Gain reporting</text><text x="240" y="115" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#22C55E">-30%</text><rect x="33" y="180" width="28" height="50" rx="3" fill="#7C3AED" opacity=".55"/><rect x="67" y="165" width="28" height="65" rx="3" fill="#7C3AED" opacity=".7"/><rect x="101" y="175" width="28" height="55" rx="3" fill="#7C3AED" opacity=".6"/><rect x="135" y="152" width="28" height="78" rx="3" fill="#A855F7" opacity=".75"/><rect x="169" y="160" width="28" height="70" rx="3" fill="#7C3AED" opacity=".6"/><rect x="203" y="145" width="28" height="85" rx="3" fill="#A855F7" opacity=".8"/><rect x="237" y="157" width="28" height="73" rx="3" fill="#7C3AED" opacity=".65"/><rect x="271" y="170" width="20" height="60" rx="3" fill="#7C3AED" opacity=".55"/><line x1="25" y1="232" x2="295" y2="232" stroke="#A78BFA" stroke-width=".8" opacity=".4"/><path d="M100,330 A70,70 0 0,1 220,330" fill="none" stroke="#4C1D95" stroke-width="18" opacity=".35"/><path d="M100,330 A70,70 0 0,1 220,330" fill="none" stroke="#7C3AED" stroke-width="8" opacity=".7" stroke-dasharray="157 220" stroke-dashoffset="-47"/><text x="160" y="325" text-anchor="middle" font-family="monospace" font-size="9" fill="#C4B5FD">KPI Dashboard</text><text x="160" y="342" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#A78BFA">-30%</text></svg>
-        <div class="pcbase"><div class="pctag">Power BI · DAX · Reporting</div><div class="pctitle">Dashboards Power BI — SECEL</div></div>
+        <div class="pcbase"><div class="pcprov"><span class="prov prov-ent">Projet entreprise</span></div><div class="pctag">Power BI · DAX · Reporting</div><div class="pctitle">Dashboards Power BI — SECEL</div></div>
       </div>
-      <div class="pcp pp-v"><div><div class="ppt">Power BI · DAX · Power Query · SQL</div><div class="ppti">Dashboards SECEL</div><p class="ppd">Tableaux de bord interactifs pour suivi des performances. Automatisation : -30% sur le temps de production des rapports.</p></div><div><div class="pps"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">SQL</span></div></div></div>
+      <div class="pcp pp-v"><div><div class="ppt">Power BI · DAX · Power Query · SQL</div><div class="ppti">Dashboards SECEL</div><p class="ppd"><strong>Mission en entreprise</strong> : tableaux de bord Power BI (DAX, Power Query, SQL) pour le suivi des performances de formation. <strong>Automatisation : -30%</strong> sur le temps de production des rapports.</p></div><div><div class="ppb"><span class="ppbi">Projet entreprise</span><span class="ppbi">Power BI</span><span class="ppbi">SQL</span></div><div class="pps"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">SQL</span></div></div></div>
     </div>
 
     <!-- 8. PROJET A VENIR -->
@@ -909,8 +1054,8 @@ img, svg, video, iframe {
 <section id="experience">
   <div class="w"><div class="slbl">04 — Expérience</div><h2 class="sh">Parcours Professionnel</h2>
   <div class="exg sg">
-    <div class="ex"><div class="ex-d">Janvier 2026 — en cours</div><div class="ex-r">Stage Data Analyst</div><div class="ex-c">Rondol Industrie — Nancy · R&amp;D Industrielle</div><ul class="ex-ul"><li>Exploitation de données d'extrudeuses bivis (température, couple, pression, vitesse)</li><li>Nettoyage et validation de données expérimentales R&amp;D</li><li>Modèles statistiques pour optimisation des paramètres d'extrusion</li><li>Dashboards de suivi des essais et indicateurs techniques</li></ul></div>
-    <div class="ex"><div class="ex-d">Février 2024 — Janvier 2025</div><div class="ex-r">Data Analyst Junior</div><div class="ex-c">SECEL SARL — Douala, Cameroun</div><ul class="ex-ul"><li>Extraction, nettoyage et modélisation de données clients (SQL &amp; Excel)</li><li>Dashboards Power BI pour le suivi des performances de formation</li><li><strong>Automatisation : -30% sur le temps de production des rapports</strong></li><li>Support technique et gestion des accès plateformes</li></ul></div>
+    <div class="ex"><div class="ex-d">Janvier 2026 — en cours</div><div class="ex-r">Stage Data Analyst</div><div class="ex-c">Rondol Industrie — Nancy · R&amp;D Industrielle</div><ul class="ex-ul"><li>Exploitation de données d'extrudeuses bivis (température, couple, pression, vitesse)</li><li>Nettoyage et validation de données expérimentales R&amp;D</li><li>Modèles statistiques pour optimisation des paramètres d'extrusion</li><li>Dashboards de suivi des essais et indicateurs techniques</li></ul><div class="ex-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Power BI</span><span class="tag">Statistiques</span></div></div>
+    <div class="ex"><div class="ex-d">Février 2024 — Janvier 2025</div><div class="ex-r">Data Analyst Junior</div><div class="ex-c">SECEL SARL — Douala, Cameroun</div><ul class="ex-ul"><li>Extraction, nettoyage et modélisation de données clients (SQL &amp; Excel)</li><li>Dashboards Power BI pour le suivi des performances de formation</li><li><strong>Automatisation : -30% sur le temps de production des rapports</strong></li><li>Support technique et gestion des accès plateformes</li></ul><div class="ex-tags"><span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Excel</span><span class="tag">DAX</span></div></div>
     <div class="ex">
       <div class="ex-d">2022</div>
       <div class="ex-r">Développeur Web FullStack</div>
@@ -921,6 +1066,7 @@ img, svg, video, iframe {
         <li>Implémentation du back‑end et de la base de données (PHP/Node.js, MySQL) pour gérer les rendez‑vous et notifications</li>
         <li>Intégration de fonctionnalités de calendrier, gestion des disponibilités et envoi d’e‑mails de confirmation</li>
       </ul>
+      <div class="ex-tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">Node.js</span><span class="tag">MySQL</span></div>
     </div>
     <div class="ex">
       <div class="ex-d">Septembre 2023 — Février 2024</div>
@@ -932,6 +1078,7 @@ img, svg, video, iframe {
         <li>Reporting : création de rapports hebdomadaires sur les performances de formation</li>
         <li>Support utilisateur : test et suivi d'outils internes de gestion</li>
       </ul>
+      <div class="ex-tags"><span class="tag">Excel</span><span class="tag">SQL</span><span class="tag">Reporting</span></div>
     </div>
   </div></div>
 </section>
@@ -971,7 +1118,7 @@ img, svg, video, iframe {
           <div class="cv-icon">📄</div>
           <div>
             <div class="cv-role" id="cv-min-role">Tri RH / ATS</div>
-            <h3 class="cv-title" id="cv-min-title">CV Minimal</h3>
+            <h3 class="cv-title" id="cv-min-title">CV synthétique</h3>
           </div>
         </div>
         <p class="cv-desc" id="cv-min-desc">Version rapide et concise pour un premier tri recruteur, une candidature spontanée ou un envoi RH.</p>
@@ -1048,22 +1195,108 @@ img, svg, video, iframe {
 </section>
 
 <footer>
-  <p class="fc">2026 Wilfried Galtier MBEUMI TCHOUFFOUO — Data Analyst &amp; MLOps</p>
+  <p class="fc">2026 Wilfried Galtier MBEUMI TCHOUFFOUO — Data Analyst · BI &amp; ML appliqué</p>
   <div class="fl"><a href="https://github.com/wilfried-mbeumi" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/wilfried-galtier-mbeumi-tchouffouo-358bab351/" target="_blank" rel="noopener">LinkedIn</a><a href="#cv">Mes CV</a></div>
 </footer>
 
 <script>
-const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}});},{threshold:.05,rootMargin:'0px 0px -20px 0px'});
-document.querySelectorAll('.sr,.sg').forEach(el=>io.observe(el));
-const secs=document.querySelectorAll('section[id]');
-const links=document.querySelectorAll('#NL a');
-addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop-70)c=s.id;});links.forEach(a=>a.style.color=a.getAttribute('href')==='#'+c?'var(--a)':'');},{passive:true});
+/* =========================================================
+   Cinématique au scroll — orchestration légère sans dépendance.
+   Pourquoi pas GSAP : tous les effets ci-dessous (reveal par
+   scène, profondeur, parallax, progression) sont obtenus en
+   natif via IntersectionObserver + requestAnimationFrame, ce
+   qui garde le site rapide, autonome et sans CDN externe.
+   ========================================================= */
+(function () {
+  'use strict';
+  var REDUCE = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  // Toggle nav blur class on scroll
-  const navEl = document.querySelector('nav');
-  addEventListener('scroll', () => {
-    if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 10);
-  }, { passive:true });
+  /* --- Scènes : on orchestre l'entrée des titres de section --- */
+  function setupScenes() {
+    document.querySelectorAll('section .w').forEach(function (w) {
+      var intro = [w.querySelector('.slbl'), w.querySelector('.sh'), w.querySelector('.ss')]
+        .filter(Boolean);
+      intro.forEach(function (el, i) {
+        el.classList.add('reveal');
+        el.style.setProperty('--d', (i * 0.09) + 's');
+      });
+    });
+  }
+
+  /* --- Reveal : déclenche l'animation au bon moment du scroll --- */
+  function initReveal() {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (x) {
+        if (!x.isIntersecting) return;
+        var t = x.target;
+        t.classList.add(t.classList.contains('reveal') ? 'in' : 'on');
+        io.unobserve(t);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal, .sr, .sg').forEach(function (el) {
+      io.observe(el);
+    });
+  }
+
+  /* --- Navigation : lien actif + effet verre au scroll --- */
+  function initNav() {
+    var navEl = document.querySelector('nav');
+    var secs = document.querySelectorAll('section[id]');
+    var links = document.querySelectorAll('#NL a');
+    return function () {
+      var y = window.scrollY;
+      if (navEl) navEl.classList.toggle('scrolled', y > 10);
+      var current = '';
+      secs.forEach(function (s) { if (y >= s.offsetTop - 70) current = s.id; });
+      links.forEach(function (a) {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--a)' : '';
+      });
+    };
+  }
+
+  /* --- Parallax discret : profondeur du hero (sans heurter la lecture) --- */
+  function initParallax() {
+    if (REDUCE) return function () {};
+    var grid = document.querySelector('.hero-grid');
+    var card = document.querySelector('.hero-right');
+    var hero = document.getElementById('home');
+    return function () {
+      var y = window.scrollY;
+      if (y < 1) return; // au repos : on laisse jouer les animations d'entrée
+      if (hero && y > hero.offsetHeight) return; // n'agit que dans le hero
+      if (grid) grid.style.transform = 'translate3d(0,' + (y * 0.15) + 'px,0)';
+      if (card) card.style.transform = 'translate3d(0,' + (y * -0.06) + 'px,0)';
+    };
+  }
+
+  /* --- Barre de progression de lecture --- */
+  function initProgress() {
+    var sp = document.getElementById('SP');
+    if (!sp) return function () {};
+    var doc = document.documentElement;
+    return function () {
+      var max = doc.scrollHeight - doc.clientHeight;
+      sp.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+    };
+  }
+
+  /* --- Boucle scroll unique (rAF) : tous les handlers regroupés --- */
+  function initScrollLoop(handlers) {
+    var ticking = false;
+    function run() { handlers.forEach(function (fn) { fn(); }); ticking = false; }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(run);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    run(); // état initial
+  }
+
+  setupScenes();
+  initReveal();
+  initScrollLoop([initNav(), initParallax(), initProgress()]);
+})();
 </script>
 <script>
 (function() {
@@ -1106,20 +1339,20 @@ addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop
   var SH_FR = ['Data, IA & Industrie','Outils & Technologies','Ce que j\'ai construit','Parcours Professionnel','Parcours Académique','Formations & Certifications','Deux versions, une expertise.','Travaillons Ensemble'];
   var SH_EN = ['Data, AI & Industry','Tools & Technologies','What I\'ve built','Work Experience','Academic Background','Training & Certifications','Two versions, one expertise.','Let\'s work together'];
 
-  var SS_FR = ['','Stack orientée production — de l\'ingénierie des données au déploiement ML.','8 projets · Survolez pour découvrir','','','','Choisissez la version adaptée à votre contexte de recrutement — ou ouvrez les deux.','Disponible pour alternance, CDD/CDI — Mobile France entière.'];
-  var SS_EN = ['','Production-oriented stack — from data engineering to ML deployment.','8 projects · Hover to discover','','','','Choose the version that fits your recruiting context — or open both.','Available for work-study, fixed-term/permanent roles. Mobile throughout France.'];
+  var SS_FR = ['Stack orientée production — de la donnée brute au déploiement ML.','8 projets — du dashboard BI au modèle ML déployé. Chaque carte précise le contexte, les données et les limites.','Choisissez la version adaptée à votre contexte de recrutement — ou ouvrez les deux.','Disponible pour alternance, CDD/CDI — Mobile France entière.'];
+  var SS_EN = ['Production-oriented stack — from data engineering to ML deployment.','8 projects — from BI dashboards to deployed ML models. Each card states the context, data and limits.','Choose the version that fits your recruiting context — or open both.','Available for work-study, fixed-term/permanent roles. Mobile throughout France.'];
 
   var MI_FR = ['ROC-AUC · Fraud','Recall Fraude','Dataset ML','SNCF · Note','Gain reporting'];
   var MI_EN = ['ROC-AUC · Fraud','Fraud Recall','ML Dataset','SNCF · Grade','Reporting gain'];
 
   // About section paragraphs in both languages
   var ABT_FR = [
-    'Étudiant en <strong>Master 2 Data &amp; Intelligence Artificielle</strong>, je développe une expertise en analyse de données industrielles, modélisation statistique et optimisation de processus.',
+    'Étudiant en <strong>Master 2 Data &amp; Intelligence Artificielle</strong>, je conçois des solutions data de bout en bout : <strong>analyse &amp; Business Intelligence</strong>, modélisation statistique, Machine Learning appliqué et mise à disposition via des applications (Streamlit&nbsp;/&nbsp;FastAPI).',
     'En stage chez <strong>Rondol&nbsp;Industrie</strong> (Nancy), j\'exploite des données d\'extrudeuses bivis pour optimiser les paramètres process et construire des dashboards en temps réel.',
     'Mon credo&nbsp;: <strong>métriques honnêtes</strong>, code maintenable, résultats défendables.'
   ];
   var ABT_EN = [
-    'Student in <strong>M.Sc. Data &amp; Artificial&nbsp;Intelligence</strong>, developing expertise in industrial data analysis, statistical modelling and process optimisation.',
+    'Student in <strong>M.Sc. Data &amp; Artificial&nbsp;Intelligence</strong>, I build end-to-end data solutions: <strong>analytics &amp; Business Intelligence</strong>, statistical modelling, applied Machine Learning and delivery through apps (Streamlit&nbsp;/&nbsp;FastAPI).',
     'Intern at <strong>Rondol&nbsp;Industrie</strong> (Nancy), leveraging twin‑screw extruder data to optimise process parameters and build real‑time dashboards.',
     'My motto: <strong>honest metrics</strong>, maintainable code, defensible results.'
   ];
@@ -1129,7 +1362,7 @@ addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop
     ['Formation','Master&nbsp;2 Chef de Projet Data &amp; IA — NEXA&nbsp;Digital&nbsp;School, Paris'],
     ['Stage','Data Analyst — Rondol&nbsp;Industrie, Nancy (janv.&nbsp;2026 – en cours)'],
     ['Localisation','Paris &amp; Nancy — Mobile France entière'],
-    ['Spécialités','MLOps · Fraud&nbsp;Detection · Computer&nbsp;Vision · IA&nbsp;Industrielle'],
+    ['Spécialités','Business&nbsp;Intelligence · Machine&nbsp;Learning appliqué · Computer&nbsp;Vision · Déploiement d&rsquo;apps&nbsp;ML (Streamlit/FastAPI)'],
     ['Langues','Français (natif) · Anglais (B1)'],
     ['Intérêts','Basket · R&amp;B · Bénévolat (Resto du cœur, La&nbsp;Chorba) · Voyage']
   ];
@@ -1137,14 +1370,14 @@ addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop
     ['Education','M.Sc. Data &amp; AI Project Management — NEXA&nbsp;Digital&nbsp;School, Paris'],
     ['Internship','Data Analyst — Rondol&nbsp;Industrie, Nancy (Jan&nbsp;2026 – present)'],
     ['Location','Paris &amp; Nancy — Mobile throughout France'],
-    ['Specialties','MLOps · Fraud&nbsp;Detection · Computer&nbsp;Vision · Industrial&nbsp;AI'],
+    ['Specialties','Business&nbsp;Intelligence · Applied&nbsp;Machine&nbsp;Learning · Computer&nbsp;Vision · ML&nbsp;app deployment (Streamlit/FastAPI)'],
     ['Languages','French (native) · English (B1)'],
     ['Interests','Basketball · R&amp;B · Volunteering (Resto&nbsp;du&nbsp;cœur, La&nbsp;Chorba) · Travel']
   ];
 
   // Skill category names in both languages
-  var SK_FR = ['MLOps &amp; Déploiement','Data &amp; Python','Data Engineering','BI &amp; Visualisation','Machine&nbsp;Learning','Cloud &amp; Plateformes'];
-  var SK_EN = ['MLOps &amp; Deployment','Data &amp; Python','Data Engineering','BI &amp; Visualization','Machine&nbsp;Learning','Cloud &amp; Platforms'];
+  var SK_FR = ['Déploiement &amp; API ML','Data &amp; Python','Data Engineering','BI &amp; Visualisation','Machine&nbsp;Learning','Cloud &amp; Plateformes'];
+  var SK_EN = ['ML Deployment &amp; API','Data &amp; Python','Data Engineering','BI &amp; Visualization','Machine&nbsp;Learning','Cloud &amp; Platforms'];
 
   // Education entries in both languages. Each entry has date/status (y), degree (d), school (s) and optional extra (g)
   var ED_FR = [
@@ -1270,12 +1503,12 @@ addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop
     var SS   = lang === 'fr' ? SS_FR   : SS_EN;
     var MI   = lang === 'fr' ? MI_FR   : MI_EN;
 
-    var ey  = lang === 'fr' ? 'Data Analyst · MLOps · IA Industrielle' : 'Data Analyst · MLOps · Industrial AI';
+    var ey  = lang === 'fr' ? 'Data Analyst — BI · ML appliqué · IA industrielle' : 'Data Analyst — BI · applied ML · industrial AI';
     var sub = lang === 'fr'
-      ? 'Master 2 Chef de Projet Data & IA · <strong>Rondol Industrie</strong> (Nancy) · Pipelines ML end-to-end, Computer Vision, données industrielles R&D.<br>De la donnée brute au modèle en production.'
-      : 'M.Sc. Data & AI · <strong>Rondol Industrie</strong> (Nancy) · End-to-end ML pipelines, Computer Vision, industrial R&D.<br>From raw data to production-ready models.';
+      ? 'Je transforme des <strong>données métiers</strong> en dashboards, modèles prédictifs et outils décisionnels exploitables.<br>Master&nbsp;2 Data &amp; IA · en mission Data Analyst chez <strong>Rondol Industrie</strong> (Nancy).'
+      : 'I turn <strong>business data</strong> into dashboards, predictive models and actionable decision tools.<br>M.Sc. Data &amp; AI · Data Analyst at <strong>Rondol Industrie</strong> (Nancy).';
     var btn = lang === 'fr' ? 'Voir mes projets →' : 'See my projects →';
-    var cvBtn = lang === 'fr' ? 'Mes CV' : 'My CVs';
+    var cvBtn = lang === 'fr' ? 'Télécharger mon CV' : 'Download my CV';
     var hb  = lang === 'fr' ? 'Mobile France · Permis B · 28 ans' : "Mobile France · Driver's license · 28 y.o.";
 
     // Nav links
@@ -1325,10 +1558,13 @@ addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop
     if (btnA) btnA.textContent = btn;
     var btnCV = document.getElementById('CVBtn');
     if (btnCV) btnCV.textContent = cvBtn;
+    var btnContact = document.getElementById('ContactBtn');
+    if (btnContact) btnContact.textContent = lang === 'fr' ? 'Me contacter' : 'Contact me';
+    document.documentElement.lang = lang;
 
     var cvTexts = lang === 'fr' ? {
       minRole:'Tri RH / ATS',
-      minTitle:'CV Minimal',
+      minTitle:'CV synthétique',
       minDesc:'Version rapide et concise pour un premier tri recruteur, une candidature spontanée ou un envoi RH.',
       minB1:'1 page — lecture rapide',
       minB2:'Compétences, expériences et projets clés',
@@ -1347,7 +1583,7 @@ addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop
       detNote:'Idéal pour : manager · entretien · équipe data'
     } : {
       minRole:'HR / ATS screening',
-      minTitle:'Minimal CV',
+      minTitle:'Concise CV',
       minDesc:'Fast, concise version for initial recruiter screening, spontaneous applications or HR outreach.',
       minB1:'1 page — quick scan',
       minB2:'Core skills, experience and flagship projects',
