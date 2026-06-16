@@ -775,14 +775,14 @@ html{scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
 .slbl{display:inline-flex;align-items:center;gap:.55rem}
 .slbl::before{content:'';width:22px;height:1px;background:linear-gradient(90deg,transparent,var(--a));flex-shrink:0}
 
-/* --- Polish : boutons premium (léger reflet au survol) --- */
+/* --- Polish : boutons premium (léger reflet au hover) --- */
 .btn{position:relative;overflow:hidden;letter-spacing:.01em}
 .btn-a{background:linear-gradient(135deg,var(--a),var(--a2));color:#001318}
 .btn-a:hover{box-shadow:0 10px 32px rgba(0,180,216,.35),0 2px 8px rgba(0,180,216,.25)}
 .btn::after{content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .6s var(--e);pointer-events:none}
 .btn:hover::after{left:140%}
 
-/* --- Polish : profondeur de carte affinée au survol --- */
+/* --- Polish : profondeur de carte affinée au hover --- */
 .sk,.edu,.cert,.ex,.cv-card{transition:border-color .35s var(--e),transform .35s var(--e),box-shadow .45s var(--e)}
 .sk:hover,.edu:hover,.cert:hover,.ex:hover{box-shadow:0 18px 48px var(--line2),0 2px 10px rgba(0,0,0,.08)}
 
@@ -793,7 +793,7 @@ section{scroll-margin-top:72px}
 /* =========================================================
    AJOUTS UX/CREDIBILITE (refonte recruteur)
    - bande de stack hero, chips de provenance, badges de preuve
-   - fix MOBILE des cartes projets (panneau accessible sans survol)
+   - fix MOBILE des cartes projets (panneau accessible sans hover)
    - accessibilite clavier sur desktop (:focus-within)
    ========================================================= */
 
@@ -802,7 +802,7 @@ section{scroll-margin-top:72px}
 .hero-stack li{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);background:var(--tag);border:1px solid var(--line);padding:.4rem .75rem;border-radius:999px;transition:border-color .25s,color .25s}
 .hero-stack li:hover{border-color:var(--a);color:var(--ink)}
 .hero-metrics-note{font-family:'JetBrains Mono',monospace;font-size:.62rem;line-height:1.55;letter-spacing:.02em;color:var(--ink3);max-width:520px;margin:-1.4rem 0 2rem}
-/* Évite les colonnes projets trop étroites (panneaux survol qui déborderaient) : 2 col sous 1200px */
+/* Évite les colonnes projets trop étroites (panneaux hover qui déborderaient) : 2 col sous 1200px */
 @media (max-width:1200px){.pg{grid-template-columns:repeat(2,1fr)}}
 
 /* Chip de provenance sur la base de chaque carte (toujours visible) */
@@ -829,7 +829,7 @@ section{scroll-margin-top:72px}
 .pc:focus-within .pcp>*{opacity:1;transform:none}
 .ppl:focus-visible,.btn:focus-visible,.cc:focus-visible,.cv-btn:focus-visible,.nico:focus-visible,.nlinks a:focus-visible,.tag:focus-visible{outline:2px solid var(--a);outline-offset:2px;border-radius:3px}
 
-/* FIX MOBILE / TACTILE : sans survol, on empile le contenu projet
+/* FIX MOBILE / TACTILE : sans hover, on empile le contenu projet
    sous l'image -> description, badges ET liens toujours accessibles. */
 @media (hover:none), (max-width:780px){
   .pg{gap:1.25rem}
@@ -1100,7 +1100,7 @@ a:focus-visible,button:focus-visible,.cc:focus-visible,.cv-btn:focus-visible,.bt
       <div class="pci">
         <div class="pcibg" style="background:linear-gradient(165deg,#000D1A 0%,#002840 30%,#005C80 60%,#0096B7 85%,#00B4D8 100%)"></div>
         <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" style="opacity:.52"><defs><radialGradient id="rg3" cx="50%" cy="40%" r="50%"><stop offset="0%" stop-color="#38BDF8" stop-opacity=".55"/><stop offset="100%" stop-color="#0077B6" stop-opacity="0"/></radialGradient></defs><circle cx="160" cy="150" r="95" fill="url(#rg3)"/><path d="M160,60 L200,110 L195,115 L170,100 L170,155 L190,168 L160,165 L130,168 L150,155 L150,100 L125,115 L120,110 Z" fill="none" stroke="#38BDF8" stroke-width="2.2"/><ellipse cx="115" cy="125" rx="12" ry="6" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity=".7"/><ellipse cx="205" cy="125" rx="12" ry="6" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity=".7"/><rect x="30" y="200" width="260" height="130" rx="4" fill="none" stroke="#38BDF8" stroke-width=".8" opacity=".4"/><rect x="34" y="204" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="86" y="204" width="48" height="28" fill="#EF4444" opacity=".28" stroke="#EF4444" stroke-width="1"/><rect x="138" y="204" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="190" y="204" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="242" y="204" width="44" height="28" fill="#0EA5E9" opacity=".15"/><rect x="34" y="236" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="86" y="236" width="48" height="28" fill="#F97316" opacity=".22" stroke="#F97316" stroke-width=".8"/><rect x="138" y="236" width="48" height="28" fill="#EF4444" opacity=".28" stroke="#EF4444" stroke-width="1"/><rect x="190" y="236" width="48" height="28" fill="#0EA5E9" opacity=".15"/><rect x="242" y="236" width="44" height="28" fill="#0EA5E9" opacity=".15"/><text x="110" y="216" text-anchor="middle" font-family="monospace" font-size="7" fill="#EF4444" font-weight="bold">ERR</text><text x="162" y="251" text-anchor="middle" font-family="monospace" font-size="7" fill="#EF4444" font-weight="bold">ERR</text><text x="30" y="285" font-family="monospace" font-size="8" fill="#38BDF8" opacity=".7">ResNet50 Surface Analysis</text><text x="30" y="298" font-family="monospace" font-size="8" fill="#22C55E" opacity=".8">6 classes · 99 % acc.</text></svg>
-        <div class="pcbase"><div class="pcprov"><span class="prov prov-pub">Dataset public</span><span class="prov prov-perso">Projet perso</span></div><div class="pctag">Computer Vision · ResNet50</div><div class="pctitle">AeroScan AI — Contrôle qualité par vision</div></div>
+        <div class="pcbase"><div class="pcprov"><span class="prov prov-pub">Dataset public</span><span class="prov prov-perso">Projet perso</span></div><div class="pctag">Computer Vision · ResNet50</div><div class="pctitle">AeroScan AI — Défauts métalliques</div></div>
         <!-- accuracy badge -->
         <div class="pcstat" style="background:#0096B7;color:#fff">99%</div>
       </div>
