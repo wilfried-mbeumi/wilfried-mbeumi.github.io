@@ -230,15 +230,22 @@ nav.scrolled{
 .hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--a)}
 @keyframes su{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 /* Titre Bebas Neue légèrement réduit */
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,9vw,8.5rem);line-height:.93;letter-spacing:.03em;margin-bottom:.6rem;cursor:default;user-select:none}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,9vw,8.5rem);line-height:.93;letter-spacing:.03em;margin-bottom:.8rem;cursor:default;user-select:none}
 .hw{display:inline-block;overflow:hidden;vertical-align:top;margin-right:.2em}
-.hw span{display:block;opacity:0;transform:translateY(100%);animation:wi .7s var(--e) forwards}
-.hw:nth-child(1) span{animation-delay:.2s}.hw:nth-child(2) span{animation-delay:.38s}
+.hw span{display:block;opacity:1;transform:none}
+html:not(.cA) .hw span{opacity:0;transform:translateY(100%);animation:wi .7s var(--e) forwards}
+html:not(.cA) .hw:nth-child(1) span{animation-delay:.2s}html:not(.cA) .hw:nth-child(2) span{animation-delay:.38s}
 @keyframes wi{to{opacity:1;transform:translateY(0)}}
-/* Hover — vague visible */
-.hero-title:hover .hw span{animation:wave .55s var(--e) forwards;opacity:1!important}
-.hero-title:hover .hw:nth-child(1) span{animation-delay:.00s}.hero-title:hover .hw:nth-child(2) span{animation-delay:.08s}
-@keyframes wave{0%{transform:translateY(0);opacity:1}30%{transform:translateY(-14px) scaleX(.96);opacity:1}58%{transform:translateY(4px) scaleX(1.02);opacity:1}78%{transform:translateY(-3px);opacity:1}100%{transform:translateY(0);opacity:1}}
+/* Hover — vague premium + glow cyan/or */
+.hero-title{transition:text-shadow .5s ease,filter .5s ease}
+.hw span{transition:letter-spacing .45s var(--e),color .5s ease,text-shadow .5s ease}
+@media(hover:hover){
+.hero-title:hover{text-shadow:0 0 36px rgba(0,180,216,.2),0 0 72px rgba(0,180,216,.06),0 0 120px rgba(244,162,97,.04);filter:brightness(1.08)}
+.hero-title:hover .hw span{animation:heroWave .6s var(--e) forwards;letter-spacing:.07em}
+.hero-title:hover .hw:nth-child(1) span{animation-delay:0s}
+.hero-title:hover .hw:nth-child(2) span{animation-delay:.1s}
+}
+@keyframes heroWave{0%{transform:translateY(0) scale(1)}20%{transform:translateY(-8px) scale(1.02)}45%{transform:translateY(2px) scale(.995)}65%{transform:translateY(-3px) scale(1.005)}85%{transform:translateY(1px)}100%{transform:translateY(0) scale(1)}}
 .hero-sub{font-size:clamp(.9rem,1.4vw,1.1rem);font-weight:300;color:var(--ink2);max-width:520px;margin-bottom:2.5rem;line-height:1.85;opacity:0;animation:su .6s .9s var(--e) forwards}
 .hero-sub strong{font-weight:700;color:var(--ink)}
 .hero-metrics{display:flex;gap:0;flex-wrap:wrap;border-top:1px solid var(--line);opacity:0;animation:su .6s 1.1s var(--e) forwards;margin-bottom:2.5rem}
@@ -991,10 +998,10 @@ html.cA .hero-net{display:none}
 html.cA .hero-grid,html.cA .hero-orb{opacity:.3}
 html.cA .reveal,html.cA .sr,html.cA .sg>*{opacity:1;transform:none;filter:none;transition:none}
 html.cA .hero-eyebrow,html.cA .hero-role,html.cA .hero-sub,html.cA .hero-stack,html.cA .hero-metrics,html.cA .hero-ctas,html.cA .hero-right,html.cA .hero-bar{animation:none!important;opacity:1}
-html.cA .hero-title .hw span{animation:none!important}
+html.cA .hero-title .hw span{/* visible by default; GSAP drives entrance, hover free */}
 html.cA .hero-title{text-shadow:0 0 60px rgba(0,180,216,.12),0 0 120px rgba(0,180,216,.04)}
 html.cA .hero-eyebrow{position:relative;padding-left:.1rem}
-.hero-role{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,3.2vw,2.4rem);letter-spacing:.06em;color:var(--a);margin-bottom:1.4rem;opacity:0;animation:su .6s .5s var(--e) forwards}
+.hero-role{font-family:'Manrope',sans-serif;font-weight:600;font-size:clamp(.85rem,1.8vw,1.25rem);letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:1.6rem;opacity:0;animation:su .6s .5s var(--e) forwards}
 html.cA .hero-role{animation:none!important;opacity:1!important}
 html.cA .hero-metrics .hm{transition:text-shadow .6s ease}
 html.cA .hero-metrics .hm.lit{text-shadow:0 0 18px rgba(0,180,216,.3),0 0 40px rgba(0,180,216,.08)}
@@ -2195,7 +2202,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var tl=gsap.timeline({defaults:{ease:'power3.out'}});
     tl.from('.hero-eyebrow',{y:20,opacity:0,duration:.7})
-      .from('.hero-title .hw span',{yPercent:120,opacity:0,duration:.9,stagger:.08},'-=.25')
+      .from('.hero-title .hw span',{yPercent:120,opacity:0,duration:.9,stagger:.08,onComplete:function(){gsap.set('.hero-title .hw span',{clearProps:'opacity,transform'})}},'-=.25')
       .from('.hero-role',{y:14,opacity:0,duration:.6},'-=.3')
       .from('.hero-sub',{y:18,opacity:0,duration:.6},'-=.4')
       .from('.hero-stack li',{y:14,opacity:0,duration:.55,stagger:.06},'-=.3')
@@ -2235,6 +2242,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   if(document.readyState==='complete') initGsap();
   else window.addEventListener('load', initGsap);
+
+  setTimeout(function(){
+    document.querySelectorAll('.hero-title .hw span').forEach(function(s){
+      if(+getComputedStyle(s).opacity<.1){s.style.opacity='1';s.style.transform='none';}
+    });
+  },3000);
 })();
 </script>
 </body>
