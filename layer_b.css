@@ -1,0 +1,40 @@
+/* ===== Concept B — Neural Intelligence ===== */
+/* Backdrop : profondeur radiale qui respire (indigo -> cyan -> violet), theme-aware */
+html.cB body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(72vw 60vw at 50% 22%, rgba(0,180,216,.09), transparent 60%),
+    radial-gradient(55vw 55vw at 84% 68%, rgba(140,110,255,.07), transparent 60%),
+    radial-gradient(48vw 48vw at 12% 78%, rgba(99,102,241,.06), transparent 60%);
+  animation:cBbreath 10s ease-in-out infinite alternate}
+html.cB[data-theme="light"] body::before{
+  background:
+    radial-gradient(72vw 60vw at 50% 18%, rgba(0,150,183,.10), transparent 60%),
+    radial-gradient(55vw 55vw at 84% 68%, rgba(124,92,255,.08), transparent 60%);
+  opacity:.8}
+@keyframes cBbreath{from{opacity:.55;transform:scale(1)}to{opacity:1;transform:scale(1.05)}}
+@media(prefers-reduced-motion:reduce){html.cB body::before{animation:none}}
+
+/* Contenu au-dessus du fond et du canvas */
+html.cB section,html.cB footer{position:relative;z-index:1}
+html.cB .hero-left,html.cB .hero-right,html.cB .hero-bar{position:relative;z-index:2}
+
+/* GSAP pilote les reveals : on neutralise le systeme CSS de base (fallback = visible) */
+html.cB .reveal,html.cB .sr,html.cB .sg>*{opacity:1;transform:none;filter:none;transition:none}
+html.cB .hero-eyebrow,html.cB .hero-sub,html.cB .hero-stack,html.cB .hero-metrics,html.cB .hero-ctas,html.cB .hero-right,html.cB .hero-bar{animation:none!important;opacity:1}
+html.cB .hero-title .hw span{animation:none!important}
+
+/* Touches premium : lueur du titre / eyebrow */
+html.cB .hero-title{text-shadow:0 0 46px rgba(0,180,216,.14)}
+html.cB[data-theme="light"] .hero-title{text-shadow:0 0 30px rgba(0,150,183,.12)}
+html.cB .hero-eyebrow{text-shadow:0 0 16px rgba(0,180,216,.35)}
+
+/* Eclairage doux derriere les cartes / sections (profondeur) */
+html.cB .sk,html.cB .ex,html.cB .edu,html.cB .cert,html.cB .cv-card{transition:transform var(--t) var(--e),box-shadow var(--t-slow) var(--e),border-color var(--t) var(--e)}
+html.cB .pg .pc{transition:transform var(--t-slow) var(--e),box-shadow var(--t-slow) var(--e),filter var(--t-slow) var(--e)}
+@media(hover:hover){html.cB .pg .pc:hover{box-shadow:0 26px 70px rgba(0,180,216,.16),var(--sh2)}}
+
+/* Section finale : halo neural derriere le contact */
+html.cB #contact{position:relative}
+html.cB #contact::before{content:'';position:absolute;left:50%;top:18%;width:60vw;max-width:760px;height:60vw;max-height:760px;transform:translateX(-50%);
+  background:radial-gradient(circle, rgba(0,180,216,.10), transparent 62%);pointer-events:none;z-index:0;filter:blur(8px)}
+html.cB #contact .w{position:relative;z-index:1}

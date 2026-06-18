@@ -1,0 +1,129 @@
+/* ===== Concept A+ — Luxury Data Command Center (Enhanced) ===== */
+
+/* --- Gold token --- */
+html.cA{--gld:#F4A261;--gld-dim:rgba(244,162,97,.12)}
+
+/* Fond luxe multicouche : charbon + halos cyan/or, theme-aware */
+html.cA body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(80vw 60vw at 50% -10%, rgba(0,180,216,.09), transparent 55%),
+    radial-gradient(50vw 50vw at 95% 25%, rgba(244,162,97,.05), transparent 55%),
+    radial-gradient(40vw 40vw at 8% 75%, rgba(0,180,216,.06), transparent 55%),
+    radial-gradient(35vw 35vw at 70% 90%, rgba(244,162,97,.035), transparent 50%);
+}
+html.cA[data-theme="light"] body::before{
+  background:
+    radial-gradient(80vw 60vw at 50% -10%, rgba(0,150,183,.11), transparent 55%),
+    radial-gradient(50vw 50vw at 92% 28%, rgba(212,140,80,.07), transparent 55%),
+    radial-gradient(40vw 40vw at 10% 80%, rgba(0,150,183,.06), transparent 50%);
+}
+
+/* Layering */
+html.cA section,html.cA footer{position:relative;z-index:1}
+html.cA .hero-left,html.cA .hero-right,html.cA .hero-bar{position:relative;z-index:3}
+
+/* GSAP pilote les reveals (fallback = visible) */
+html.cA .reveal,html.cA .sr,html.cA .sg>*{opacity:1;transform:none;filter:none;transition:none}
+html.cA .hero-eyebrow,html.cA .hero-sub,html.cA .hero-stack,html.cA .hero-metrics,html.cA .hero-ctas,html.cA .hero-right,html.cA .hero-bar{animation:none!important;opacity:1}
+html.cA .hero-title .hw span{animation:none!important}
+
+/* Hero : titre lisible + double halo premium */
+html.cA .hero-title{text-shadow:0 0 60px rgba(0,180,216,.12),0 0 120px rgba(0,180,216,.04)}
+html.cA .hero-eyebrow{position:relative;padding-left:.1rem}
+
+/* Hero metrics — chiffres qui s'illuminent */
+html.cA .hero-metrics .hm{transition:text-shadow .6s ease}
+html.cA .hero-metrics .hm.lit{text-shadow:0 0 18px rgba(0,180,216,.3),0 0 40px rgba(0,180,216,.08)}
+
+/* Tuiles glass flottantes (cockpit) — desktop */
+.cA-tiles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.cA-tile{position:absolute;display:flex;flex-direction:column;gap:.35rem;padding:.75rem .85rem;border-radius:14px;
+  background:color-mix(in srgb,var(--card) 65%,transparent);border:1px solid color-mix(in srgb,var(--line) 70%,transparent);
+  box-shadow:0 20px 60px rgba(0,0,0,.32),0 0 0 1px rgba(0,180,216,.04);backdrop-filter:blur(14px) saturate(150%);
+  min-width:128px;opacity:0;transition:border-color .4s ease}
+[data-theme="light"] .cA-tile{box-shadow:0 16px 48px rgba(0,0,0,.10),0 0 0 1px rgba(0,180,216,.06)}
+.cA-tile .lbl{font-family:'JetBrains Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3)}
+.cA-tile .val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;line-height:1;letter-spacing:.03em;color:var(--a);transition:color .4s ease}
+.cA-tile .val.gold{color:var(--gld)}
+.cA-tile canvas{width:100%;height:28px;display:block}
+.cA-tile .delta{font-family:'JetBrains Mono',monospace;font-size:.42rem;letter-spacing:.08em;color:rgba(0,180,216,.55)}
+@media(max-width:900px){.cA-tiles{display:none}}
+
+/* Stack : modules data (accent sweep + lueur subtile au hover) */
+html.cA .sk{position:relative;overflow:hidden;transition:transform var(--t) var(--e),border-color var(--t) var(--e),box-shadow var(--t-slow) var(--e)}
+html.cA .sk::after{content:'';position:absolute;top:0;left:-30%;width:30%;height:2px;background:linear-gradient(90deg,transparent,var(--a),var(--gld),transparent);opacity:0;transition:opacity var(--t)}
+html.cA .sk::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .5s ease;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,180,216,.06),transparent 70%);pointer-events:none;z-index:0}
+@media(hover:hover){
+  html.cA .sk:hover{transform:translateY(-6px);box-shadow:0 24px 68px rgba(0,180,216,.16),var(--sh)}
+  html.cA .sk:hover::after{opacity:.9;animation:cAsweep 1.1s var(--e)}
+  html.cA .sk:hover::before{opacity:1}
+}
+@keyframes cAsweep{from{left:-30%}to{left:130%}}
+
+/* Experience : timeline trace (desktop) + dot lumineux */
+@media(min-width:781px){
+  html.cA .exg{position:relative}
+  html.cA .exg::before{content:'';position:absolute;left:50%;top:.5rem;bottom:.5rem;width:1px;
+    background:linear-gradient(var(--a),rgba(244,162,97,.2),rgba(0,180,216,.05));transform:translateX(-50%) scaleY(0);transform-origin:top;
+    transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
+  html.cA .exg::after{content:'';position:absolute;left:50%;top:.5rem;width:6px;height:6px;border-radius:50%;
+    background:var(--a);box-shadow:0 0 16px rgba(0,180,216,.5);transform:translateX(-50%) scale(0);
+    transition:transform .6s ease .8s}
+  html.cA .exg.drawn::before{transform:translateX(-50%) scaleY(1)}
+  html.cA .exg.drawn::after{transform:translateX(-50%) scale(1)}
+}
+
+/* Experience cards premium */
+html.cA .ex{transition:transform var(--t) var(--e),border-color var(--t) var(--e),box-shadow var(--t-slow) var(--e)}
+@media(hover:hover){html.cA .ex:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(0,0,0,.22),0 0 0 1px rgba(0,180,216,.08)}}
+
+/* Projets : profondeur + halo subtil au hover */
+html.cA .pg .pc{transition:transform var(--t-slow) var(--e),box-shadow var(--t-slow) var(--e),filter var(--t-slow) var(--e);position:relative}
+html.cA .pg .pc::after{content:'';position:absolute;inset:-1px;border-radius:inherit;opacity:0;transition:opacity .5s ease;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,180,216,.08),transparent 65%);pointer-events:none;z-index:0}
+@media(hover:hover){
+  html.cA .pg .pc:hover{box-shadow:0 32px 90px rgba(0,0,0,.5),0 0 0 1px rgba(0,180,216,.12)}
+  html.cA .pg .pc:hover::after{opacity:1}
+}
+
+/* Formation / Certifs : glass premium + rotating glow */
+html.cA .edu,html.cA .cert{transition:transform var(--t) var(--e),border-color var(--t) var(--e),box-shadow var(--t-slow) var(--e);position:relative;overflow:hidden}
+html.cA .edu::before,html.cA .cert::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(0,180,216,.04) 60deg,transparent 120deg);
+  opacity:0;transition:opacity .6s ease;pointer-events:none;z-index:0}
+@media(hover:hover){
+  html.cA .edu:hover,html.cA .cert:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 22px 60px rgba(0,0,0,.30),0 0 0 1px rgba(0,180,216,.08)}
+  html.cA .edu:hover::before,html.cA .cert:hover::before{opacity:1;animation:cArotGlow 4s linear infinite}
+}
+@keyframes cArotGlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* Contact : panneau command center final */
+html.cA #contact{position:relative;overflow:hidden}
+html.cA #contact::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    linear-gradient(0deg,rgba(0,180,216,.06),transparent 45%),
+    radial-gradient(65vw 45vw at 50% 115%, rgba(244,162,97,.07), transparent 55%),
+    radial-gradient(40vw 40vw at 20% 80%, rgba(0,180,216,.04), transparent 50%);}
+html.cA #contact .w{position:relative;z-index:1}
+html.cA #contact .sh{text-shadow:0 0 50px rgba(0,180,216,.12)}
+html.cA .cc{backdrop-filter:blur(10px) saturate(150%);transition:border-color var(--t),color var(--t),transform var(--t) var(--e),box-shadow var(--t-slow) var(--e);position:relative;overflow:hidden}
+html.cA .cc::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .4s ease;
+  background:linear-gradient(135deg,rgba(0,180,216,.06),rgba(244,162,97,.04));pointer-events:none}
+@media(hover:hover){
+  html.cA .cc:hover{transform:translateY(-5px);box-shadow:0 18px 50px rgba(0,180,216,.20),0 0 0 1px rgba(0,180,216,.10)}
+  html.cA .cc:hover::before{opacity:1}
+}
+
+/* CTA fort section finale — gradient 3 couleurs */
+html.cA .cA-cta{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5.5vw,4.2rem);letter-spacing:.02em;line-height:1.04;
+  margin:1.5rem auto 2.2rem;max-width:20ch;
+  background:linear-gradient(125deg,var(--ink) 20%,var(--a) 55%,var(--gld) 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--a);
+  text-shadow:none}
+
+/* Divider lumineux entre sections */
+html.cA section+section::before{content:'';display:block;width:min(60%,400px);height:1px;margin:0 auto;
+  background:linear-gradient(90deg,transparent,rgba(0,180,216,.12),rgba(244,162,97,.06),transparent);opacity:.7}
+
+/* Footer luxe */
+html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent)}
