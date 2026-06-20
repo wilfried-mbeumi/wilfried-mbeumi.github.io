@@ -1001,8 +1001,14 @@ html.cA .hero-eyebrow,html.cA .hero-role,html.cA .hero-sub,html.cA .hero-stack,h
 html.cA .hero-title .hw span{/* visible by default; GSAP drives entrance, hover free */}
 html.cA .hero-title{text-shadow:0 0 60px rgba(0,180,216,.12),0 0 120px rgba(0,180,216,.04)}
 html.cA .hero-eyebrow{position:relative;padding-left:.1rem}
-.hero-role{font-family:'Manrope',sans-serif;font-weight:600;font-size:clamp(.85rem,1.8vw,1.25rem);letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:1.6rem;opacity:0;animation:su .6s .5s var(--e) forwards}
+.hero-role{font-family:'Manrope',sans-serif;font-weight:600;font-size:clamp(.85rem,1.8vw,1.25rem);letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:.85rem;opacity:0;animation:su .6s .5s var(--e) forwards}
 html.cA .hero-role{animation:none!important;opacity:1!important}
+.hero-seek{display:inline-flex;align-items:center;gap:.6rem;font-family:'JetBrains Mono',monospace;font-size:clamp(.6rem,1.05vw,.72rem);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);background:color-mix(in srgb,var(--grn) 7%,transparent);border:1px solid color-mix(in srgb,var(--grn) 30%,transparent);border-radius:100px;padding:.5rem 1rem;margin-bottom:1.7rem;opacity:0;animation:su .6s .62s var(--e) forwards;max-width:100%}
+.hero-seek .hs-dot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 0 3px color-mix(in srgb,var(--grn) 18%,transparent);flex:none;animation:seekBreath 2.4s ease-in-out infinite}
+@keyframes seekBreath{0%,100%{opacity:1}50%{opacity:.4}}
+html.cA .hero-seek{animation:none!important;opacity:1}
+@media(prefers-reduced-motion:reduce){.hero-seek .hs-dot{animation:none}}
+@media(max-width:560px){.hero-seek{letter-spacing:.06em}}
 html.cA .hero-metrics .hm{transition:text-shadow .6s ease}
 html.cA .hero-metrics .hm.lit{text-shadow:0 0 18px rgba(0,180,216,.3),0 0 40px rgba(0,180,216,.08)}
 .cA-tiles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
@@ -1078,9 +1084,9 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
       <!-- small green dot used both inside the pill and on its own -->
       <div class="npill-dot" aria-hidden="true"></div>
       <!-- text shown only on first load before collapsing -->
-      <span class="npill-text">Disponible · Alternance 2026</span>
+      <span class="npill-text">Dispo · Alternance sept. 2026</span>
       <!-- tooltip always visible on hover -->
-      <div class="npill-tip">Disponible · Alternance 2026</div>
+      <div class="npill-tip">Dispo · Alternance sept. 2026</div>
     </div>
   </div>
 </nav>
@@ -1093,7 +1099,7 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   <a href="#education">Formation</a>
   <a href="#cv">Mes CV</a>
   <a href="#contact">Contact</a>
-  <div class="mm-foot"><span class="mm-dot"></span><span id="mm-status">Disponible · Alternance 2026</span></div>
+  <div class="mm-foot"><span class="mm-dot"></span><span id="mm-status">Dispo · Alternance sept. 2026</span></div>
 </nav>
 
 <section class="hero" id="home">
@@ -1106,7 +1112,8 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
       <span class="hw"><span>MBEUMI</span></span>
     </h1>
     <div class="hero-role">Data Analyst — BI · ML appliqué · IA industrielle</div>
-    <p class="hero-sub">Je transforme des <strong>données métiers</strong> en dashboards, modèles prédictifs et outils décisionnels exploitables.<br>Master&nbsp;2 Data &amp; IA · en mission Data Analyst chez <strong>Rondol Industrie</strong> (Nancy).</p>
+    <div class="hero-seek" id="heroSeek"><span class="hs-dot" aria-hidden="true"></span><span class="hs-txt">En recherche d'une alternance — Master Spécialisé Data Analyst, dès septembre 2026.</span></div>
+    <p class="hero-sub">Je modélise des <strong>données industrielles réelles</strong> — statistiques, séries temporelles et Machine Learning — pour en tirer des décisions et des <strong>métriques défendables</strong>.<br>Master&nbsp;2 Data &amp; IA · en mission Data Analyst chez <strong>Rondol Industrie</strong> (Nancy).</p>
     <ul class="hero-stack" aria-label="Compétences clés">
       <li>Power BI</li><li>Python</li><li>SQL</li><li>Streamlit</li><li>FastAPI</li><li>ML appliqué</li>
     </ul>
@@ -1117,7 +1124,7 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
       <div class="hm"><div class="hm-val gold">A+</div><div class="hm-lbl">SNCF · Note M1</div></div>
       <div class="hm"><div class="hm-val grn">-30%</div><div class="hm-lbl">Gain Reporting</div></div>
     </div>
-    <p class="hero-metrics-note" id="metricsNote">Métriques de projets perso, académiques et en entreprise — datasets simulés/publics ; contexte et limites sur chaque carte.</p>
+    <p class="hero-metrics-note" id="metricsNote">Fraud : dataset simulé · SNCF (A+) sur données réelles · -30% en entreprise (SECEL). Contexte et limites sur chaque carte.</p>
     <div class="hero-ctas">
       <a href="#projects" class="btn btn-a">Voir mes projets →</a>
       <a href="#cv" class="btn btn-o" id="CVBtn">Télécharger mon CV</a>
@@ -1147,9 +1154,9 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
     <div class="slbl">01 — Profil</div><h2 class="sh">Data, IA &amp; Industrie</h2>
     <div class="agrid sr">
       <div>
-        <p class="ap">Étudiant en <strong>Master 2 Data &amp; Intelligence Artificielle</strong>, je conçois des solutions data de bout en bout : <strong>analyse &amp; Business Intelligence</strong>, modélisation statistique, Machine Learning appliqué et mise à disposition via des applications (Streamlit&nbsp;/&nbsp;FastAPI).</p>
-        <p class="ap">En stage chez <strong>Rondol Industrie</strong> (Nancy), j'exploite des données d'extrudeuses bivis pour optimiser les paramètres process et construire des dashboards en temps réel.</p>
-        <p class="ap">Mon credo : <strong>métriques honnêtes</strong>, code maintenable, résultats défendables.</p>
+        <p class="ap">Étudiant en <strong>Master 2 Data &amp; Intelligence Artificielle</strong>, mon fil rouge : transformer des <strong>données réelles</strong> — souvent industrielles et bruitées — en résultats mesurés, défendables et mis en production, via la <strong>modélisation statistique</strong>, le Machine Learning et la Business Intelligence (Streamlit&nbsp;/&nbsp;FastAPI).</p>
+        <p class="ap">En stage chez <strong>Rondol Industrie</strong> (Nancy), j'exploite des <strong>données industrielles réelles</strong> d'extrudeuses bivis (température, couple, pression, vitesse), en collaboration avec les ingénieurs procédés, pour optimiser les paramètres d'extrusion et construire des dashboards de suivi.</p>
+        <p class="ap">Mon credo : des <strong>métriques défendables</strong>, jamais gonflées. Sur des <strong>données réelles SNCF</strong> (3&nbsp;020 gares), mes prévisions ont obtenu la note A+ (M1) — en assumant le choc Covid (-47,7&nbsp;%) plutôt qu'en le masquant.</p>
       </div>
       <div>
         <div class="fact"><span class="fk">Formation</span><span class="fv">Master 2 Chef de Projet Data &amp; IA — NEXA Digital School, Paris</span></div>
@@ -1374,9 +1381,9 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
 </section>
 
 <section id="contact">
-  <div class="w"><div class="slbl">08 — Contact</div><h2 class="sh">Travaillons Ensemble</h2>
-  <p class="ss" style="margin:0 auto">Disponible pour alternance, CDD/CDI — Mobile France entière.</p>
-  <p class="cta-statement" id="ctaStatement">Discutons d’un projet data / BI / IA.</p>
+  <div class="w"><div class="slbl">08 — Contact</div><h2 class="sh">Discutons de votre alternance</h2>
+  <p class="ss" style="margin:0 auto">Objectif : alternance Master Spécialisé Data Analyst dès septembre 2026 (ouvert aussi à CDD/CDI). Mobile dans toute la France · permis B.</p>
+  <p class="cta-statement" id="ctaStatement">Disponible pour une alternance Data Analyst dès septembre 2026, idéalement dans un environnement data industriel ou R&amp;D. Parlons-en — 20 minutes suffisent.</p>
   <div class="ccg sr">
     <!-- Contact buttons with official logos -->
     <a href="mailto:mbeumigautier@gmail.com" class="cc">
@@ -1552,25 +1559,25 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   var SLBL_FR = ['01 — Profil','02 — Stack','03 — Projets','04 — Expérience','05 — Formation','06 — Certifications','07 — CV','08 — Contact'];
   var SLBL_EN = ['01 — About','02 — Stack','03 — Projects','04 — Experience','05 — Education','06 — Certifications','07 — CV','08 — Contact'];
 
-  var SH_FR = ['Data, IA & Industrie','Outils & Technologies','Ce que j\'ai construit','Parcours Professionnel','Parcours Académique','Formations & Certifications','Deux versions, une expertise.','Travaillons Ensemble'];
-  var SH_EN = ['Data, AI & Industry','Tools & Technologies','What I\'ve built','Work Experience','Academic Background','Training & Certifications','Two versions, one expertise.','Let\'s work together'];
+  var SH_FR = ['Data, IA & Industrie','Outils & Technologies','Ce que j\'ai construit','Parcours Professionnel','Parcours Académique','Formations & Certifications','Deux versions, une expertise.','Discutons de votre alternance'];
+  var SH_EN = ['Data, AI & Industry','Tools & Technologies','What I\'ve built','Work Experience','Academic Background','Training & Certifications','Two versions, one expertise.','Let\'s discuss your work-study role'];
 
-  var SS_FR = ['Stack data complète — de la donnée brute au déploiement des applications ML.','8 projets — du dashboard BI au modèle ML déployé. Chaque carte précise contexte, données et limites. Visuels schématiques (pas des captures réelles).','Choisissez la version adaptée à votre contexte de recrutement — ou ouvrez les deux.','Disponible pour alternance, CDD/CDI — Mobile France entière.'];
-  var SS_EN = ['Full data stack — from raw data to ML app deployment.','8 projects — from BI dashboards to deployed ML models. Each card states context, data and limits. Illustrations are schematic (not real screenshots).','Choose the version that fits your recruiting context — or open both.','Available for work-study, fixed-term/permanent roles. Mobile throughout France.'];
+  var SS_FR = ['Stack data complète — de la donnée brute au déploiement des applications ML.','8 projets — du dashboard BI au modèle ML déployé. Chaque carte précise contexte, données et limites. Visuels schématiques (pas des captures réelles).','Choisissez la version adaptée à votre contexte de recrutement — ou ouvrez les deux.','Objectif : alternance Master Spécialisé Data Analyst dès septembre 2026 (ouvert aussi à CDD/CDI). Mobile dans toute la France · permis B.'];
+  var SS_EN = ['Full data stack — from raw data to ML app deployment.','8 projects — from BI dashboards to deployed ML models. Each card states context, data and limits. Illustrations are schematic (not real screenshots).','Choose the version that fits your recruiting context — or open both.','Goal: Specialised Master’s Data Analyst work-study from September 2026 (also open to fixed-term/permanent). Mobile across France · driving licence.'];
 
   var MI_FR = ['ROC-AUC · Fraud','Recall Fraude','Dataset ML','SNCF · Note','Gain reporting'];
   var MI_EN = ['ROC-AUC · Fraud','Fraud Recall','ML Dataset','SNCF · Grade','Reporting gain'];
 
   // About section paragraphs in both languages
   var ABT_FR = [
-    'Étudiant en <strong>Master 2 Data &amp; Intelligence Artificielle</strong>, je conçois des solutions data de bout en bout : <strong>analyse &amp; Business Intelligence</strong>, modélisation statistique, Machine Learning appliqué et mise à disposition via des applications (Streamlit&nbsp;/&nbsp;FastAPI).',
-    'En stage chez <strong>Rondol&nbsp;Industrie</strong> (Nancy), j\'exploite des données d\'extrudeuses bivis pour optimiser les paramètres process et construire des dashboards en temps réel.',
-    'Mon credo&nbsp;: <strong>métriques honnêtes</strong>, code maintenable, résultats défendables.'
+    'Étudiant en <strong>Master 2 Data &amp; Intelligence Artificielle</strong>, mon fil rouge&nbsp;: transformer des <strong>données réelles</strong> — souvent industrielles et bruitées — en résultats mesurés, défendables et mis en production, via la <strong>modélisation statistique</strong>, le Machine Learning et la Business Intelligence (Streamlit&nbsp;/&nbsp;FastAPI).',
+    'En stage chez <strong>Rondol&nbsp;Industrie</strong> (Nancy), j\'exploite des <strong>données industrielles réelles</strong> d\'extrudeuses bivis (température, couple, pression, vitesse), en collaboration avec les ingénieurs procédés, pour optimiser les paramètres d\'extrusion et construire des dashboards de suivi.',
+    'Mon credo&nbsp;: des <strong>métriques défendables</strong>, jamais gonflées. Sur des <strong>données réelles SNCF</strong> (3&nbsp;020 gares), mes prévisions ont obtenu la note A+ (M1) — en assumant le choc Covid (-47,7&nbsp;%) plutôt qu\'en le masquant.'
   ];
   var ABT_EN = [
-    'Student in <strong>M.Sc. Data &amp; Artificial&nbsp;Intelligence</strong>, I build end-to-end data solutions: <strong>analytics &amp; Business Intelligence</strong>, statistical modelling, applied Machine Learning and delivery through apps (Streamlit&nbsp;/&nbsp;FastAPI).',
-    'Intern at <strong>Rondol&nbsp;Industrie</strong> (Nancy), leveraging twin‑screw extruder data to optimise process parameters and build real‑time dashboards.',
-    'My motto: <strong>honest metrics</strong>, maintainable code, defensible results.'
+    'Student in <strong>M.Sc. Data &amp; Artificial&nbsp;Intelligence</strong>, my through-line: turning <strong>real data</strong> — often industrial and noisy — into measured, defensible results that ship to production, through <strong>statistical modelling</strong>, Machine Learning and Business Intelligence (Streamlit&nbsp;/&nbsp;FastAPI).',
+    'Intern at <strong>Rondol&nbsp;Industrie</strong> (Nancy), working with <strong>real industrial data</strong> from twin‑screw extruders (temperature, torque, pressure, speed), alongside the process engineers, to optimise extrusion parameters and build monitoring dashboards.',
+    'My credo: <strong>defensible metrics</strong>, never inflated. On <strong>real SNCF data</strong> (3,020 stations), my forecasts earned an A+ (M1) — owning the Covid drop (-47.7%) rather than hiding it.'
   ];
 
   // Facts (key, value) in about section
@@ -1722,8 +1729,11 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
     var ey  = lang === 'fr' ? 'Portfolio — Data · BI · ML appliqué' : 'Portfolio — Data · BI · applied ML';
     var role = lang === 'fr' ? 'Data Analyst — BI · ML appliqué · IA industrielle' : 'Data Analyst — BI · applied ML · industrial AI';
     var sub = lang === 'fr'
-      ? 'Je transforme des <strong>données métiers</strong> en dashboards, modèles prédictifs et outils décisionnels exploitables.<br>Master&nbsp;2 Data &amp; IA · en mission Data Analyst chez <strong>Rondol Industrie</strong> (Nancy).'
-      : 'I turn <strong>business data</strong> into dashboards, predictive models and actionable decision tools.<br>M.Sc. Data &amp; AI · Data Analyst at <strong>Rondol Industrie</strong> (Nancy).';
+      ? 'Je modélise des <strong>données industrielles réelles</strong> — statistiques, séries temporelles et Machine Learning — pour en tirer des décisions et des <strong>métriques défendables</strong>.<br>Master&nbsp;2 Data &amp; IA · en mission Data Analyst chez <strong>Rondol Industrie</strong> (Nancy).'
+      : 'I model <strong>real industrial data</strong> — statistics, time series and Machine Learning — into decisions and <strong>metrics that hold up</strong>.<br>M.Sc. Data &amp; AI · Data Analyst on assignment at <strong>Rondol Industrie</strong> (Nancy).';
+    var seek = lang === 'fr'
+      ? "En recherche d'une alternance — Master Spécialisé Data Analyst, dès septembre 2026."
+      : 'Seeking a work-study placement — Specialised Master’s in Data Analytics, from September 2026.';
     var btn = lang === 'fr' ? 'Voir mes projets →' : 'See my projects →';
     var cvBtn = lang === 'fr' ? 'Télécharger mon CV' : 'Download my CV';
     var hb  = lang === 'fr' ? 'Mobile France · Permis B · 28 ans' : "Mobile France · Driver's license · 28 y.o.";
@@ -1736,9 +1746,12 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
     var mmLinks = document.querySelectorAll('#MM a');
     for (var mli = 0; mli < mmLinks.length && mli < NAV.length; mli++) { mmLinks[mli].textContent = NAV[mli]; }
     var mmStatus = document.getElementById('mm-status');
-    if (mmStatus) mmStatus.textContent = lang === 'fr' ? 'Disponible · Alternance 2026' : 'Available · Work-study 2026';
+    if (mmStatus) mmStatus.textContent = lang === 'fr' ? 'Dispo · Alternance sept. 2026' : 'Open · Work-study Sept 2026';
+    var npT = lang === 'fr' ? 'Dispo · Alternance sept. 2026' : 'Open · Work-study Sept 2026';
+    var npTextEl = document.querySelector('.npill-text'); if (npTextEl) npTextEl.textContent = npT;
+    var npTipEl = document.querySelector('.npill-tip'); if (npTipEl) npTipEl.textContent = npT;
     var ctaEl = document.getElementById('ctaStatement');
-    if (ctaEl) ctaEl.textContent = lang === 'fr' ? "Discutons d’un projet data / BI / IA." : "Let’s talk about a data / BI / AI project.";
+    if (ctaEl) ctaEl.textContent = lang === 'fr' ? "Disponible pour une alternance Data Analyst dès septembre 2026, idéalement dans un environnement data industriel ou R&D. Parlons-en — 20 minutes suffisent." : "Available for a Data Analyst work-study from September 2026, ideally in an industrial or R&D data environment. Let’s talk — 20 minutes is enough.";
 
     // Update education entries
     var eduEls = document.querySelectorAll('#education .edu');
@@ -1779,6 +1792,9 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
     // Sub
     var subEl = document.querySelector('.hero-sub');
     if (subEl) subEl.innerHTML = sub;
+    // Seek signal
+    var seekEl = document.querySelector('#heroSeek .hs-txt');
+    if (seekEl) seekEl.textContent = seek;
     // CTA buttons
     var btnA = document.querySelector('.btn-a');
     if (btnA) btnA.textContent = btn;
@@ -1788,7 +1804,7 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
     if (btnContact) btnContact.textContent = lang === 'fr' ? 'Me contacter' : 'Contact me';
     document.documentElement.lang = lang;
     var mNote = document.getElementById('metricsNote');
-    if (mNote) mNote.textContent = lang === 'fr' ? 'Métriques de projets perso, académiques et en entreprise — datasets simulés/publics ; contexte et limites sur chaque carte.' : 'Metrics from personal, academic and company projects — simulated/public datasets; context and limits on each card.';
+    if (mNote) mNote.textContent = lang === 'fr' ? 'Fraud : dataset simulé · SNCF (A+) sur données réelles · -30% en entreprise (SECEL). Contexte et limites sur chaque carte.' : 'Fraud: simulated dataset · SNCF (A+) on real data · -30% in-company (SECEL). Context and limits on each card.';
 
     var cvTexts = lang === 'fr' ? {
       minRole:'Tri RH / ATS',
