@@ -36,21 +36,73 @@
 <script>document.documentElement.classList.add('js');if(window.matchMedia&&!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('gsap-on');}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<!-- Polices non bloquantes : preload puis bascule media=print->all a l onload.
+     display=swap etait deja present, le texte s affiche donc en police de repli
+     puis bascule, sans jamais bloquer le premier rendu. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap"></noscript>
 <!-- GSAP (animations premium) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <!-- Favicon: analytics bar chart icon matching brand -->
+<!-- Donnees structurees : permet a Google de constituer une entite Person -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Wilfried Galtier MBEUMI TCHOUFFOUO",
+  "alternateName": "Wilfried MBEUMI",
+  "jobTitle": "Data Analyst",
+  "description": "Data Analyst orienté Business Intelligence, Machine Learning appliqué et IA industrielle.",
+  "url": "https://wilfried-mbeumi.github.io/",
+  "image": "https://wilfried-mbeumi.github.io/wilfried-mbeumi.webp",
+  "email": "mailto:mbeumigautier@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/wilfried-galtier-mbeumi-tchouffouo-358bab351/",
+    "https://github.com/wilfried-mbeumi"
+  ],
+  "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
+  "alumniOf": [
+    { "@type": "EducationalOrganization", "name": "NEXA Digital School", "address": "Paris, France" },
+    { "@type": "EducationalOrganization", "name": "IA School", "address": "Paris, France" }
+  ],
+  "worksFor": { "@type": "Organization", "name": "Rondol Industrie", "address": "Nancy, France" },
+  "knowsLanguage": ["fr", "en"],
+  "knowsAbout": ["Business Intelligence","Power BI","Python","SQL","Machine Learning",
+    "Streamlit","FastAPI","Data Analysis","Computer Vision","BigQuery","DAX"]
+}
+</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='7' width='3' height='7' rx='1' fill='%2300B4D8'/%3E%3Crect x='7' y='4' width='3' height='10' rx='1' fill='%2300B4D8'/%3E%3Crect x='12' y='1' width='3' height='13' rx='1' fill='%2300B4D8'/%3E%3C/svg%3E"/>
 <style>
-@media(prefers-color-scheme:light){:root{--bg:#F5F4F0;--bg-s:#EDECEA;--card:#FFF;--ink:#0C0C0C;--ink2:#3A3A3A;--ink3:#6B6B6B;--line:rgba(0,0,0,.09);--line2:rgba(0,0,0,.18);--nav:rgba(245,244,240,.93);--nav-scroll:rgba(245,244,240,.92);--tag:rgba(0,0,0,.05);--taink:#444;--sh:0 2px 20px rgba(0,0,0,.07);--sh2:0 16px 56px rgba(0,0,0,.12);}}
+@media(prefers-color-scheme:light){:root{--bg:#F5F4F0;--bg-s:#EDECEA;--card:#FFF;--ink:#0C0C0C;--ink2:#3A3A3A;--ink3:#6B6B6B;--line:rgba(0,0,0,.09);--line2:rgba(0,0,0,.18);--nav:rgba(245,244,240,.93);--nav-scroll:rgba(245,244,240,.92);--tag:rgba(0,0,0,.05);--taink:#444;--sh:0 2px 20px rgba(0,0,0,.07);--sh2:0 16px 56px rgba(0,0,0,.12);
+  /* Accent assombri en clair : #00B4D8 ne donne que 2.24:1 sur #F5F4F0 (AA exige 4.5).
+     #006C82 monte a 5.50:1 et reste dans la meme famille teal. Concerne .hero-role,
+     .slbl, .tag, .ex-d et .edu-y, tous en couleur d'accent. */
+  --a:#006C82;--a2:#00566A;}}
 @media(prefers-color-scheme:dark){:root{--bg:#0A0A0A;--bg-s:#111;--card:#161616;--ink:#F2F2F2;--ink2:#9A9A9A;--ink3:#8A8A8A;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.18);--nav:rgba(10,10,10,.93);--nav-scroll:rgba(10,10,10,.85);--tag:rgba(255,255,255,.07);--taink:#AAA;--sh:0 2px 20px rgba(0,0,0,.5);--sh2:0 16px 56px rgba(0,0,0,.7);}}
 :root{--a:#00B4D8;--a2:#0096B7;--ag:rgba(0,180,216,.12);--grn:#2DC653;--gld:#F4A261;--e:cubic-bezier(.16,1,.3,1);}
+
+/* ===== Jetons "verre" (langage Apple) =====
+   Apple empile un fond rgba peu opaque + backdrop-filter blur(20px), avec un
+   liseré clair en inset pour simuler l'arête du verre. En clair il faut un fond
+   plutôt opaque (le flou sur blanc ne se voit pas), en sombre l'inverse. */
+:root{--glass:rgba(255,255,255,.06);--glass-line:rgba(255,255,255,.14);--glass-hi:rgba(255,255,255,.12);}
+@media(prefers-color-scheme:light){:root{--glass:rgba(255,255,255,.66);--glass-line:rgba(0,0,0,.08);--glass-hi:rgba(255,255,255,.92);}}
+[data-theme="light"]{--glass:rgba(255,255,255,.66)!important;--glass-line:rgba(0,0,0,.08)!important;--glass-hi:rgba(255,255,255,.92)!important;}
+[data-theme="dark"]{--glass:rgba(255,255,255,.06)!important;--glass-line:rgba(255,255,255,.14)!important;--glass-hi:rgba(255,255,255,.12)!important;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;line-height:1.6}
 body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+
+/* Lien d'evitement : hors ecran par defaut, revient au premier Tab */
+.skip{position:fixed;top:.6rem;left:.6rem;z-index:9999;padding:.7rem 1.1rem;border-radius:10px;
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--card);color:var(--ink);border:1px solid var(--a);text-decoration:none;
+  transform:translateY(-180%);transition:transform .25s var(--e)}
+.skip:focus{transform:translateY(0);outline:2px solid var(--a);outline-offset:2px}
 
 /* NAV */
 nav{
@@ -228,6 +280,23 @@ nav.scrolled{
 .hero-left{position:relative;z-index:1}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:.7rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:1.8rem;opacity:0;animation:su .6s .1s var(--e) forwards}
 .hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--a)}
+
+/* --- Portrait : anneau de verre. Le backdrop-filter ne floute que la bande de 4px
+       autour de la photo, ce qui produit l'arete de verre facon Apple. --- */
+.hero-id{opacity:0;animation:su .6s .2s var(--e) forwards;margin-bottom:1.6rem;line-height:0}
+.hero-photo{position:relative;display:inline-block;padding:4px;border-radius:50%;
+  background:var(--glass);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);
+  box-shadow:0 0 0 1px var(--glass-line),0 10px 34px rgba(0,0,0,.22),inset 0 1px 0 var(--glass-hi);
+  transition:box-shadow .4s var(--e),transform .4s var(--e)}
+.hero-photo img{display:block;width:104px;height:104px;border-radius:50%;object-fit:cover}
+@media(hover:hover){.hero-photo:hover{transform:translateY(-2px);
+  box-shadow:0 0 0 1px var(--a),0 14px 40px rgba(0,0,0,.28),inset 0 1px 0 var(--glass-hi)}}
+@media(max-width:700px){.hero-photo img{width:84px;height:84px}.hero-id{margin-bottom:1.2rem}}
+/* Sans backdrop-filter (Firefox ancien), on retombe sur un fond lisible */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .hero-photo{background:var(--card)}
+}
 @keyframes su{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 /* Titre Bebas Neue légèrement réduit */
 .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,9vw,8.5rem);line-height:.93;letter-spacing:.03em;margin-bottom:.8rem;cursor:default;user-select:none}
@@ -466,7 +535,9 @@ footer{border-top:1px solid var(--line);padding:1.8rem 4rem;display:flex;align-i
   footer{padding:1.5rem;flex-direction:column;align-items:flex-start}
 }
 
-[data-theme="light"]{--bg:#F5F4F0!important;--bg-s:#EDECEA!important;--card:#FFF!important;--ink:#0C0C0C!important;--ink2:#3A3A3A!important;--ink3:#6B6B6B!important;--line:rgba(0,0,0,.09)!important;--line2:rgba(0,0,0,.18)!important;--nav:rgba(245,244,240,.75)!important;--tag:rgba(0,0,0,.05)!important;--taink:#444!important;--sh:0 2px 20px rgba(0,0,0,.07)!important;--sh2:0 16px 56px rgba(0,0,0,.12)!important;}
+[data-theme="light"]{--bg:#F5F4F0!important;--bg-s:#EDECEA!important;--card:#FFF!important;--ink:#0C0C0C!important;--ink2:#3A3A3A!important;--ink3:#6B6B6B!important;--line:rgba(0,0,0,.09)!important;--line2:rgba(0,0,0,.18)!important;--nav:rgba(245,244,240,.75)!important;--tag:rgba(0,0,0,.05)!important;--taink:#444!important;--sh:0 2px 20px rgba(0,0,0,.07)!important;--sh2:0 16px 56px rgba(0,0,0,.12)!important;
+  /* Meme correction d'accent que le media query clair, en !important pour la bascule manuelle */
+  --a:#006C82!important;--a2:#00566A!important;}
 [data-theme="dark"]{--bg:#0A0A0A!important;--bg-s:#111!important;--card:#161616!important;--ink:#F2F2F2!important;--ink2:#9A9A9A!important;--ink3:#8A8A8A!important;--line:rgba(255,255,255,.08)!important;--line2:rgba(255,255,255,.18)!important;--nav:rgba(10,10,10,.75)!important;--tag:rgba(255,255,255,.07)!important;--taink:#AAA!important;--sh:0 2px 20px rgba(0,0,0,.5)!important;--sh2:0 16px 56px rgba(0,0,0,.7)!important;}
 .nav-right{display:flex;align-items:center;gap:.6rem}
 /* Compact icon buttons for language and theme */
@@ -1079,9 +1150,55 @@ html.cA .cta-statement{font-size:clamp(2.2rem,5.5vw,4.2rem);max-width:20ch;backg
 html.cA section+section::before{content:'';display:block;width:min(60%,400px);height:1px;margin:0 auto;background:linear-gradient(90deg,transparent,rgba(0,180,216,.12),rgba(244,162,97,.06),transparent);opacity:.7}
 html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent)}
 
+
+/* ============================================================
+   Place en fin de feuille a dessein : les regles .sk / .mcard /
+   .ex ... sont definies plus haut, il faut donc passer apres elles
+   pour que les radius et les aretes de verre s appliquent.
+   ============================================================ */
+/* ===== Langage "verre" inspire d'Apple, applique avec parcimonie =====
+   Apple empile : fond rgba peu opaque + backdrop-filter blur(20px) saturate + un
+   liseré clair en inset qui simule l'arête du verre, sur des radius 18-28px.
+
+   Arbitrage : backdrop-filter est un filtre GPU recalcule au scroll. Apple ne le
+   pose que sur quelques elements fixes (barres de nav). On fait pareil : flou reel
+   sur la nav, la carte de metriques et le portrait ; les ~30 cartes de contenu
+   reprennent l'aspect verre (translucidite + arête inset + bordure cheveu) SANS
+   le flou, pour ne pas plomber le defilement. */
+.sk,.mt,.ex,.edu,.cert,.cv-card{
+  border-radius:18px;
+  box-shadow:inset 0 1px 0 var(--glass-hi),var(--sh);
+}
+.cc{border-radius:16px;box-shadow:inset 0 1px 0 var(--glass-hi)}
+/* Puces : arête de verre + radius pleine pilule */
+.tag,.hero-stack li,.ppbi{box-shadow:inset 0 1px 0 var(--glass-hi)}
+
+/* Carte de metriques : verre reel (element unique, hors flux de scroll dense) */
+.mcard{
+  border-radius:22px;
+  background:var(--glass);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);
+  box-shadow:inset 0 1px 0 var(--glass-hi),0 0 0 1px var(--glass-line),var(--sh2);
+}
+/* Nav : on monte le flou existant aux valeurs Apple */
+nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:blur(20px) saturate(180%)!important}
+
+/* Transition de section : filet en degrade plutot qu'une bordure franche */
+#method,#projects,#experience,#education,#certifications,#cv,#contact{position:relative}
+#method::before,#projects::before,#experience::before,#education::before,
+#certifications::before,#cv::before,#contact::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--line2) 30%,var(--line2) 70%,transparent)}
+
+/* Repli propre si backdrop-filter n'est pas supporte */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .mcard{background:var(--card)}
+}
+
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu principal</a>
 <div class="aura" aria-hidden="true"></div>
 <div class="scroll-progress" id="SP" aria-hidden="true"></div>
 <nav aria-label="Navigation principale">
@@ -1135,12 +1252,26 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   <div class="mm-foot"><span class="mm-dot"></span><span id="mm-status">Dispo · Alternance sept. 2026</span></div>
 </nav>
 
-<section class="hero" id="home">
+<main id="main">
+<section class="hero" id="home" aria-labelledby="home-h">
   <canvas class="hero-net" id="heroNet" aria-hidden="true"></canvas>
   <div class="bg-fx" aria-hidden="true"></div><div class="hero-grid"></div><div class="hero-orb"></div>
   <div class="hero-left">
+    <!-- Portrait place dans .hero-left (et non .hero-right, masquee sous 700px) pour
+         rester visible sur mobile. srcset : 224px sous 700px, 448px au-dela.
+         width/height portent le ratio 1:1 -> aucun decalage de mise en page. -->
+    <div class="hero-id">
+      <span class="hero-photo">
+        <img src="wilfried-mbeumi.webp"
+             srcset="wilfried-mbeumi-sm.webp 224w, wilfried-mbeumi.webp 448w"
+             sizes="(max-width:700px) 84px, 104px"
+             width="448" height="448"
+             alt="Wilfried Galtier MBEUMI TCHOUFFOUO, Data Analyst"
+             fetchpriority="high" decoding="async">
+      </span>
+    </div>
     <div class="hero-eyebrow">Portfolio — Data · BI · ML appliqué</div>
-    <h1 class="hero-title">
+    <h1 class="hero-title" id="home-h">
       <span class="hw"><span>WILFRIED</span></span>
       <span class="hw"><span>MBEUMI</span></span>
     </h1>
@@ -1189,9 +1320,9 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   </div>
 </section>
 
-<section id="about">
+<section id="about" aria-labelledby="about-h">
   <div class="w">
-    <div class="slbl">01 — Profil</div><h2 class="sh">Data, IA &amp; Industrie</h2>
+    <div class="slbl">01 — Profil</div><h2 class="sh" id="about-h">Data, IA &amp; Industrie</h2>
     <div class="agrid sr">
       <div>
         <p class="ap">Étudiant en <strong>Master 2 Data &amp; Intelligence Artificielle</strong>, mon fil rouge : transformer des <strong>données réelles</strong> — souvent industrielles et bruitées — en résultats mesurés, défendables et mis en production, via la <strong>modélisation statistique</strong>, le Machine Learning et la Business Intelligence (Streamlit&nbsp;/&nbsp;FastAPI).</p>
@@ -1210,9 +1341,9 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   </div>
 </section>
 
-<section id="skills">
+<section id="skills" aria-labelledby="skills-h">
   <div class="w">
-    <div class="slbl">02 — Stack</div><h2 class="sh">Outils &amp; Technologies</h2>
+    <div class="slbl">02 — Stack</div><h2 class="sh" id="skills-h">Outils &amp; Technologies</h2>
     <p class="ss">Stack data complète — de la donnée brute au déploiement des applications ML.</p>
     <div class="skg sg">
       <div class="sk"><div class="sk-i">⚙️</div><div class="sk-n">Déploiement &amp; API ML</div><div class="sk-p">Rendre un modèle utilisable par une équipe métier, pas seulement dans un notebook.</div><div class="tags"><span class="tag hi">FastAPI</span><span class="tag hi">Streamlit</span><span class="tag hi">Pydantic</span><span class="tag">scikit-learn</span><span class="tag">joblib</span></div></div>
@@ -1225,9 +1356,9 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   </div>
 </section>
 
-<section id="method">
+<section id="method" aria-labelledby="method-h">
   <div class="w">
-    <div class="slbl">03 — Méthode</div><h2 class="sh">Comment je travaille</h2>
+    <div class="slbl">03 — Méthode</div><h2 class="sh" id="method-h">Comment je travaille</h2>
     <p class="ss">Quatre étapes, toujours dans le même ordre. C'est ce qui rend une métrique défendable.</p>
     <div class="mtg sg">
       <div class="mt">
@@ -1254,8 +1385,8 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   </div>
 </section>
 
-<section id="projects">
-  <div class="w"><div class="slbl">04 — Projets</div><h2 class="sh">Ce que j'ai construit</h2><p class="ss">8 projets — du dashboard BI au modèle ML déployé. Chaque carte précise contexte, données et limites. Visuels schématiques (pas des captures réelles).</p></div>
+<section id="projects" aria-labelledby="projects-h">
+  <div class="w"><div class="slbl">04 — Projets</div><h2 class="sh" id="projects-h">Ce que j'ai construit</h2><p class="ss">8 projets — du dashboard BI au modèle ML déployé. Chaque carte précise contexte, données et limites. Visuels schématiques (pas des captures réelles).</p></div>
   <div class="pg sr">
 
     <!-- 1. FRAUD -->
@@ -1342,8 +1473,8 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   </div>
 </section>
 
-<section id="experience">
-  <div class="w"><div class="slbl">05 — Expérience</div><h2 class="sh">Parcours Professionnel</h2>
+<section id="experience" aria-labelledby="experience-h">
+  <div class="w"><div class="slbl">05 — Expérience</div><h2 class="sh" id="experience-h">Parcours Professionnel</h2>
   <div class="exg sg">
     <div class="ex"><div class="ex-d">Janvier 2026 — en cours</div><div class="ex-r">Stage Data Analyst</div><div class="ex-c">Rondol Industrie — Nancy · R&amp;D Industrielle</div><ul class="ex-ul"><li>Exploitation de données d'extrudeuses bivis (température, couple, pression, vitesse)</li><li>Nettoyage et validation de données expérimentales R&amp;D</li><li>Modèles statistiques pour optimisation des paramètres d'extrusion</li><li>Dashboards de suivi des essais et indicateurs techniques</li></ul><div class="ex-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Power BI</span><span class="tag">Statistiques</span></div></div>
     <div class="ex"><div class="ex-d">Février 2024 — Janvier 2025</div><div class="ex-r">Data Analyst Junior</div><div class="ex-c">SECEL SARL — Douala, Cameroun</div><ul class="ex-ul"><li>Extraction, nettoyage et modélisation de données clients (SQL &amp; Excel)</li><li>Dashboards Power BI pour le suivi des performances de formation</li><li><strong>Automatisation : -30% sur le temps de production des rapports</strong></li><li>Support technique et gestion des accès plateformes</li></ul><div class="ex-tags"><span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Excel</span><span class="tag">DAX</span></div></div>
@@ -1374,8 +1505,8 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   </div></div>
 </section>
 
-<section id="education">
-  <div class="w"><div class="slbl">06 — Formation</div><h2 class="sh">Parcours Académique</h2>
+<section id="education" aria-labelledby="education-h">
+  <div class="w"><div class="slbl">06 — Formation</div><h2 class="sh" id="education-h">Parcours Académique</h2>
   <div class="edug sg">
     <div class="edu"><div class="edu-y">2025-2026 · En cours</div><div class="edu-d">Master 2 Chef de Projet Data &amp; IA</div><div class="edu-s">NEXA Digital School — Paris</div></div>
     <div class="edu"><div class="edu-y">2024-2025 · Obtenu</div><div class="edu-d">Master 1 Chef de Projet Data &amp; IA</div><div class="edu-s">IA School Paris</div><div class="edu-g">GPA 3.4 / 4</div></div>
@@ -1384,8 +1515,8 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   </div></div>
 </section>
 
-<section id="certifications">
-  <div class="w"><div class="slbl">07 — Certifications</div><h2 class="sh">Formations &amp; Certifications</h2>
+<section id="certifications" aria-labelledby="certifications-h">
+  <div class="w"><div class="slbl">07 — Certifications</div><h2 class="sh" id="certifications-h">Formations &amp; Certifications</h2>
   <div class="certg sg">
     <div class="cert"><div class="cert-lg"><svg width="82" height="32" viewBox="0 0 82 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 1C8.3 1 2 7.3 2 15s6.3 14 14 14 14-6.3 14-15S23.7 1 16 1zm0 3.7c5.7 0 10.3 4.6 10.3 10.3S21.7 25.3 16 25.3 5.7 20.7 5.7 15 10.3 4.7 16 4.7z" fill="#C74634"/><text x="34" y="20" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#C74634">RACLE</text></svg></div><div class="cert-org">Oracle</div><div class="cert-nm">Cloud Infrastructure 2025 AI</div><span class="cbg cbd">Obtenu</span></div>
     <div class="cert"><div class="cert-lg"><svg width="82" height="32" viewBox="0 0 82 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 1C8.3 1 2 7.3 2 15s6.3 14 14 14 14-6.3 14-15S23.7 1 16 1zm0 3.7c5.7 0 10.3 4.6 10.3 10.3S21.7 25.3 16 25.3 5.7 20.7 5.7 15 10.3 4.7 16 4.7z" fill="#C74634"/><text x="34" y="20" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#C74634">RACLE</text></svg></div><div class="cert-org">Oracle</div><div class="cert-nm">Data Platform 2025</div><span class="cbg cbd">Obtenu</span></div>
@@ -1394,14 +1525,15 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
     <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pA" x1="12%" y1="12%" x2="75%" y2="75%"><stop offset="0" stop-color="#387EB8"/><stop offset="1" stop-color="#366994"/></linearGradient><linearGradient id="pB" x1="25%" y1="25%" x2="88%" y2="88%"><stop offset="0" stop-color="#FFE052"/><stop offset="1" stop-color="#FFC331"/></linearGradient></defs><path fill="url(#pA)" d="M126.9 0C62.2 0 66 28.4 66 28.4V57h62v9H38S0 61.5 0 127c0 65.5 36.2 63.2 36.2 63.2H57v-30.4S55.8 123 90 123h62s32-.5 32-31V34S189.3 0 126.9 0zm-15 18.8a11.2 11.2 0 110 22.4 11.2 11.2 0 010-22.4z"/><path fill="url(#pB)" d="M129.1 255c64.7 0 61-28.4 61-28.4V198h-62v-9h90S256 193.5 256 128c0-65.5-36.2-63.2-36.2-63.2H199v30.4s1.2 37-33 37H104s-32 .5-32 31v58S79.7 255 129.1 255zm15-18.8a11.2 11.2 0 110-22.4 11.2 11.2 0 010 22.4z"/></svg></div><div class="cert-org">Python</div><div class="cert-nm">Certificat Python</div><span class="cbg cbd">Obtenu</span></div>
     <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="12" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="12" width="10" height="10" fill="#00A4EF"/><rect x="12" y="12" width="10" height="10" fill="#FFB900"/></svg></div><div class="cert-org">Microsoft</div><div class="cert-nm">PL-300 Power BI</div><span class="cbg cbo">En cours</span></div>
     <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.3 9 3.4l6.6-6.6C35.5 2.3 30.1 0 24 0 14.6 0 6.6 5.5 2.7 13.5l7.7 6C12.3 13.3 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.6 2.8-2.2 5.2-4.7 6.8l7.3 5.7c4.3-4 6.8-9.9 6.8-16.5z"/><path fill="#FBBC05" d="M10.4 28.5c-.6-1.7-.9-3.5-.9-5.5s.3-3.8.9-5.5l-7.7-6C1 15 0 18.9 0 23s1 8.1 2.7 11.5l7.7-6z"/><path fill="#34A853" d="M24 46c6.1 0 11.2-2 14.9-5.5l-7.3-5.7c-2 1.4-4.6 2.2-7.6 2.2-6.3 0-11.7-3.8-13.6-9.5l-7.7 6C6.6 41.5 14.6 46 24 46z"/></svg></div><div class="cert-org">Google</div><div class="cert-nm">Google Data Analytics</div><span class="cbg cbo">En cours</span></div>
-    <div class="cert"><div class="cert-lg cert-lg-nexa"><img src="nexa.webp" alt="NEXA Digital School logo" class="cert-logo-nexa"></div><div class="cert-org">NEXA Digital School</div><div class="cert-nm">MLOps Fraud Detection</div><span class="cbg cbd">Validé 2026</span></div>
+    <div class="cert"><div class="cert-lg cert-lg-nexa"><img src="nexa-opt.webp" alt="Logo NEXA Digital School" class="cert-logo-nexa"
+     width="380" height="168" loading="lazy" decoding="async"></div><div class="cert-org">NEXA Digital School</div><div class="cert-nm">MLOps Fraud Detection</div><span class="cbg cbd">Validé 2026</span></div>
   </div></div>
 </section>
 
 
-<section id="cv">
+<section id="cv" aria-labelledby="cv-h">
   <div class="w">
-    <div class="slbl">08 — CV</div><h2 class="sh">Deux versions, une expertise.</h2>
+    <div class="slbl">08 — CV</div><h2 class="sh" id="cv-h">Deux versions, une expertise.</h2>
     <p class="ss" style="margin:0 auto">Choisissez la version adaptée à votre contexte de recrutement — ou ouvrez les deux.</p>
     <div class="cv-grid sr">
       <article class="cv-card">
@@ -1449,8 +1581,8 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
   </div>
 </section>
 
-<section id="contact">
-  <div class="w"><div class="slbl">09 — Contact</div><h2 class="sh">Discutons de votre alternance</h2>
+<section id="contact" aria-labelledby="contact-h">
+  <div class="w"><div class="slbl">09 — Contact</div><h2 class="sh" id="contact-h">Discutons de votre alternance</h2>
   <p class="ss" style="margin:0 auto">Objectif : alternance Master Spécialisé Data Analyst dès septembre 2026 (ouvert aussi à CDD/CDI). Mobile dans toute la France · permis B.</p>
   <p class="cta-statement" id="ctaStatement">Disponible pour une alternance Data Analyst dès septembre 2026, idéalement dans un environnement data industriel ou R&amp;D. Parlons-en — 20 minutes suffisent.</p>
   <div class="ccg sr">
@@ -1485,6 +1617,8 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
     </a>
   </div></div>
 </section>
+
+</main>
 
 <footer>
   <p class="fc">2026 Wilfried Galtier MBEUMI TCHOUFFOUO — Data Analyst · BI &amp; ML appliqué</p>
@@ -1636,6 +1770,11 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
 
   var MI_FR = ['ROC-AUC · Fraud','Recall Fraude','Dataset ML','SNCF · Note','Gain reporting'];
   var MI_EN = ['ROC-AUC · Fraud','Fraud Recall','ML Dataset','SNCF · Grade','Reporting gain'];
+
+  /* .hm-lbl : libelles sous les grandes metriques du hero. Ils n'etaient pas traduits
+     (seuls ceux de la .mcard, via MI, l'etaient) et restaient en francais en mode EN. */
+  var HML_FR = ['ROC-AUC · Fraud','Recall Fraude','Transactions ML','SNCF · Note M1','Gain Reporting'];
+  var HML_EN = ['ROC-AUC · Fraud','Fraud Recall','ML Transactions','SNCF · Grade M1','Reporting Gain'];
 
   // About section paragraphs in both languages
   var ABT_FR = [
@@ -1958,6 +2097,11 @@ html.cA footer{background:linear-gradient(to top,rgba(0,180,216,.06),transparent
     var mins = document.querySelectorAll('.mi-n');
     for (var i = 0; i < mins.length && i < MI.length; i++) {
       mins[i].textContent = MI[i];
+    }
+    // Libelles sous les grandes metriques du hero (restaient en francais en mode EN)
+    var hmls = document.querySelectorAll('.hm-lbl');
+    for (var hl = 0; hl < hmls.length && hl < HML_FR.length; hl++) {
+      hmls[hl].textContent = (lang === 'fr' ? HML_FR[hl] : HML_EN[hl]);
     }
     // Hero bar last item
     var hbis = document.querySelectorAll('.hbi');
