@@ -53,7 +53,7 @@
   "@type": "Person",
   "name": "Wilfried Galtier MBEUMI TCHOUFFOUO",
   "alternateName": "Wilfried MBEUMI",
-  "jobTitle": "Data Analyst",
+  "jobTitle": ["Data Analyst", "R&D and Operations Engineer"],
   "description": "Data Analyst orienté Business Intelligence, Machine Learning appliqué et IA industrielle.",
   "url": "https://wilfried-mbeumi.github.io/",
   "image": "https://wilfried-mbeumi.github.io/wilfried-mbeumi.webp",
@@ -90,6 +90,16 @@
 :root{--glass:rgba(255,255,255,.06);--glass-line:rgba(255,255,255,.14);--glass-hi:rgba(255,255,255,.12);}
 @media(prefers-color-scheme:light){:root{--glass:rgba(255,255,255,.66);--glass-line:rgba(0,0,0,.08);--glass-hi:rgba(255,255,255,.92);}}
 [data-theme="light"]{--glass:rgba(255,255,255,.66)!important;--glass-line:rgba(0,0,0,.08)!important;--glass-hi:rgba(255,255,255,.92)!important;}
+
+/* Jetons TEXTE pour l'or et le vert. --gld (#F4A261) et --grn (#2DC653) tombent a
+   2.06:1 et 2.25:1 sur les fonds clairs : conformes en sombre, en echec AA en clair.
+   On ne touche pas --gld / --grn eux-memes (bordures, lueurs de survol, accents
+   graphiques les utilisent et leur contraste n'est pas un enjeu de lecture) ;
+   seules les declarations `color` basculent sur ces jetons. */
+:root{--gld-t:var(--gld);--grn-t:var(--grn);}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--gld-t:#94590F;--grn-t:#177C2F;}}
+[data-theme="light"]{--gld-t:#94590F!important;--grn-t:#177C2F!important;}
+[data-theme="dark"]{--gld-t:var(--gld)!important;--grn-t:var(--grn)!important;}
 [data-theme="dark"]{--glass:rgba(255,255,255,.06)!important;--glass-line:rgba(255,255,255,.14)!important;--glass-hi:rgba(255,255,255,.12)!important;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -356,6 +366,10 @@ section:nth-child(even){background:var(--bg-s)}
 .sr,.sg>*{opacity:0;transform:translateY(22px);transition:opacity .65s var(--e),transform .65s var(--e)}
 .sr.on{opacity:1;transform:none}
 .sg.on>*:nth-child(1){opacity:1;transform:none;transition-delay:.04s}.sg.on>*:nth-child(2){opacity:1;transform:none;transition-delay:.09s}.sg.on>*:nth-child(3){opacity:1;transform:none;transition-delay:.14s}.sg.on>*:nth-child(4){opacity:1;transform:none;transition-delay:.19s}.sg.on>*:nth-child(5){opacity:1;transform:none;transition-delay:.24s}.sg.on>*:nth-child(6){opacity:1;transform:none;transition-delay:.29s}.sg.on>*:nth-child(7){opacity:1;transform:none;transition-delay:.34s}.sg.on>*:nth-child(8){opacity:1;transform:none;transition-delay:.39s}
+/* Filet : la cascade nominative s'arrete a 8. Sans cette regle, tout enfant
+   au-dela du 8e reste a opacity:0 quand GSAP n'est pas charge (CDN indisponible
+   ou classe gsap-on absente). La grille certifications compte 10 cartes. */
+.sg.on>*:nth-child(n+9){opacity:1;transform:none;transition-delay:.44s}
 
 /* ABOUT */
 .agrid{display:grid;grid-template-columns:1.2fr 1fr;gap:6rem;align-items:start}
@@ -461,20 +475,69 @@ section:nth-child(even){background:var(--bg-s)}
 .edu-y{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--a);margin-bottom:.4rem}
 .edu-d{font-weight:800;font-size:.95rem;color:var(--ink);margin-bottom:.25rem}
 .edu-s{font-size:.85rem;color:var(--ink3);margin-bottom:.4rem}
-.edu-g{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--grn)}
+.edu-g{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--grn-t)}
 
 /* CERTIFICATIONS */
-.certg{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem}
+.certg{display:grid;grid-template-columns:repeat(auto-fill,minmax(216px,1fr));gap:1rem}
 .cert{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1.4rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.65rem;transition:border-color .3s,transform .3s var(--e),box-shadow .3s;position:relative;overflow:hidden}
 .cert::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--ag),transparent 60%);opacity:0;transition:opacity .3s}
 .cert:hover{border-color:var(--gld);transform:translateY(-4px);box-shadow:var(--sh)}.cert:hover::before{opacity:1}
 .cert-lg{height:36px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
 .cert-lg-nexa{height:48px}
 .cert-logo-nexa{display:block;max-width:170px;width:100%;height:auto;object-fit:contain}
-.cert-org{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gld);position:relative;z-index:1}
+.cert-org{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gld-t);position:relative;z-index:1}
 .cert-nm{font-weight:700;font-size:.86rem;color:var(--ink);line-height:1.3;position:relative;z-index:1}
 .cbg{font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:.16rem .52rem;border-radius:2px;position:relative;z-index:1}
-.cbd{color:var(--grn);background:rgba(45,198,83,.1)}.cbo{color:var(--gld);background:rgba(244,162,97,.1)}
+.cbd{color:var(--grn-t);background:rgba(45,198,83,.1)}.cbo{color:var(--gld-t);background:rgba(244,162,97,.1)}
+
+/* Cartes certifications cliquables : la carte entiere est le lien de verification.
+   L'icone lien externe en haut a droite signale la sortie du site (cf. gusbavia.com). */
+a.cert{text-decoration:none;cursor:pointer}
+a.cert:focus-visible{outline:2px solid var(--gld);outline-offset:3px}
+.cert-ext{position:absolute;top:.8rem;right:.8rem;width:13px;height:13px;stroke:var(--ink3);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s,transform .3s var(--e);z-index:2}
+a.cert:hover .cert-ext{stroke:var(--gld);transform:translate(2px,-2px)}
+.cert-dt{font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.05em;color:var(--ink3);position:relative;z-index:1}
+.cert-vf{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.07em;text-transform:uppercase;color:var(--gld-t);position:relative;z-index:1}
+.cert-id{font-family:'JetBrains Mono',monospace;font-size:.48rem;letter-spacing:.02em;color:var(--ink3);opacity:.65;word-break:break-all;position:relative;z-index:1}
+
+/* INSIGHTS — carrousel de publications LinkedIn officielles.
+   Defilement natif scroll-snap plutot qu'un calcul de translation JS :
+   le clavier, le trackpad et le swipe tactile fonctionnent sans code. */
+.licar{position:relative}
+.licar-vp{display:grid;grid-auto-flow:column;grid-auto-columns:calc(50% - .6rem);gap:1.2rem;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:.4rem}
+.licar-vp::-webkit-scrollbar{display:none}
+.licar-vp:focus-visible{outline:2px solid var(--a);outline-offset:4px;border-radius:18px}
+.lisl{scroll-snap-align:start;min-width:0}
+.lic{display:flex;flex-direction:column;height:100%;background:var(--glass);border:1px solid var(--glass-line);border-radius:18px;box-shadow:inset 0 1px 0 var(--glass-hi);overflow:hidden;transition:border-color .3s}
+.lic:hover{border-color:var(--a)}
+.lic-h{padding:1.4rem 1.5rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.lic-dt{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;color:var(--a)}
+.lic-t{font-weight:700;font-size:1rem;line-height:1.35;color:var(--ink);margin:0}
+.lic-s{font-size:.83rem;line-height:1.6;color:var(--ink2);margin:0}
+.lic-a{display:inline-flex;align-items:center;gap:.4rem;align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.04em;color:var(--a);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
+.lic-a:hover{border-bottom-color:var(--a)}
+.lic-ext{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--e)}
+.lic-a:hover .lic-ext{transform:translate(2px,-2px)}
+/* L'iframe LinkedIn impose son propre fond blanc : on l'isole par une bordure
+   haute plutot que de tenter de le styler (contenu tiers, non modifiable). */
+.lic-e{margin-top:auto;border-top:1px solid var(--glass-line);background:#fff;line-height:0}
+.lic-e iframe{display:block;width:100%;height:500px;border:0}
+.lic-ns{padding:1.2rem;font-size:.85rem;line-height:1.6}
+.lic-ns a{color:#0A66C2}
+.licar-nav{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.4rem}
+.licar-b{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-line);cursor:pointer;transition:border-color .3s,background .3s,opacity .3s}
+.licar-b svg{width:17px;height:17px;stroke:var(--ink2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.licar-prev svg{transform:rotate(180deg)}
+.licar-b:hover:not(:disabled){border-color:var(--a)}
+.licar-b:hover:not(:disabled) svg{stroke:var(--a)}
+.licar-b:disabled{opacity:.32;cursor:default}
+.licar-b:focus-visible{outline:2px solid var(--a);outline-offset:3px}
+.licar-dots{display:flex;align-items:center;gap:.5rem}
+.licar-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:var(--line2);cursor:pointer;transition:background .3s,width .3s var(--e)}
+.licar-dot[aria-current="true"]{background:var(--a);width:22px;border-radius:4px}
+.licar-dot:focus-visible{outline:2px solid var(--a);outline-offset:3px}
+@media(max-width:760px){.licar-vp{grid-auto-columns:100%}}
+@media(prefers-reduced-motion:reduce){.licar-vp{scroll-behavior:auto}}
 
 
 /* CV SECTION */
@@ -1215,7 +1278,7 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
   </a>
   <ul class="nlinks" id="NL">
     <li><a href="#about">Profil</a></li><li><a href="#skills">Stack</a></li>
-    <li><a href="#projects">Projets</a></li><li><a href="#experience">Expérience</a></li>
+    <li><a href="#projects">Projets</a></li><li><a href="#insights">Insights</a></li><li><a href="#experience">Expérience</a></li>
     <li><a href="#education">Formation</a></li><li><a href="#cv">Mes CV</a></li><li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
@@ -1230,13 +1293,13 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
     </button>
     <button class="nav-burger" id="BG" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="MM"><span></span><span></span><span></span></button>
     <!-- Availability pill: show full pill on load then collapse into a dot -->
-    <div class="npill" role="status" aria-label="Disponibilité : ouvert à l'alternance 2026">
+    <div class="npill" role="status" data-alfr="Disponibilité : en poste en CDI, ouvert aux missions" data-alen="Availability: in a permanent role, open to assignments" aria-label="Disponibilité : en poste en CDI, ouvert aux missions">
       <!-- small green dot used both inside the pill and on its own -->
       <div class="npill-dot" aria-hidden="true"></div>
       <!-- text shown only on first load before collapsing -->
-      <span class="npill-text">Dispo · Alternance sept. 2026</span>
+      <span class="npill-text">CDI dès le 14 sept. 2026</span>
       <!-- tooltip always visible on hover -->
-      <div class="npill-tip">Dispo · Alternance sept. 2026</div>
+      <div class="npill-tip">CDI dès le 14 sept. 2026</div>
     </div>
   </div>
 </nav>
@@ -1245,11 +1308,12 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
   <a href="#about">Profil</a>
   <a href="#skills">Stack</a>
   <a href="#projects">Projets</a>
+  <a href="#insights">Insights</a>
   <a href="#experience">Expérience</a>
   <a href="#education">Formation</a>
   <a href="#cv">Mes CV</a>
   <a href="#contact">Contact</a>
-  <div class="mm-foot"><span class="mm-dot"></span><span id="mm-status">Dispo · Alternance sept. 2026</span></div>
+  <div class="mm-foot"><span class="mm-dot"></span><span id="mm-status">CDI dès le 14 sept. 2026</span></div>
 </nav>
 
 <main id="main">
@@ -1276,7 +1340,7 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
       <span class="hw"><span>MBEUMI</span></span>
     </h1>
     <div class="hero-role">Data Analyst — BI · ML appliqué · IA industrielle</div>
-    <div class="hero-seek" id="heroSeek"><span class="hs-dot" aria-hidden="true"></span><span class="hs-txt">En recherche d'une alternance — Master Spécialisé Data Analyst, dès septembre 2026.</span></div>
+    <div class="hero-seek" id="heroSeek"><span class="hs-dot" aria-hidden="true"></span><span class="hs-txt">CDI signé chez Rondol Industrie — R&amp;D &amp; Operations Engineer dès le 14 septembre 2026.</span></div>
     <p class="hero-sub">Je modélise des <strong>données industrielles réelles</strong> — statistiques, séries temporelles et Machine Learning — pour en tirer des décisions et des <strong>métriques défendables</strong>.<br>Master&nbsp;2 Data &amp; IA · en mission Data Analyst chez <strong>Rondol Industrie</strong> (Nancy).</p>
     <!-- Marquee : la classe hs-on n'est posee par JS que si le mouvement est autorise.
          Sans JS / en reduced-motion, .hero-marquee et .hs-track restent des div neutres
@@ -1331,7 +1395,7 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
       </div>
       <div>
         <div class="fact"><span class="fk">Formation</span><span class="fv">Master 2 Chef de Projet Data &amp; IA — NEXA Digital School, Paris</span></div>
-        <div class="fact"><span class="fk">Stage</span><span class="fv">Data Analyst — Rondol Industrie, Nancy (janv. 2026 – en cours)</span></div>
+        <div class="fact"><span class="fk">Poste</span><span class="fv">R&amp;D and Operations Engineer — Rondol Industrie, Nancy (CDI, sept. 2026)</span></div>
         <div class="fact"><span class="fk">Localisation</span><span class="fv">Paris &amp; Nancy — Mobile France entière</span></div>
         <div class="fact"><span class="fk">Spécialités</span><span class="fv">Business Intelligence · Machine Learning appliqué · Computer Vision · Déploiement d'apps ML (Streamlit/FastAPI)</span></div>
         <div class="fact"><span class="fk">Langues</span><span class="fv">Français (natif) · Anglais (B1)</span></div>
@@ -1450,7 +1514,7 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
         <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" style="opacity:.52"><defs><radialGradient id="rg6" cx="50%" cy="35%" r="55%"><stop offset="0%" stop-color="#60A5FA" stop-opacity=".45"/><stop offset="100%" stop-color="#1E3A8A" stop-opacity="0"/></radialGradient></defs><circle cx="160" cy="130" r="100" fill="url(#rg6)"/><rect x="30" y="90" width="260" height="55" rx="10" fill="none" stroke="#60A5FA" stroke-width="2"/><circle cx="65" cy="117" r="16" fill="none" stroke="#3B82F6" stroke-width="1.5" opacity=".7"/><line x1="65" y1="101" x2="65" y2="133" stroke="#3B82F6" stroke-width="1" opacity=".5"/><line x1="49" y1="117" x2="81" y2="117" stroke="#3B82F6" stroke-width="1" opacity=".5"/><circle cx="105" cy="117" r="16" fill="none" stroke="#3B82F6" stroke-width="1.5" opacity=".7"/><rect x="135" y="95" width="110" height="44" rx="6" fill="#1E3A8A" opacity=".35" stroke="#60A5FA" stroke-width="1"/><path d="M290,100 L310,110 L310,124 L290,134" fill="none" stroke="#00B4D8" stroke-width="2"/><rect x="22" y="165" width="84" height="52" rx="6" fill="none" stroke="#60A5FA" stroke-width="1.5"/><text x="64" y="181" text-anchor="middle" font-family="monospace" font-size="7" fill="#93C5FD">TEMPÉRATURE</text><text x="64" y="202" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#00B4D8">187°C</text><rect x="117" y="165" width="84" height="52" rx="6" fill="none" stroke="#60A5FA" stroke-width="1.5"/><text x="159" y="181" text-anchor="middle" font-family="monospace" font-size="7" fill="#93C5FD">PRESSION</text><text x="159" y="202" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#60A5FA">4.2 MPa</text><rect x="212" y="165" width="84" height="52" rx="6" fill="none" stroke="#22C55E" stroke-width="1.5"/><text x="254" y="181" text-anchor="middle" font-family="monospace" font-size="7" fill="#86EFAC">QUALITÉ</text><text x="254" y="202" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#22C55E">OK</text><polyline points="22,280 52,262 82,270 112,250 142,258 172,238 202,245 232,228 262,235 292,220" fill="none" stroke="#00B4D8" stroke-width="2.5"/><polyline points="22,300 52,292 82,296 112,285 142,290 172,280 202,283 232,274 262,278 292,268" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="4,2" opacity=".6"/><rect x="22" y="325" width="130" height="24" rx="12" fill="none" stroke="#22C55E" stroke-width="1.2"/><text x="87" y="341" text-anchor="middle" font-family="monospace" font-size="8" fill="#22C55E">Stage 2026 · En cours</text></svg>
         <div class="pcbase"><div class="pcprov"><span class="prov prov-ent">Projet entreprise</span></div><div class="pctag">IA Industrielle · R&amp;D</div><div class="pctitle">Rondol Industrie — Optimisation process extrusion</div></div>
       </div>
-      <div class="pcp pp-st"><div><div class="ppt">Python · Stats · Power BI · R&amp;D</div><div class="ppti">Rondol Industrie</div><p class="ppd"><strong>Mission en entreprise (stage R&amp;D, en cours)</strong> : exploitation de données d'extrudeuses bivis (température, couple, pression), modèles statistiques et dashboards de suivi process. <em class="ppd-lim">Données internes — détails sous confidentialité.</em></p></div><div><div class="ppb"><span class="ppbi">Confidentiel</span><span class="ppbi">Preuve non publique</span></div><div class="pps"><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">Stats</span></div></div></div>
+      <div class="pcp pp-st"><div><div class="ppt">Python · Stats · Power BI · R&amp;D</div><div class="ppti">Rondol Industrie</div><p class="ppd"><strong>Mission en entreprise (R&amp;D, Rondol Industrie)</strong> : exploitation de données d'extrudeuses bivis (température, couple, pression), modèles statistiques et dashboards de suivi process. <em class="ppd-lim">Données internes — détails sous confidentialité.</em></p></div><div><div class="ppb"><span class="ppbi">Confidentiel</span><span class="ppbi">Preuve non publique</span></div><div class="pps"><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">Stats</span></div></div></div>
     </div>
 
     <!-- 7. POWER BI SECEL -->
@@ -1473,10 +1537,96 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
   </div>
 </section>
 
+<section id="insights" aria-labelledby="insights-h">
+  <div class="w"><div class="slbl">05 — Insights</div><h2 class="sh" id="insights-h">Ce que je publie</h2>
+  <p class="ss">5 publications originales sur LinkedIn — republications exclues. Les encarts sont les publications LinkedIn officielles.</p>
+  <div class="licar sr">
+    <div class="licar-vp" id="liVp" tabindex="0" role="region" data-alfr="Carrousel de publications LinkedIn" data-alen="LinkedIn posts carousel" aria-label="Carrousel de publications LinkedIn">
+      <article class="lisl">
+        <div class="lic">
+          <div class="lic-h">
+            <time class="lic-dt" datetime="2026-08-20" data-fr="AOÛT 2026" data-en="AUG 2026">AOÛT 2026</time>
+            <h3 class="lic-t" data-fr="Microsoft Certified — Fabric Data Engineer Associate" data-en="Microsoft Certified — Fabric Data Engineer Associate">Microsoft Certified — Fabric Data Engineer Associate</h3>
+            <p class="lic-s" data-fr="Pourquoi cette certification plutôt qu'une autre : je travaille sur une donnée qui arrive brute, bruitée et en continu — l'extrusion industrielle." data-en="Why this certification over another: I work with data that arrives raw, noisy and continuous — industrial extrusion.">Pourquoi cette certification plutôt qu'une autre : je travaille sur une donnée qui arrive brute, bruitée et en continu — l'extrusion industrielle.</p>
+            <a class="lic-a" href="https://www.linkedin.com/feed/update/urn:li:activity:7496137890083606528/" target="_blank" rel="noopener noreferrer"><span data-fr="Voir sur LinkedIn" data-en="View on LinkedIn">Voir sur LinkedIn</span><svg class="lic-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a>
+          </div>
+          <div class="lic-e">
+            <iframe data-embed="https://www.linkedin.com/embed/feed/update/urn:li:activity:7496137890083606528" height="500" width="100%" frameborder="0" allowfullscreen loading="lazy" title="Publication LinkedIn — Microsoft Certified — Fabric Data Engineer Associate"></iframe>
+            <noscript><p class="lic-ns"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7496137890083606528/" target="_blank" rel="noopener noreferrer">Voir cette publication sur LinkedIn</a></p></noscript>
+          </div>
+        </div>
+      </article>
+      <article class="lisl">
+        <div class="lic">
+          <div class="lic-h">
+            <time class="lic-dt" datetime="2026-07-28" data-fr="JUIL. 2026" data-en="JUL 2026">JUIL. 2026</time>
+            <h3 class="lic-t" data-fr="Travaux présentés à la conférence IMLB 2026" data-en="Work presented at the IMLB 2026 conference">Travaux présentés à la conférence IMLB 2026</h3>
+            <p class="lic-s" data-fr="Le travail mené chez Rondol Group a été présenté à la conférence internationale IMLB 2026, en co-autorat avec Maël Gallas et en collaboration avec l'Institut Jean Lamour (CNRS — Université de Lorraine)." data-en="The work carried out at Rondol Group was presented at the IMLB 2026 international conference, co-authored with Maël Gallas, with Institut Jean Lamour (CNRS — Université de Lorraine).">Le travail mené chez Rondol Group a été présenté à la conférence internationale IMLB 2026, en co-autorat avec Maël Gallas et en collaboration avec l'Institut Jean Lamour (CNRS — Université de Lorraine).</p>
+            <a class="lic-a" href="https://www.linkedin.com/feed/update/urn:li:activity:7487756314643824641/" target="_blank" rel="noopener noreferrer"><span data-fr="Voir sur LinkedIn" data-en="View on LinkedIn">Voir sur LinkedIn</span><svg class="lic-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a>
+          </div>
+          <div class="lic-e">
+            <iframe data-embed="https://www.linkedin.com/embed/feed/update/urn:li:activity:7487756314643824641" height="500" width="100%" frameborder="0" allowfullscreen loading="lazy" title="Publication LinkedIn — Travaux présentés à la conférence IMLB 2026"></iframe>
+            <noscript><p class="lic-ns"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7487756314643824641/" target="_blank" rel="noopener noreferrer">Voir cette publication sur LinkedIn</a></p></noscript>
+          </div>
+        </div>
+      </article>
+      <article class="lisl">
+        <div class="lic">
+          <div class="lic-h">
+            <time class="lic-dt" datetime="2026-03-24" data-fr="MARS 2026" data-en="MAR 2026">MARS 2026</time>
+            <h3 class="lic-t" data-fr="Détection de défauts sur coques d'avions — la suite" data-en="Aircraft hull defect detection — follow-up">Détection de défauts sur coques d'avions — la suite</h3>
+            <p class="lic-s" data-fr="Retour sur le projet de vision par ordinateur, et ce que vos retours ont fait évoluer dans l'approche." data-en="A follow-up on the computer-vision project, and how your feedback reshaped the approach.">Retour sur le projet de vision par ordinateur, et ce que vos retours ont fait évoluer dans l'approche.</p>
+            <a class="lic-a" href="https://www.linkedin.com/feed/update/urn:li:activity:7442103104528887808/" target="_blank" rel="noopener noreferrer"><span data-fr="Voir sur LinkedIn" data-en="View on LinkedIn">Voir sur LinkedIn</span><svg class="lic-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a>
+          </div>
+          <div class="lic-e">
+            <iframe data-embed="https://www.linkedin.com/embed/feed/update/urn:li:activity:7442103104528887808" height="500" width="100%" frameborder="0" allowfullscreen loading="lazy" title="Publication LinkedIn — Détection de défauts sur coques d'avions — la suite"></iframe>
+            <noscript><p class="lic-ns"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7442103104528887808/" target="_blank" rel="noopener noreferrer">Voir cette publication sur LinkedIn</a></p></noscript>
+          </div>
+        </div>
+      </article>
+      <article class="lisl">
+        <div class="lic">
+          <div class="lic-h">
+            <time class="lic-dt" datetime="2026-03-17" data-fr="MARS 2026" data-en="MAR 2026">MARS 2026</time>
+            <h3 class="lic-t" data-fr="Détection de fraude bancaire end-to-end" data-en="End-to-end banking fraud detection">Détection de fraude bancaire end-to-end</h3>
+            <p class="lic-s" data-fr="Un système complet déployé avec FastAPI et Streamlit : de l'entraînement du modèle jusqu'à la mise en service." data-en="A complete system deployed with FastAPI and Streamlit: from model training through to production.">Un système complet déployé avec FastAPI et Streamlit : de l'entraînement du modèle jusqu'à la mise en service.</p>
+            <a class="lic-a" href="https://www.linkedin.com/feed/update/urn:li:activity:7439682058114822146/" target="_blank" rel="noopener noreferrer"><span data-fr="Voir sur LinkedIn" data-en="View on LinkedIn">Voir sur LinkedIn</span><svg class="lic-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a>
+          </div>
+          <div class="lic-e">
+            <iframe data-embed="https://www.linkedin.com/embed/feed/update/urn:li:activity:7439682058114822146" height="500" width="100%" frameborder="0" allowfullscreen loading="lazy" title="Publication LinkedIn — Détection de fraude bancaire end-to-end"></iframe>
+            <noscript><p class="lic-ns"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7439682058114822146/" target="_blank" rel="noopener noreferrer">Voir cette publication sur LinkedIn</a></p></noscript>
+          </div>
+        </div>
+      </article>
+      <article class="lisl">
+        <div class="lic">
+          <div class="lic-h">
+            <time class="lic-dt" datetime="2026-02-24" data-fr="FÉVR. 2026" data-en="FEB 2026">FÉVR. 2026</time>
+            <h3 class="lic-t" data-fr="Un angle mort chez les étudiants Data & Tech" data-en="A blind spot for Data & Tech students">Un angle mort chez les étudiants Data & Tech</h3>
+            <p class="lic-s" data-fr="Ce que beaucoup d'étudiants laissent passer pendant leurs études — et pourquoi ça se joue plus tôt qu'on ne le croit." data-en="What many students overlook during their studies — and why it plays out earlier than expected.">Ce que beaucoup d'étudiants laissent passer pendant leurs études — et pourquoi ça se joue plus tôt qu'on ne le croit.</p>
+            <a class="lic-a" href="https://www.linkedin.com/feed/update/urn:li:activity:7432051385010995200/" target="_blank" rel="noopener noreferrer"><span data-fr="Voir sur LinkedIn" data-en="View on LinkedIn">Voir sur LinkedIn</span><svg class="lic-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a>
+          </div>
+          <div class="lic-e">
+            <iframe data-embed="https://www.linkedin.com/embed/feed/update/urn:li:activity:7432051385010995200" height="500" width="100%" frameborder="0" allowfullscreen loading="lazy" title="Publication LinkedIn — Un angle mort chez les étudiants Data & Tech"></iframe>
+            <noscript><p class="lic-ns"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7432051385010995200/" target="_blank" rel="noopener noreferrer">Voir cette publication sur LinkedIn</a></p></noscript>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="licar-nav">
+      <button class="licar-b licar-prev" id="liPrev" type="button" data-alfr="Publication précédente" data-alen="Previous publication" aria-label="Publication précédente" aria-controls="liVp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <div class="licar-dots" id="liDots" role="group" data-alfr="Aller à la publication" data-alen="Go to publication" aria-label="Aller à la publication"></div>
+      <button class="licar-b" id="liNext" type="button" data-alfr="Publication suivante" data-alen="Next publication" aria-label="Publication suivante" aria-controls="liVp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+  </div>
+</section>
+
 <section id="experience" aria-labelledby="experience-h">
-  <div class="w"><div class="slbl">05 — Expérience</div><h2 class="sh" id="experience-h">Parcours Professionnel</h2>
+  <div class="w"><div class="slbl">06 — Expérience</div><h2 class="sh" id="experience-h">Parcours Professionnel</h2>
   <div class="exg sg">
-    <div class="ex"><div class="ex-d">Janvier 2026 — en cours</div><div class="ex-r">Stage Data Analyst</div><div class="ex-c">Rondol Industrie — Nancy · R&amp;D Industrielle</div><ul class="ex-ul"><li>Exploitation de données d'extrudeuses bivis (température, couple, pression, vitesse)</li><li>Nettoyage et validation de données expérimentales R&amp;D</li><li>Modèles statistiques pour optimisation des paramètres d'extrusion</li><li>Dashboards de suivi des essais et indicateurs techniques</li></ul><div class="ex-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Power BI</span><span class="tag">Statistiques</span></div></div>
+    <div class="ex"><div class="ex-d">À partir du 14 septembre 2026</div><div class="ex-r">R&amp;D and Operations Engineer</div><div class="ex-c">Rondol Industrie — Nancy · CDI</div><ul class="ex-ul"><li>Recherche et développement appliqués : IA, simulation et jumeaux numériques</li><li>Data et informatique industrielle sur les procédés d’extrusion</li><li>Développement et suivi des applications et outils numériques de l’entreprise</li></ul></div>
+    <div class="ex"><div class="ex-d">Janvier 2026 — Septembre 2026</div><div class="ex-r">Stage Data Analyst</div><div class="ex-c">Rondol Industrie — Nancy · R&amp;D Industrielle</div><ul class="ex-ul"><li>Exploitation de données d'extrudeuses bivis (température, couple, pression, vitesse)</li><li>Nettoyage et validation de données expérimentales R&amp;D</li><li>Modèles statistiques pour optimisation des paramètres d'extrusion</li><li>Dashboards de suivi des essais et indicateurs techniques</li></ul><div class="ex-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Power BI</span><span class="tag">Statistiques</span></div></div>
     <div class="ex"><div class="ex-d">Février 2024 — Janvier 2025</div><div class="ex-r">Data Analyst Junior</div><div class="ex-c">SECEL SARL — Douala, Cameroun</div><ul class="ex-ul"><li>Extraction, nettoyage et modélisation de données clients (SQL &amp; Excel)</li><li>Dashboards Power BI pour le suivi des performances de formation</li><li><strong>Automatisation : -30% sur le temps de production des rapports</strong></li><li>Support technique et gestion des accès plateformes</li></ul><div class="ex-tags"><span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Excel</span><span class="tag">DAX</span></div></div>
     <div class="ex">
       <div class="ex-d">2022</div>
@@ -1506,7 +1656,7 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
 </section>
 
 <section id="education" aria-labelledby="education-h">
-  <div class="w"><div class="slbl">06 — Formation</div><h2 class="sh" id="education-h">Parcours Académique</h2>
+  <div class="w"><div class="slbl">07 — Formation</div><h2 class="sh" id="education-h">Parcours Académique</h2>
   <div class="edug sg">
     <div class="edu"><div class="edu-y">2025-2026 · En cours</div><div class="edu-d">Master 2 Chef de Projet Data &amp; IA</div><div class="edu-s">NEXA Digital School — Paris</div></div>
     <div class="edu"><div class="edu-y">2024-2025 · Obtenu</div><div class="edu-d">Master 1 Chef de Projet Data &amp; IA</div><div class="edu-s">IA School Paris</div><div class="edu-g">GPA 3.4 / 4</div></div>
@@ -1516,24 +1666,26 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
 </section>
 
 <section id="certifications" aria-labelledby="certifications-h">
-  <div class="w"><div class="slbl">07 — Certifications</div><h2 class="sh" id="certifications-h">Formations &amp; Certifications</h2>
+  <div class="w"><div class="slbl">08 — Certifications</div><h2 class="sh" id="certifications-h">Formations &amp; Certifications</h2>
   <div class="certg sg">
-    <div class="cert"><div class="cert-lg"><svg width="82" height="32" viewBox="0 0 82 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 1C8.3 1 2 7.3 2 15s6.3 14 14 14 14-6.3 14-15S23.7 1 16 1zm0 3.7c5.7 0 10.3 4.6 10.3 10.3S21.7 25.3 16 25.3 5.7 20.7 5.7 15 10.3 4.7 16 4.7z" fill="#C74634"/><text x="34" y="20" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#C74634">RACLE</text></svg></div><div class="cert-org">Oracle</div><div class="cert-nm">Cloud Infrastructure 2025 AI</div><span class="cbg cbd">Obtenu</span></div>
-    <div class="cert"><div class="cert-lg"><svg width="82" height="32" viewBox="0 0 82 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 1C8.3 1 2 7.3 2 15s6.3 14 14 14 14-6.3 14-15S23.7 1 16 1zm0 3.7c5.7 0 10.3 4.6 10.3 10.3S21.7 25.3 16 25.3 5.7 20.7 5.7 15 10.3 4.7 16 4.7z" fill="#C74634"/><text x="34" y="20" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#C74634">RACLE</text></svg></div><div class="cert-org">Oracle</div><div class="cert-nm">Data Platform 2025</div><span class="cbg cbd">Obtenu</span></div>
-    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.3 9 3.4l6.6-6.6C35.5 2.3 30.1 0 24 0 14.6 0 6.6 5.5 2.7 13.5l7.7 6C12.3 13.3 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.6 2.8-2.2 5.2-4.7 6.8l7.3 5.7c4.3-4 6.8-9.9 6.8-16.5z"/><path fill="#FBBC05" d="M10.4 28.5c-.6-1.7-.9-3.5-.9-5.5s.3-3.8.9-5.5l-7.7-6C1 15 0 18.9 0 23s1 8.1 2.7 11.5l7.7-6z"/><path fill="#34A853" d="M24 46c6.1 0 11.2-2 14.9-5.5l-7.3-5.7c-2 1.4-4.6 2.2-7.6 2.2-6.3 0-11.7-3.8-13.6-9.5l-7.7 6C6.6 41.5 14.6 46 24 46z"/></svg></div><div class="cert-org">Google</div><div class="cert-nm">Google Analytics</div><span class="cbg cbd">Obtenu</span></div>
-    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="12" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="12" width="10" height="10" fill="#00A4EF"/><rect x="12" y="12" width="10" height="10" fill="#FFB900"/></svg></div><div class="cert-org">Microsoft</div><div class="cert-nm">Excel Data Analysis</div><span class="cbg cbd">Obtenu</span></div>
-    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pA" x1="12%" y1="12%" x2="75%" y2="75%"><stop offset="0" stop-color="#387EB8"/><stop offset="1" stop-color="#366994"/></linearGradient><linearGradient id="pB" x1="25%" y1="25%" x2="88%" y2="88%"><stop offset="0" stop-color="#FFE052"/><stop offset="1" stop-color="#FFC331"/></linearGradient></defs><path fill="url(#pA)" d="M126.9 0C62.2 0 66 28.4 66 28.4V57h62v9H38S0 61.5 0 127c0 65.5 36.2 63.2 36.2 63.2H57v-30.4S55.8 123 90 123h62s32-.5 32-31V34S189.3 0 126.9 0zm-15 18.8a11.2 11.2 0 110 22.4 11.2 11.2 0 010-22.4z"/><path fill="url(#pB)" d="M129.1 255c64.7 0 61-28.4 61-28.4V198h-62v-9h90S256 193.5 256 128c0-65.5-36.2-63.2-36.2-63.2H199v30.4s1.2 37-33 37H104s-32 .5-32 31v58S79.7 255 129.1 255zm15-18.8a11.2 11.2 0 110-22.4 11.2 11.2 0 010 22.4z"/></svg></div><div class="cert-org">Python</div><div class="cert-nm">Certificat Python</div><span class="cbg cbd">Obtenu</span></div>
-    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="12" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="12" width="10" height="10" fill="#00A4EF"/><rect x="12" y="12" width="10" height="10" fill="#FFB900"/></svg></div><div class="cert-org">Microsoft</div><div class="cert-nm">PL-300 Power BI</div><span class="cbg cbo">En cours</span></div>
-    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.3 9 3.4l6.6-6.6C35.5 2.3 30.1 0 24 0 14.6 0 6.6 5.5 2.7 13.5l7.7 6C12.3 13.3 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.6 2.8-2.2 5.2-4.7 6.8l7.3 5.7c4.3-4 6.8-9.9 6.8-16.5z"/><path fill="#FBBC05" d="M10.4 28.5c-.6-1.7-.9-3.5-.9-5.5s.3-3.8.9-5.5l-7.7-6C1 15 0 18.9 0 23s1 8.1 2.7 11.5l7.7-6z"/><path fill="#34A853" d="M24 46c6.1 0 11.2-2 14.9-5.5l-7.3-5.7c-2 1.4-4.6 2.2-7.6 2.2-6.3 0-11.7-3.8-13.6-9.5l-7.7 6C6.6 41.5 14.6 46 24 46z"/></svg></div><div class="cert-org">Google</div><div class="cert-nm">Google Data Analytics</div><span class="cbg cbo">En cours</span></div>
+    <a class="cert" href="https://learn.microsoft.com/api/credentials/share/fr-fr/MBEUMITCHOUFFOUOWilfriedGaltier-1054/40E1804284D2588B" target="_blank" rel="noopener noreferrer" aria-label="Microsoft — Fabric Data Engineer Associate : vérifier le diplôme (nouvel onglet)"><svg class="cert-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="12" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="12" width="10" height="10" fill="#00A4EF"/><rect x="12" y="12" width="10" height="10" fill="#FFB900"/></svg></div><div class="cert-org">Microsoft</div><div class="cert-nm">Fabric Data Engineer Associate</div><div class="cert-dt" data-fr="Août 2026 · exp. août 2027" data-en="Aug 2026 · exp. Aug 2027">Août 2026 · exp. août 2027</div><span class="cbg cbd" data-fr="Obtenu" data-en="Obtained">Obtenu</span><div class="cert-id">ID 40E1804284D2588B</div><span class="cert-vf" data-fr="Vérifier" data-en="Verify">Vérifier</span></a>
+    <a class="cert" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=B0D852EB68CD3F4128134A76078C302969F7606B79D19FADECC855AFA0DE6F27" target="_blank" rel="noopener noreferrer" aria-label="Oracle — Cloud Infrastructure 2025 AI Foundations : vérifier le diplôme (nouvel onglet)"><svg class="cert-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg><div class="cert-lg"><svg width="82" height="32" viewBox="0 0 82 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 1C8.3 1 2 7.3 2 15s6.3 14 14 14 14-6.3 14-15S23.7 1 16 1zm0 3.7c5.7 0 10.3 4.6 10.3 10.3S21.7 25.3 16 25.3 5.7 20.7 5.7 15 10.3 4.7 16 4.7z" fill="#C74634"/><text x="34" y="20" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#C74634">RACLE</text></svg></div><div class="cert-org">Oracle</div><div class="cert-nm">Cloud Infrastructure 2025 AI Foundations</div><div class="cert-dt" data-fr="Oct. 2025" data-en="Oct 2025">Oct. 2025</div><span class="cbg cbd" data-fr="Obtenu" data-en="Obtained">Obtenu</span><span class="cert-vf" data-fr="Vérifier" data-en="Verify">Vérifier</span></a>
+    <a class="cert" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=68E555E1A90389954AAF4143D56A5AEDA950C54C5C894437BA9F64153DAE987B" target="_blank" rel="noopener noreferrer" aria-label="Oracle — Data Platform 2025 Foundations : vérifier le diplôme (nouvel onglet)"><svg class="cert-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg><div class="cert-lg"><svg width="82" height="32" viewBox="0 0 82 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 1C8.3 1 2 7.3 2 15s6.3 14 14 14 14-6.3 14-15S23.7 1 16 1zm0 3.7c5.7 0 10.3 4.6 10.3 10.3S21.7 25.3 16 25.3 5.7 20.7 5.7 15 10.3 4.7 16 4.7z" fill="#C74634"/><text x="34" y="20" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#C74634">RACLE</text></svg></div><div class="cert-org">Oracle</div><div class="cert-nm">Data Platform 2025 Foundations</div><div class="cert-dt" data-fr="Oct. 2025" data-en="Oct 2025">Oct. 2025</div><span class="cbg cbd" data-fr="Obtenu" data-en="Obtained">Obtenu</span><span class="cert-vf" data-fr="Vérifier" data-en="Verify">Vérifier</span></a>
+    <a class="cert" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=8FD521C3CF9FFF590B9ED2E6690C1FA1A602A160ECC36C80687ADF83330E03BC" target="_blank" rel="noopener noreferrer" aria-label="Oracle — Guided Learning Content Developer : vérifier le diplôme (nouvel onglet)"><svg class="cert-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg><div class="cert-lg"><svg width="82" height="32" viewBox="0 0 82 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 1C8.3 1 2 7.3 2 15s6.3 14 14 14 14-6.3 14-15S23.7 1 16 1zm0 3.7c5.7 0 10.3 4.6 10.3 10.3S21.7 25.3 16 25.3 5.7 20.7 5.7 15 10.3 4.7 16 4.7z" fill="#C74634"/><text x="34" y="20" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#C74634">RACLE</text></svg></div><div class="cert-org">Oracle</div><div class="cert-nm">Guided Learning Content Developer</div><div class="cert-dt" data-fr="Oct. 2025" data-en="Oct 2025">Oct. 2025</div><span class="cbg cbd" data-fr="Obtenu" data-en="Obtained">Obtenu</span><span class="cert-vf" data-fr="Vérifier" data-en="Verify">Vérifier</span></a>
+    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.3 9 3.4l6.6-6.6C35.5 2.3 30.1 0 24 0 14.6 0 6.6 5.5 2.7 13.5l7.7 6C12.3 13.3 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.6 2.8-2.2 5.2-4.7 6.8l7.3 5.7c4.3-4 6.8-9.9 6.8-16.5z"/><path fill="#FBBC05" d="M10.4 28.5c-.6-1.7-.9-3.5-.9-5.5s.3-3.8.9-5.5l-7.7-6C1 15 0 18.9 0 23s1 8.1 2.7 11.5l7.7-6z"/><path fill="#34A853" d="M24 46c6.1 0 11.2-2 14.9-5.5l-7.3-5.7c-2 1.4-4.6 2.2-7.6 2.2-6.3 0-11.7-3.8-13.6-9.5l-7.7 6C6.6 41.5 14.6 46 24 46z"/></svg></div><div class="cert-org">Google</div><div class="cert-nm">Google Analytics</div><span class="cbg cbd" data-fr="Obtenu" data-en="Obtained">Obtenu</span></div>
+    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="12" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="12" width="10" height="10" fill="#00A4EF"/><rect x="12" y="12" width="10" height="10" fill="#FFB900"/></svg></div><div class="cert-org">Microsoft</div><div class="cert-nm">Excel Data Analysis</div><span class="cbg cbd" data-fr="Obtenu" data-en="Obtained">Obtenu</span></div>
+    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pA" x1="12%" y1="12%" x2="75%" y2="75%"><stop offset="0" stop-color="#387EB8"/><stop offset="1" stop-color="#366994"/></linearGradient><linearGradient id="pB" x1="25%" y1="25%" x2="88%" y2="88%"><stop offset="0" stop-color="#FFE052"/><stop offset="1" stop-color="#FFC331"/></linearGradient></defs><path fill="url(#pA)" d="M126.9 0C62.2 0 66 28.4 66 28.4V57h62v9H38S0 61.5 0 127c0 65.5 36.2 63.2 36.2 63.2H57v-30.4S55.8 123 90 123h62s32-.5 32-31V34S189.3 0 126.9 0zm-15 18.8a11.2 11.2 0 110 22.4 11.2 11.2 0 010-22.4z"/><path fill="url(#pB)" d="M129.1 255c64.7 0 61-28.4 61-28.4V198h-62v-9h90S256 193.5 256 128c0-65.5-36.2-63.2-36.2-63.2H199v30.4s1.2 37-33 37H104s-32 .5-32 31v58S79.7 255 129.1 255zm15-18.8a11.2 11.2 0 110-22.4 11.2 11.2 0 010 22.4z"/></svg></div><div class="cert-org">Python</div><div class="cert-nm">Certificat Python</div><span class="cbg cbd" data-fr="Obtenu" data-en="Obtained">Obtenu</span></div>
     <div class="cert"><div class="cert-lg cert-lg-nexa"><img src="nexa-opt.webp" alt="Logo NEXA Digital School" class="cert-logo-nexa"
-     width="380" height="168" loading="lazy" decoding="async"></div><div class="cert-org">NEXA Digital School</div><div class="cert-nm">MLOps Fraud Detection</div><span class="cbg cbd">Validé 2026</span></div>
+     width="380" height="168" loading="lazy" decoding="async"></div><div class="cert-org">NEXA Digital School</div><div class="cert-nm">MLOps Fraud Detection</div><span class="cbg cbd" data-fr="Validé 2026" data-en="Validated 2026">Validé 2026</span></div>
+    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="12" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="12" width="10" height="10" fill="#00A4EF"/><rect x="12" y="12" width="10" height="10" fill="#FFB900"/></svg></div><div class="cert-org">Microsoft</div><div class="cert-nm">PL-300 Power BI</div><span class="cbg cbo" data-fr="En cours" data-en="In progress">En cours</span></div>
+    <div class="cert"><div class="cert-lg"><svg width="32" height="32" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.3 9 3.4l6.6-6.6C35.5 2.3 30.1 0 24 0 14.6 0 6.6 5.5 2.7 13.5l7.7 6C12.3 13.3 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.6 2.8-2.2 5.2-4.7 6.8l7.3 5.7c4.3-4 6.8-9.9 6.8-16.5z"/><path fill="#FBBC05" d="M10.4 28.5c-.6-1.7-.9-3.5-.9-5.5s.3-3.8.9-5.5l-7.7-6C1 15 0 18.9 0 23s1 8.1 2.7 11.5l7.7-6z"/><path fill="#34A853" d="M24 46c6.1 0 11.2-2 14.9-5.5l-7.3-5.7c-2 1.4-4.6 2.2-7.6 2.2-6.3 0-11.7-3.8-13.6-9.5l-7.7 6C6.6 41.5 14.6 46 24 46z"/></svg></div><div class="cert-org">Google</div><div class="cert-nm">Google Data Analytics</div><span class="cbg cbo" data-fr="En cours" data-en="In progress">En cours</span></div>
   </div></div>
 </section>
 
 
 <section id="cv" aria-labelledby="cv-h">
   <div class="w">
-    <div class="slbl">08 — CV</div><h2 class="sh" id="cv-h">Deux versions, une expertise.</h2>
+    <div class="slbl">09 — CV</div><h2 class="sh" id="cv-h">Deux versions, une expertise.</h2>
     <p class="ss" style="margin:0 auto">Choisissez la version adaptée à votre contexte de recrutement — ou ouvrez les deux.</p>
     <div class="cv-grid sr">
       <article class="cv-card">
@@ -1582,9 +1734,9 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
 </section>
 
 <section id="contact" aria-labelledby="contact-h">
-  <div class="w"><div class="slbl">09 — Contact</div><h2 class="sh" id="contact-h">Discutons de votre alternance</h2>
-  <p class="ss" style="margin:0 auto">Objectif : alternance Master Spécialisé Data Analyst dès septembre 2026 (ouvert aussi à CDD/CDI). Mobile dans toute la France · permis B.</p>
-  <p class="cta-statement" id="ctaStatement">Disponible pour une alternance Data Analyst dès septembre 2026, idéalement dans un environnement data industriel ou R&amp;D. Parlons-en — 20 minutes suffisent.</p>
+  <div class="w"><div class="slbl">10 — Contact</div><h2 class="sh" id="contact-h">Parlons de votre projet data</h2>
+  <p class="ss" style="margin:0 auto">En poste en CDI — ouvert aux missions Data &amp; IA (BI, ML appliqué, IA industrielle). Mobile dans toute la France · permis B.</p>
+  <p class="cta-statement" id="ctaStatement">En poste en CDI, ouvert aux missions Data &amp; IA — idéalement en environnement industriel ou R&amp;D. Parlons-en — 20 minutes suffisent.</p>
   <div class="ccg sr">
     <!-- Contact buttons with official logos -->
     <a href="mailto:mbeumigautier@gmail.com" class="cc">
@@ -1756,17 +1908,17 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
   var LB = document.getElementById('LB');
   var lang = 'fr';
 
-  var NAV_FR = ['Profil','Stack','Projets','Expérience','Formation','CV','Contact'];
-  var NAV_EN = ['Profile','Stack','Projects','Experience','Education','CV','Contact'];
+  var NAV_FR = ['Profil','Stack','Projets','Insights','Expérience','Formation','CV','Contact'];
+  var NAV_EN = ['Profile','Stack','Projects','Insights','Experience','Education','CV','Contact'];
 
-  var SLBL_FR = ['01 — Profil','02 — Stack','03 — Méthode','04 — Projets','05 — Expérience','06 — Formation','07 — Certifications','08 — CV','09 — Contact'];
-  var SLBL_EN = ['01 — About','02 — Stack','03 — Method','04 — Projects','05 — Experience','06 — Education','07 — Certifications','08 — CV','09 — Contact'];
+  var SLBL_FR = ['01 — Profil','02 — Stack','03 — Méthode','04 — Projets','05 — Insights','06 — Expérience','07 — Formation','08 — Certifications','09 — CV','10 — Contact'];
+  var SLBL_EN = ['01 — About','02 — Stack','03 — Method','04 — Projects','05 — Insights','06 — Experience','07 — Education','08 — Certifications','09 — CV','10 — Contact'];
 
-  var SH_FR = ['Data, IA & Industrie','Outils & Technologies','Comment je travaille','Ce que j\'ai construit','Parcours Professionnel','Parcours Académique','Formations & Certifications','Deux versions, une expertise.','Discutons de votre alternance'];
-  var SH_EN = ['Data, AI & Industry','Tools & Technologies','How I work','What I\'ve built','Work Experience','Academic Background','Training & Certifications','Two versions, one expertise.','Let\'s discuss your work-study role'];
+  var SH_FR = ['Data, IA & Industrie','Outils & Technologies','Comment je travaille','Ce que j\'ai construit','Ce que je publie','Parcours Professionnel','Parcours Académique','Formations & Certifications','Deux versions, une expertise.','Parlons de votre projet data'];
+  var SH_EN = ['Data, AI & Industry','Tools & Technologies','How I work','What I\'ve built','What I publish','Work Experience','Academic Background','Training & Certifications','Two versions, one expertise.','Let\'s talk about your data project'];
 
-  var SS_FR = ['Stack data complète — de la donnée brute au déploiement des applications ML.','Quatre étapes, toujours dans le même ordre. C\'est ce qui rend une métrique défendable.','8 projets — du dashboard BI au modèle ML déployé. Chaque carte précise contexte, données et limites. Visuels schématiques (pas des captures réelles).','Choisissez la version adaptée à votre contexte de recrutement — ou ouvrez les deux.','Objectif : alternance Master Spécialisé Data Analyst dès septembre 2026 (ouvert aussi à CDD/CDI). Mobile dans toute la France · permis B.'];
-  var SS_EN = ['Full data stack — from raw data to ML app deployment.','Four steps, always in the same order. That is what makes a metric defensible.','8 projects — from BI dashboards to deployed ML models. Each card states context, data and limits. Illustrations are schematic (not real screenshots).','Choose the version that fits your recruiting context — or open both.','Goal: Specialised Master’s Data Analyst work-study from September 2026 (also open to fixed-term/permanent). Mobile across France · driving licence.'];
+  var SS_FR = ['Stack data complète — de la donnée brute au déploiement des applications ML.','Quatre étapes, toujours dans le même ordre. C\'est ce qui rend une métrique défendable.','8 projets — du dashboard BI au modèle ML déployé. Chaque carte précise contexte, données et limites. Visuels schématiques (pas des captures réelles).','5 publications originales sur LinkedIn — republications exclues. Chaque carte ouvre le post d\'origine. Chiffres relevés le 2 septembre 2026.','Choisissez la version adaptée à votre contexte de recrutement — ou ouvrez les deux.','En poste en CDI — ouvert aux missions Data & IA (BI, ML appliqué, IA industrielle). Mobile en France · Permis B.'];
+  var SS_EN = ['Full data stack — from raw data to ML app deployment.','Four steps, always in the same order. That is what makes a metric defensible.','8 projects — from BI dashboards to deployed ML models. Each card states context, data and limits. Illustrations are schematic (not real screenshots).','5 original LinkedIn posts — reshares excluded. Each card opens the original post. Figures recorded on 2 September 2026.','Choose the version that fits your recruiting context — or open both.','In a permanent role — open to Data & AI assignments (BI, applied ML, industrial AI). Mobile across France · driver\'s licence.'];
 
   var MI_FR = ['ROC-AUC · Fraud','Recall Fraude','Dataset ML','SNCF · Note','Gain reporting'];
   var MI_EN = ['ROC-AUC · Fraud','Fraud Recall','ML Dataset','SNCF · Grade','Reporting gain'];
@@ -1791,7 +1943,7 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
   // Facts (key, value) in about section
   var FACT_FR = [
     ['Formation','Master&nbsp;2 Chef de Projet Data &amp; IA — NEXA&nbsp;Digital&nbsp;School, Paris'],
-    ['Stage','Data Analyst — Rondol&nbsp;Industrie, Nancy (janv.&nbsp;2026 – en cours)'],
+    ['Poste','R&D and Operations Engineer — Rondol&nbsp;Industrie, Nancy (CDI, sept.&nbsp;2026)'],
     ['Localisation','Paris &amp; Nancy — Mobile France entière'],
     ['Spécialités','Business&nbsp;Intelligence · Machine&nbsp;Learning appliqué · Computer&nbsp;Vision · Déploiement d&rsquo;apps&nbsp;ML (Streamlit/FastAPI)'],
     ['Langues','Français (natif) · Anglais (B1)'],
@@ -1799,7 +1951,7 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
   ];
   var FACT_EN = [
     ['Education','M.Sc. Data &amp; AI Project Management — NEXA&nbsp;Digital&nbsp;School, Paris'],
-    ['Internship','Data Analyst — Rondol&nbsp;Industrie, Nancy (Jan&nbsp;2026 – present)'],
+    ['Role','R&D and Operations Engineer — Rondol&nbsp;Industrie, Nancy (permanent, Sept&nbsp;2026)'],
     ['Location','Paris &amp; Nancy — Mobile throughout France'],
     ['Specialties','Business&nbsp;Intelligence · Applied&nbsp;Machine&nbsp;Learning · Computer&nbsp;Vision · ML&nbsp;app deployment (Streamlit/FastAPI)'],
     ['Languages','French (native) · English (B1)'],
@@ -1855,12 +2007,30 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
     { y: '2021-2022 · Graduated', d: 'Technology B.Sc. in Software Engineering', s: 'IUT', g: 'Honours B+' },
     { y: '2019-2021 · Admitted', d: 'Preparatory Class in Digital Engineering', s: 'IME / EFREI Paris — Douala', g: '120 ECTS credits validated' }
   ];
-
-  // Certification statuses in both languages
-  var CERT_FR = ['Obtenu','Obtenu','Obtenu','Obtenu','Obtenu','En cours','En cours','Validé 2026'];
-  var CERT_EN = ['Obtained','Obtained','Obtained','Obtained','Obtained','In progress','In progress','Validated 2026'];
   // Experience content in both languages. Each entry contains French (fr) and English (en) versions
   var EX = [
+    {
+      fr: {
+        d: cdiStarted() ? 'Depuis septembre 2026' : 'À partir du 14 septembre 2026',
+        r: 'R&D and Operations Engineer',
+        c: 'Rondol Industrie — Nancy · CDI',
+        bullets: [
+          'Recherche et développement appliqués : IA, simulation et jumeaux numériques',
+          'Data et informatique industrielle sur les procédés d’extrusion',
+          'Développement et suivi des applications et outils numériques de l’entreprise'
+        ]
+      },
+      en: {
+        d: cdiStarted() ? 'From September 2026' : 'From 14 September 2026',
+        r: 'R&D and Operations Engineer',
+        c: 'Rondol Industrie — Nancy · Permanent contract',
+        bullets: [
+          'Applied R&D: AI research, simulation and digital twins',
+          'Industrial data and IT on extrusion processes',
+          'Development and maintenance of the company’s digital applications and tools'
+        ]
+      }
+    },
     {
       fr: {
         d: 'Janvier 2026 — en cours',
@@ -1959,7 +2129,14 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
     }
   ];
 
-  function applyLang() {
+  /* Statut professionnel auto-commutant.
+   CDI signe le 24/08/2026, prise de fonctions le 14/09/2026. Avant cette date,
+   annoncer "en poste" serait faux ; apres, annoncer "a venir" serait perime.
+   La bascule se fait seule, sans intervention. Mois 8 = septembre (base 0). */
+var CDI_START = new Date(2026, 8, 14);
+function cdiStarted() { return new Date() >= CDI_START; }
+
+function applyLang() {
     var NAV = lang === 'fr' ? NAV_FR : NAV_EN;
     var SLBL = lang === 'fr' ? SLBL_FR : SLBL_EN;
     var SH   = lang === 'fr' ? SH_FR   : SH_EN;
@@ -1971,9 +2148,13 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
     var sub = lang === 'fr'
       ? 'Je modélise des <strong>données industrielles réelles</strong> — statistiques, séries temporelles et Machine Learning — pour en tirer des décisions et des <strong>métriques défendables</strong>.<br>Master&nbsp;2 Data &amp; IA · en mission Data Analyst chez <strong>Rondol Industrie</strong> (Nancy).'
       : 'I model <strong>real industrial data</strong> — statistics, time series and Machine Learning — into decisions and <strong>metrics that hold up</strong>.<br>M.Sc. Data &amp; AI · Data Analyst on assignment at <strong>Rondol Industrie</strong> (Nancy).';
-    var seek = lang === 'fr'
-      ? "En recherche d'une alternance — Master Spécialisé Data Analyst, dès septembre 2026."
-      : 'Seeking a work-study placement — Specialised Master’s in Data Analytics, from September 2026.';
+    var seek = cdiStarted()
+      ? (lang === 'fr'
+          ? "R&D & Operations Engineer chez Rondol Industrie (CDI) — ouvert aux missions Data & IA."
+          : 'R&D & Operations Engineer at Rondol Industrie (permanent) — open to Data & AI assignments.')
+      : (lang === 'fr'
+          ? "CDI signé chez Rondol Industrie — R&D & Operations Engineer dès le 14 septembre 2026."
+          : 'Permanent contract signed with Rondol Industrie — R&D & Operations Engineer from 14 September 2026.');
     var btn = lang === 'fr' ? 'Voir mes projets →' : 'See my projects →';
     var cvBtn = lang === 'fr' ? 'Télécharger mon CV' : 'Download my CV';
     var hb  = lang === 'fr' ? 'Mobile France · Permis B · 28 ans' : "Mobile France · Driver's license · 28 y.o.";
@@ -1986,12 +2167,12 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
     var mmLinks = document.querySelectorAll('#MM a');
     for (var mli = 0; mli < mmLinks.length && mli < NAV.length; mli++) { mmLinks[mli].textContent = NAV[mli]; }
     var mmStatus = document.getElementById('mm-status');
-    if (mmStatus) mmStatus.textContent = lang === 'fr' ? 'Dispo · Alternance sept. 2026' : 'Open · Work-study Sept 2026';
-    var npT = lang === 'fr' ? 'Dispo · Alternance sept. 2026' : 'Open · Work-study Sept 2026';
+    if (mmStatus) mmStatus.textContent = (cdiStarted() ? (lang === 'fr' ? 'En poste · Ouvert aux missions' : 'In role · Open to assignments') : (lang === 'fr' ? 'CDI dès le 14 sept. 2026' : 'Permanent role from 14 Sept 2026'));
+    var npT = (cdiStarted() ? (lang === 'fr' ? 'En poste · Ouvert aux missions' : 'In role · Open to assignments') : (lang === 'fr' ? 'CDI dès le 14 sept. 2026' : 'Permanent role from 14 Sept 2026'));
     var npTextEl = document.querySelector('.npill-text'); if (npTextEl) npTextEl.textContent = npT;
     var npTipEl = document.querySelector('.npill-tip'); if (npTipEl) npTipEl.textContent = npT;
     var ctaEl = document.getElementById('ctaStatement');
-    if (ctaEl) ctaEl.textContent = lang === 'fr' ? "Disponible pour une alternance Data Analyst dès septembre 2026, idéalement dans un environnement data industriel ou R&D. Parlons-en — 20 minutes suffisent." : "Available for a Data Analyst work-study from September 2026, ideally in an industrial or R&D data environment. Let’s talk — 20 minutes is enough.";
+    if (ctaEl) ctaEl.textContent = lang === 'fr' ? "En poste en CDI, ouvert aux missions Data & IA — idéalement en environnement industriel ou R&D. Parlons-en — 20 minutes suffisent." : "In a permanent role, open to Data & AI assignments — ideally in an industrial or R&D environment. Let’s talk — 20 minutes is enough.";
 
     // Update education entries
     var eduEls = document.querySelectorAll('#education .edu');
@@ -2013,12 +2194,19 @@ nav{-webkit-backdrop-filter:blur(20px) saturate(180%)!important;backdrop-filter:
         }
       }
     }
-
-    // Update certification statuses
-    var certStatusEls = document.querySelectorAll('#certifications .cert span');
-    for (var ci = 0; ci < certStatusEls.length && ci < CERT_FR.length; ci++) {
-      var status = (lang === 'fr') ? CERT_FR[ci] : CERT_EN[ci];
-      certStatusEls[ci].textContent = status;
+    // Libelles bilingues generiques : tout element portant data-fr / data-en.
+    // Remplace l'ancien mecanisme CERT indexe sur l'ordre du document (fragile
+    // des qu'une carte est ajoutee ou deplacee).
+    var dlEls = document.querySelectorAll('[data-fr][data-en]');
+    for (var di = 0; di < dlEls.length; di++) {
+      dlEls[di].textContent = (lang === 'fr') ? dlEls[di].getAttribute('data-fr') : dlEls[di].getAttribute('data-en');
+    }
+    // Meme principe pour les libelles accessibles : un aria-label fige en
+    // francais n'est pas visible a la relecture mais reste lu tel quel par un
+    // lecteur d'ecran en mode anglais.
+    var alEls = document.querySelectorAll('[data-alfr][data-alen]');
+    for (var ai = 0; ai < alEls.length; ai++) {
+      alEls[ai].setAttribute('aria-label', (lang === 'fr') ? alEls[ai].getAttribute('data-alfr') : alEls[ai].getAttribute('data-alen'));
     }
     // Eyebrow
     var eyebrow = document.querySelector('.hero-eyebrow');
@@ -2627,6 +2815,117 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })();
 })();
+
+  /* --- Carrousel Insights (publications LinkedIn) ---------------------------
+     Les iframes ne portent pas de src au chargement : 5 iframes LinkedIn
+     ouvertes d'emblee coutent plusieurs centaines de Ko et autant de requetes
+     tierces. Le src n'est pose que lorsque la carte approche du viewport. */
+  (function () {
+    var vp = document.getElementById('liVp');
+    if (!vp) return;
+    var slides = [].slice.call(vp.querySelectorAll('.lisl'));
+    var prev = document.getElementById('liPrev');
+    var next = document.getElementById('liNext');
+    var dotsBox = document.getElementById('liDots');
+    if (!slides.length || !prev || !next || !dotsBox) return;
+
+    // Chargement differe des embeds
+    var frames = [].slice.call(vp.querySelectorAll('iframe[data-embed]'));
+    function loadFrame(f) {
+      if (f.getAttribute('src')) return;
+      f.setAttribute('src', f.getAttribute('data-embed'));
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { loadFrame(e.target); io.unobserve(e.target); }
+        });
+      /* 900px > la largeur d'une carte (~683px au pas du carrousel) : la carte
+         suivante commence a charger avant d'entrer dans le champ, sinon l'encart
+         reste blanc une a deux secondes au moment ou l'utilisateur arrive dessus. */
+      }, { root: vp, rootMargin: '0px 900px' });
+      frames.forEach(function (f) { io.observe(f); });
+    } else {
+      frames.forEach(loadFrame);
+    }
+
+    // Points de navigation
+    var dots = slides.map(function (_, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'licar-dot';
+      if (i === 0) b.setAttribute('aria-current', 'true');
+      b.setAttribute('data-alfr', 'Publication ' + (i + 1) + ' sur ' + slides.length);
+      b.setAttribute('data-alen', 'Publication ' + (i + 1) + ' of ' + slides.length);
+      /* Les points naissent apres le premier passage d'applyLang : sans cette
+         ligne ils restent sans nom accessible jusqu'au premier changement de
+         langue. On lit la langue courante sur <html>. */
+      b.setAttribute('aria-label', document.documentElement.lang === 'en' ? b.getAttribute('data-alen') : b.getAttribute('data-alfr'));
+      b.addEventListener('click', function () { goTo(i); });
+      dotsBox.appendChild(b);
+      return b;
+    });
+
+    /* Origine = offsetLeft de la premiere carte, pas celui du conteneur :
+       offsetLeft se mesure depuis l'ancetre positionne, qui n'est pas .licar-vp.
+       En prenant l'ecart entre deux slides (meme offsetParent), le calcul est juste. */
+    function originOf() { return slides[0].offsetLeft; }
+    function posOf(i) { return slides[i].offsetLeft - originOf(); }
+    function nearest() {
+      var x = vp.scrollLeft, best = 0, min = Infinity;
+      for (var i = 0; i < slides.length; i++) {
+        var d = Math.abs(posOf(i) - x);
+        if (d < min) { min = d; best = i; }
+      }
+      return best;
+    }
+    /* Index maintenu en etat : deriver l'index du scrollLeft a chaque clic
+       echoue pendant un defilement fluide encore en cours (deux clics
+       rapprochés renvoient le meme index et le second est perdu). */
+    var idx = 0;
+    /* L'index appartient a la navigation programmee (fleches, points, clavier).
+       Il n'est recalcule depuis la position de defilement que si l'utilisateur a
+       lui-meme fait un geste (molette, doigt, glisser). Un verrou temporel ne
+       suffisait pas : quand l'animation de defilement prend du retard, la
+       resynchronisation lisait une position perimee et annulait la navigation. */
+    var userGesture = false;
+    function goTo(i) {
+      idx = Math.max(0, Math.min(slides.length - 1, i));
+      userGesture = false;
+      /* scrollIntoView et non scrollTo : dans un conteneur en
+         scroll-snap-type:x mandatory, un scrollTo programme est reclame par le
+         snap et n'aboutit pas (mesure : 0px atteint sur 1365 demandes).
+         scrollIntoView cooperate avec le snap et tombe au pixel pres.
+         block:'nearest' empeche tout defilement vertical de la page. */
+      slides[idx].scrollIntoView({ inline: 'start', block: 'nearest', behavior: 'smooth' });
+      sync();
+    }
+    function sync() {
+      for (var k = 0; k < dots.length; k++) {
+        if (k === idx) dots[k].setAttribute('aria-current', 'true');
+        else dots[k].removeAttribute('aria-current');
+      }
+      prev.disabled = idx <= 0;
+      next.disabled = idx >= slides.length - 1;
+    }
+    prev.addEventListener('click', function () { goTo(idx - 1); });
+    next.addEventListener('click', function () { goTo(idx + 1); });
+    vp.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(idx + 1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(idx - 1); }
+    });
+    var t;
+    ['wheel', 'touchstart', 'pointerdown'].forEach(function (ev) {
+      vp.addEventListener(ev, function () { userGesture = true; }, { passive: true });
+    });
+    vp.addEventListener('scroll', function () {
+      if (!userGesture) return;
+      clearTimeout(t);
+      t = setTimeout(function () { idx = nearest(); sync(); userGesture = false; }, 140);
+    }, { passive: true });
+    window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(function () { idx = nearest(); sync(); }, 180); });
+    sync();
+  })();
 </script>
 </body>
 </html>
